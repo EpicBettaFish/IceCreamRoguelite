@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://brx8cesxl8wrj"]
+[gd_scene load_steps=21 format=3 uid="uid://brx8cesxl8wrj"]
 
 [ext_resource type="Texture2D" uid="uid://dgccxaaxedvst" path="res://assets/truck/truck_interiror.png" id="1_m7kw3"]
 [ext_resource type="Script" path="res://Scripts/main.gd" id="1_yedyt"]
@@ -12,6 +12,7 @@
 [ext_resource type="Script" path="res://Scripts/freezer.gd" id="9_yofj3"]
 [ext_resource type="Texture2D" uid="uid://btofj0rlu3rlm" path="res://Programmer Art/popsicleInFreezer.png" id="10_g1pt1"]
 [ext_resource type="Texture2D" uid="uid://ciy86lxfvyvrg" path="res://Programmer Art/popsicleGrabbed.png" id="11_rk73y"]
+[ext_resource type="Texture2D" uid="uid://qr71e5ik1rkk" path="res://assets/truck/cooler_1_open.png" id="12_b2xxy"]
 
 [sub_resource type="Animation" id="Animation_hyao0"]
 resource_name = "CustomerEnter"
@@ -43,21 +44,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Vector2(144, 192), Vector2(144, 320)]
-}
-
-[sub_resource type="Animation" id="Animation_km1c6"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Customer:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(272, 193)]
 }
 
 [sub_resource type="Animation" id="Animation_km1c6"]
@@ -203,11 +189,18 @@ iceCreamFreezerTexture = ExtResource("10_g1pt1")
 iceCreamNormalTexture = ExtResource("11_rk73y")
 
 [node name="Freezer" type="Area2D" parent="Interactable/Freezer" groups=["freezer"]]
+visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Interactable/Freezer/Freezer"]
 position = Vector2(91, 238.5)
 shape = SubResource("RectangleShape2D_25tsb")
 disabled = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Interactable/Freezer"]
+texture_filter = 1
+position = Vector2(103, 215)
+texture = ExtResource("12_b2xxy")
+offset = Vector2(0, 0.5)
 
 [node name="Open" type="TextureButton" parent="Interactable/Freezer"]
 visible = false
@@ -216,6 +209,16 @@ offset_left = 50.0
 offset_top = 177.0
 offset_right = 132.0
 offset_bottom = 218.0
+texture_normal = ExtResource("9_6n6bj")
+
+[node name="Closed" type="TextureButton" parent="Interactable/Freezer"]
+visible = false
+z_index = 1
+texture_filter = 1
+offset_left = 50.0
+offset_top = 218.0
+offset_right = 132.0
+offset_bottom = 259.0
 texture_normal = ExtResource("9_6n6bj")
 
 [node name="IceCreamSpawns" type="Node2D" parent="Interactable/Freezer"]
@@ -234,15 +237,6 @@ position = Vector2(76, 244)
 
 [node name="SpawnPos5" type="Node2D" parent="Interactable/Freezer/IceCreamSpawns"]
 position = Vector2(105, 249)
-
-[node name="Closed" type="TextureButton" parent="Interactable/Freezer"]
-z_index = 1
-texture_filter = 1
-offset_left = 50.0
-offset_top = 218.0
-offset_right = 132.0
-offset_bottom = 259.0
-texture_normal = ExtResource("9_6n6bj")
 
 [connection signal="pressed" from="Bell" to="." method="_on_bell_pressed"]
 [connection signal="pressed" from="X" to="." method="_on_x_pressed"]
