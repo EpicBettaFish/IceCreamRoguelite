@@ -1,17 +1,14 @@
-[gd_scene load_steps=21 format=3 uid="uid://brx8cesxl8wrj"]
+[gd_scene load_steps=18 format=3 uid="uid://brx8cesxl8wrj"]
 
 [ext_resource type="Texture2D" uid="uid://dgccxaaxedvst" path="res://assets/truck/truck_interiror.png" id="1_m7kw3"]
 [ext_resource type="Script" path="res://Scripts/main.gd" id="1_yedyt"]
 [ext_resource type="Texture2D" uid="uid://ljhec52uxfj8" path="res://assets/customers/demon.png" id="2_2k4am"]
 [ext_resource type="Texture2D" uid="uid://0f4q8tklspm3" path="res://Programmer Art/iceCream1.png" id="2_36aa8"]
 [ext_resource type="Texture2D" uid="uid://cksno5gdrcdn" path="res://Programmer Art/iceCream2.png" id="3_j1pde"]
-[ext_resource type="Texture2D" uid="uid://ce62tpruxryxk" path="res://Programmer Art/bell.png" id="4_tg640"]
 [ext_resource type="Texture2D" uid="uid://x2wyjv07b3y7" path="res://Programmer Art/iceCream3.png" id="4_ulnio"]
-[ext_resource type="Texture2D" uid="uid://cg3lmwdh0wr0f" path="res://Programmer Art/cross.png" id="8_i5a1h"]
-[ext_resource type="Texture2D" uid="uid://byif7vdiegkhh" path="res://Programmer Art/box.png" id="9_6n6bj"]
+[ext_resource type="Texture2D" uid="uid://jrmgi5502ymv" path="res://assets/truck/cooler_2_open.png" id="9_o5wdo"]
 [ext_resource type="Script" path="res://Scripts/freezer.gd" id="9_yofj3"]
-[ext_resource type="Texture2D" uid="uid://btofj0rlu3rlm" path="res://Programmer Art/popsicleInFreezer.png" id="10_g1pt1"]
-[ext_resource type="Texture2D" uid="uid://ciy86lxfvyvrg" path="res://Programmer Art/popsicleGrabbed.png" id="11_rk73y"]
+[ext_resource type="Texture2D" uid="uid://d1uiby8u5m77r" path="res://assets/truck/cooler_3_open.png" id="10_m5u1l"]
 [ext_resource type="Texture2D" uid="uid://qr71e5ik1rkk" path="res://assets/truck/cooler_1_open.png" id="12_b2xxy"]
 
 [sub_resource type="Animation" id="Animation_hyao0"]
@@ -78,8 +75,8 @@ corner_radius_bottom_right = 2
 corner_radius_bottom_left = 2
 anti_aliasing = false
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_25tsb"]
-size = Vector2(82, 41)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wf083"]
+size = Vector2(93, 139)
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_yedyt")
@@ -89,11 +86,10 @@ iceCreamData = {
 2: [ExtResource("4_ulnio"), 2.0]
 }
 
-[node name="SubViewport" type="SubViewport" parent="."]
-
 [node name="BG" type="ColorRect" parent="."]
 offset_right = 480.0
 offset_bottom = 270.0
+mouse_filter = 2
 color = Color(0, 0, 0, 1)
 
 [node name="Customer" type="Sprite2D" parent="."]
@@ -114,7 +110,6 @@ texture = ExtResource("1_m7kw3")
 offset = Vector2(240, 135)
 
 [node name="UI" type="Control" parent="."]
-visible = false
 layout_mode = 3
 anchors_preset = 0
 offset_left = 90.0
@@ -122,6 +117,7 @@ offset_top = 53.0
 offset_right = 174.0
 offset_bottom = 192.0
 grow_vertical = 0
+mouse_filter = 2
 
 [node name="Ice Creams" type="PanelContainer" parent="UI"]
 layout_mode = 1
@@ -162,83 +158,154 @@ layout_mode = 0
 offset_right = 56.0
 offset_bottom = 4.0
 
-[node name="Bell" type="TextureButton" parent="."]
-texture_filter = 1
-offset_left = 88.0
-offset_top = 167.0
-offset_right = 120.0
-offset_bottom = 199.0
-mouse_default_cursor_shape = 2
-texture_normal = ExtResource("4_tg640")
-
-[node name="X" type="TextureButton" parent="."]
-texture_filter = 1
-offset_left = 242.0
-offset_top = 173.0
-offset_right = 274.0
-offset_bottom = 205.0
-mouse_default_cursor_shape = 2
-texture_normal = ExtResource("8_i5a1h")
-
 [node name="Interactable" type="Node2D" parent="."]
 
 [node name="Freezer" type="Node2D" parent="Interactable"]
 script = ExtResource("9_yofj3")
 mainPath = NodePath("../..")
-iceCreamFreezerTexture = ExtResource("10_g1pt1")
-iceCreamNormalTexture = ExtResource("11_rk73y")
 
-[node name="Freezer" type="Area2D" parent="Interactable/Freezer" groups=["freezer"]]
+[node name="Open" type="Area2D" parent="Interactable/Freezer"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Interactable/Freezer/Open"]
+polygon = PackedVector2Array(84, 215, 141, 218, 120, 259, 56, 253)
+
+[node name="FreezerOpen" type="Sprite2D" parent="Interactable/Freezer"]
 visible = false
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Interactable/Freezer/Freezer"]
-position = Vector2(91, 238.5)
-shape = SubResource("RectangleShape2D_25tsb")
-disabled = true
-
-[node name="Sprite2D" type="Sprite2D" parent="Interactable/Freezer"]
 texture_filter = 1
-position = Vector2(103, 215)
+position = Vector2(101, 214)
 texture = ExtResource("12_b2xxy")
 offset = Vector2(0, 0.5)
 
-[node name="Open" type="TextureButton" parent="Interactable/Freezer"]
-visible = false
-texture_filter = 1
-offset_left = 50.0
-offset_top = 177.0
-offset_right = 132.0
-offset_bottom = 218.0
-texture_normal = ExtResource("9_6n6bj")
+[node name="FreezerArea" type="Area2D" parent="Interactable/Freezer/FreezerOpen" groups=["freezer"]]
+position = Vector2(-101, -214)
 
-[node name="Closed" type="TextureButton" parent="Interactable/Freezer"]
-visible = false
-z_index = 1
-texture_filter = 1
-offset_left = 50.0
-offset_top = 218.0
-offset_right = 132.0
-offset_bottom = 259.0
-texture_normal = ExtResource("9_6n6bj")
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Interactable/Freezer/FreezerOpen/FreezerArea"]
+polygon = PackedVector2Array(90, 222, 112, 222, 112, 223, 134, 223, 119, 255, 66, 252)
+disabled = true
+
+[node name="Close" type="Area2D" parent="Interactable/Freezer/FreezerOpen"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Interactable/Freezer/FreezerOpen/Close"]
+polygon = PackedVector2Array(-30, -41, -21, -46, 37, -45, 45, 3, 39, 6, -16, 5)
 
 [node name="IceCreamSpawns" type="Node2D" parent="Interactable/Freezer"]
 
 [node name="SpawnPos" type="Node2D" parent="Interactable/Freezer/IceCreamSpawns"]
-position = Vector2(62, 229)
+position = Vector2(104, 238)
 
 [node name="SpawnPos2" type="Node2D" parent="Interactable/Freezer/IceCreamSpawns"]
-position = Vector2(91, 228)
+position = Vector2(96, 228)
 
 [node name="SpawnPos3" type="Node2D" parent="Interactable/Freezer/IceCreamSpawns"]
-position = Vector2(117, 233)
+position = Vector2(122, 230)
 
 [node name="SpawnPos4" type="Node2D" parent="Interactable/Freezer/IceCreamSpawns"]
-position = Vector2(76, 244)
+position = Vector2(84, 243)
 
 [node name="SpawnPos5" type="Node2D" parent="Interactable/Freezer/IceCreamSpawns"]
-position = Vector2(105, 249)
+position = Vector2(107, 251)
 
-[connection signal="pressed" from="Bell" to="." method="_on_bell_pressed"]
-[connection signal="pressed" from="X" to="." method="_on_x_pressed"]
-[connection signal="pressed" from="Interactable/Freezer/Open" to="Interactable/Freezer" method="_on_open_pressed"]
-[connection signal="pressed" from="Interactable/Freezer/Closed" to="Interactable/Freezer" method="_on_closed_pressed"]
+[node name="Freezer2" type="Node2D" parent="Interactable"]
+script = ExtResource("9_yofj3")
+mainPath = NodePath("../..")
+iceCreamID = 1
+
+[node name="Open" type="Area2D" parent="Interactable/Freezer2"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Interactable/Freezer2/Open"]
+polygon = PackedVector2Array(150, 220, 156, 218, 209, 220, 206, 259, 128, 259, 147, 218, 155, 218)
+
+[node name="FreezerOpen" type="Sprite2D" parent="Interactable/Freezer2"]
+visible = false
+texture_filter = 1
+position = Vector2(171, 218)
+texture = ExtResource("9_o5wdo")
+offset = Vector2(0, 0.5)
+
+[node name="FreezerArea" type="Area2D" parent="Interactable/Freezer2/FreezerOpen" groups=["freezer"]]
+position = Vector2(-101, -214)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Interactable/Freezer2/FreezerOpen/FreezerArea"]
+polygon = PackedVector2Array(81, 225, 129, 226, 126, 247, 72, 248)
+disabled = true
+
+[node name="Close" type="Area2D" parent="Interactable/Freezer2/FreezerOpen"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Interactable/Freezer2/FreezerOpen/Close"]
+polygon = PackedVector2Array(-26, -48, 34, -49, 36, 8, -25, 7, -28, -41)
+
+[node name="IceCreamSpawns" type="Node2D" parent="Interactable/Freezer2"]
+
+[node name="SpawnPos" type="Node2D" parent="Interactable/Freezer2/IceCreamSpawns"]
+position = Vector2(172, 240)
+
+[node name="SpawnPos2" type="Node2D" parent="Interactable/Freezer2/IceCreamSpawns"]
+position = Vector2(158, 234)
+
+[node name="SpawnPos3" type="Node2D" parent="Interactable/Freezer2/IceCreamSpawns"]
+position = Vector2(186, 235)
+
+[node name="SpawnPos4" type="Node2D" parent="Interactable/Freezer2/IceCreamSpawns"]
+position = Vector2(161, 247)
+
+[node name="SpawnPos5" type="Node2D" parent="Interactable/Freezer2/IceCreamSpawns"]
+position = Vector2(189, 247)
+
+[node name="Freezer3" type="Node2D" parent="Interactable"]
+script = ExtResource("9_yofj3")
+mainPath = NodePath("../..")
+iceCreamID = 2
+
+[node name="Open" type="Area2D" parent="Interactable/Freezer3"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Interactable/Freezer3/Open"]
+polygon = PackedVector2Array(213, 220, 272, 220, 296, 257, 215, 259)
+
+[node name="FreezerOpen" type="Sprite2D" parent="Interactable/Freezer3"]
+visible = false
+texture_filter = 1
+position = Vector2(255, 216)
+texture = ExtResource("10_m5u1l")
+offset = Vector2(0, 0.5)
+
+[node name="FreezerArea" type="Area2D" parent="Interactable/Freezer3/FreezerOpen" groups=["freezer"]]
+position = Vector2(-101, -214)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Interactable/Freezer3/FreezerOpen/FreezerArea"]
+polygon = PackedVector2Array(71, 227, 114, 226, 126, 247, 71, 250)
+disabled = true
+
+[node name="Close" type="Area2D" parent="Interactable/Freezer3/FreezerOpen"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Interactable/Freezer3/FreezerOpen/Close"]
+polygon = PackedVector2Array(-40, 10, 20, 7, 24, -41, 16, -48, -41, -47)
+
+[node name="IceCreamSpawns" type="Node2D" parent="Interactable/Freezer3"]
+
+[node name="SpawnPos" type="Node2D" parent="Interactable/Freezer3/IceCreamSpawns"]
+position = Vector2(249, 240)
+
+[node name="SpawnPos2" type="Node2D" parent="Interactable/Freezer3/IceCreamSpawns"]
+position = Vector2(232, 234)
+
+[node name="SpawnPos3" type="Node2D" parent="Interactable/Freezer3/IceCreamSpawns"]
+position = Vector2(263, 236)
+
+[node name="SpawnPos4" type="Node2D" parent="Interactable/Freezer3/IceCreamSpawns"]
+position = Vector2(236, 247)
+
+[node name="SpawnPos5" type="Node2D" parent="Interactable/Freezer3/IceCreamSpawns"]
+position = Vector2(266, 248)
+
+[node name="CustomerPocket" type="Area2D" parent="." groups=["customer"]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CustomerPocket"]
+position = Vector2(225.5, 122.5)
+shape = SubResource("RectangleShape2D_wf083")
+
+[connection signal="input_event" from="Interactable/Freezer/Open" to="Interactable/Freezer" method="_on_open_input_event"]
+[connection signal="input_event" from="Interactable/Freezer/FreezerOpen/Close" to="Interactable/Freezer" method="_on_close_input_event"]
+[connection signal="input_event" from="Interactable/Freezer2/Open" to="Interactable/Freezer2" method="_on_open_input_event"]
+[connection signal="input_event" from="Interactable/Freezer2/FreezerOpen/Close" to="Interactable/Freezer2" method="_on_close_input_event"]
+[connection signal="input_event" from="Interactable/Freezer3/Open" to="Interactable/Freezer3" method="_on_open_input_event"]
+[connection signal="input_event" from="Interactable/Freezer3/FreezerOpen/Close" to="Interactable/Freezer3" method="_on_close_input_event"]

@@ -5,6 +5,8 @@ extends Node2D
 @onready var UIiceCreamsContainer = $"UI/Ice Creams/VBoxContainer"
 @onready var UIaskingPrice = $UI/Money/Label
 
+var activeUINodes = [null,null,null]
+
 var iceCreamDisplay = preload("res://Scenes/UI/CustomerIceCreamDisplay.tscn")
 
 @export var iceCreamData = {
@@ -34,6 +36,7 @@ func newCustomer() -> void:
 	await get_tree().create_timer(0.7).timeout
 	activeCustomer = true
 func setUI(cones, price) -> void:
+	activeUINodes = [null, null, null]
 	for c in UIiceCreamsContainer.get_children():
 		c.queue_free()
 	var index = 0
@@ -43,6 +46,7 @@ func setUI(cones, price) -> void:
 			newIceCreamDisplay.num = i
 			newIceCreamDisplay.sprite = iceCreamData[index][0]
 			UIiceCreamsContainer.add_child(newIceCreamDisplay)
+			activeUINodes[index] = newIceCreamDisplay
 		index += 1
 	UIaskingPrice.text = "$" + ("%0.2f" % price)
 	await get_tree().create_timer(0.5).timeout
@@ -89,3 +93,7 @@ func customerLeave() -> void:
 	await get_tree().create_timer(0.5).timeout
 	customerAnimation.play("CustomerEnter")
 	newCustomer()
+
+func giveIceCream(iceCreamID) -> void:
+	currentOffer[0][iceCreamID] -= 1
+	activeUINodes[iceCreamID].updateValue(currentOffer[0][iceCreamID])
