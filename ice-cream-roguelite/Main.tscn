@@ -1,11 +1,174 @@
-[gd_scene load_steps=2 format=3 uid="uid://brx8cesxl8wrj"]
+[gd_scene load_steps=15 format=3 uid="uid://brx8cesxl8wrj"]
 
 [ext_resource type="Texture2D" uid="uid://dgccxaaxedvst" path="res://assets/truck/truck_interiror.png" id="1_m7kw3"]
+[ext_resource type="Script" path="res://Scripts/main.gd" id="1_yedyt"]
+[ext_resource type="Texture2D" uid="uid://ljhec52uxfj8" path="res://assets/customers/demon.png" id="2_2k4am"]
+[ext_resource type="Texture2D" uid="uid://0f4q8tklspm3" path="res://Programmer Art/iceCream1.png" id="2_36aa8"]
+[ext_resource type="Texture2D" uid="uid://cksno5gdrcdn" path="res://Programmer Art/iceCream2.png" id="3_j1pde"]
+[ext_resource type="Texture2D" uid="uid://ce62tpruxryxk" path="res://Programmer Art/bell.png" id="4_tg640"]
+[ext_resource type="Texture2D" uid="uid://x2wyjv07b3y7" path="res://Programmer Art/iceCream3.png" id="4_ulnio"]
+[ext_resource type="Texture2D" uid="uid://cg3lmwdh0wr0f" path="res://Programmer Art/cross.png" id="8_i5a1h"]
+
+[sub_resource type="Animation" id="Animation_hyao0"]
+resource_name = "CustomerEnter"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Customer:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(272, 193), Vector2(144, 192)]
+}
+
+[sub_resource type="Animation" id="Animation_km1c6"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Customer:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(272, 193)]
+}
+
+[sub_resource type="Animation" id="Animation_5w7vc"]
+resource_name = "CustomerLeave"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Customer:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(144, 192), Vector2(-39, 192)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_8fw2g"]
+_data = {
+"CustomerEnter": SubResource("Animation_hyao0"),
+"CustomerLeave": SubResource("Animation_5w7vc"),
+"RESET": SubResource("Animation_km1c6")
+}
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dcrwq"]
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ekev7"]
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+anti_aliasing = false
 
 [node name="Main" type="Node2D"]
+script = ExtResource("1_yedyt")
+iceCreamData = {
+0: [ExtResource("2_36aa8"), 1.25],
+1: [ExtResource("3_j1pde"), 2.5],
+2: [ExtResource("4_ulnio"), 2.0]
+}
 
-[node name="TruckInteriror" type="Sprite2D" parent="."]
+[node name="BG" type="ColorRect" parent="."]
+offset_right = 480.0
+offset_bottom = 270.0
+color = Color(0, 0, 0, 1)
+
+[node name="Customer" type="Sprite2D" parent="."]
 texture_filter = 1
-position = Vector2(480, 270)
-scale = Vector2(2, 2)
+position = Vector2(272, 193)
+texture = ExtResource("2_2k4am")
+offset = Vector2(64, -64)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Customer"]
+root_node = NodePath("../..")
+libraries = {
+"": SubResource("AnimationLibrary_8fw2g")
+}
+
+[node name="TempEnv" type="Sprite2D" parent="."]
+texture_filter = 1
 texture = ExtResource("1_m7kw3")
+offset = Vector2(240, 135)
+
+[node name="UI" type="Control" parent="."]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_left = 90.0
+offset_top = 53.0
+offset_right = 174.0
+offset_bottom = 192.0
+grow_vertical = 0
+
+[node name="Ice Creams" type="PanelContainer" parent="UI"]
+layout_mode = 1
+anchors_preset = -1
+offset_left = 18.0
+offset_top = 92.0
+offset_right = 74.0
+offset_bottom = 92.0
+grow_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_dcrwq")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/Ice Creams"]
+layout_mode = 2
+theme_override_constants/separation = 1
+alignment = 2
+
+[node name="Money" type="Panel" parent="UI"]
+layout_mode = 0
+offset_left = 18.0
+offset_top = 91.0
+offset_right = 74.0
+offset_bottom = 117.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_ekev7")
+
+[node name="Label" type="Label" parent="UI/Money"]
+texture_filter = 1
+layout_mode = 0
+offset_top = 3.0
+offset_right = 56.0
+offset_bottom = 26.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "$100"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="UI/Money"]
+layout_mode = 0
+offset_right = 56.0
+offset_bottom = 4.0
+
+[node name="Bell" type="TextureButton" parent="."]
+texture_filter = 1
+offset_left = 88.0
+offset_top = 167.0
+offset_right = 120.0
+offset_bottom = 199.0
+mouse_default_cursor_shape = 2
+texture_normal = ExtResource("4_tg640")
+
+[node name="X" type="TextureButton" parent="."]
+texture_filter = 1
+offset_left = 242.0
+offset_top = 173.0
+offset_right = 274.0
+offset_bottom = 205.0
+mouse_default_cursor_shape = 2
+texture_normal = ExtResource("8_i5a1h")
+
+[connection signal="pressed" from="Bell" to="." method="_on_bell_pressed"]
+[connection signal="pressed" from="X" to="." method="_on_x_pressed"]

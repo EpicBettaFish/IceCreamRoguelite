@@ -1,0 +1,36 @@
+[gd_scene load_steps=4 format=3 uid="uid://ddyffjfhbaan0"]
+
+[ext_resource type="Texture2D" uid="uid://0f4q8tklspm3" path="res://Programmer Art/iceCream1.png" id="1_1yqu3"]
+[ext_resource type="Script" path="res://Scripts/customer_ice_cream_display.gd" id="1_n1vtr"]
+[ext_resource type="FontFile" uid="uid://dh3r0t715nyei" path="res://fonts/m5x7.ttf" id="2_rcv1k"]
+
+[node name="CustomerIceCreamDisplay" type="Control"]
+custom_minimum_size = Vector2(39, 24)
+layout_mode = 3
+anchors_preset = 0
+offset_right = 39.0
+offset_bottom = 24.0
+script = ExtResource("1_n1vtr")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(12, 12)
+texture = ExtResource("1_1yqu3")
+
+[node name="Label" type="Label" parent="."]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -18.0
+offset_top = -13.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_rcv1k")
+theme_override_font_sizes/font_size = 16
+text = "x10"
+vertical_alignment = 1
