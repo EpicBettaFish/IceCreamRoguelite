@@ -12,13 +12,14 @@ var iceCreamDisplay = preload("res://Scenes/UI/CustomerIceCreamDisplay.tscn")
 	1 : [preload("res://Programmer Art/iceCream1.png"), 2.50],
 	2 : [preload("res://Programmer Art/iceCream1.png"), 2.0]
 }
-@export var maxGreed = 1.0
-@export var priceVariation = [-0.50, 0.50]
+
 @export var maxIceCreams = 5
 @export var maxSoloIceCream = 3
 
 var currentOffer
 var activeCustomer = false
+
+var inventory = [5,5,5]
 
 func _ready():
 	newCustomer()
@@ -47,24 +48,23 @@ func setUI(cones, price) -> void:
 	await get_tree().create_timer(0.5).timeout
 	UI.visible = true
 func generateCones() -> Array:
-	var cont = false
-	var cones
-	while !cont:
-		cones = [randi_range(0,maxSoloIceCream), randi_range(0,maxSoloIceCream), randi_range(0,maxSoloIceCream)]
-		var coneTotal = cones[0] + cones[1] + cones[2]
-		if coneTotal <= maxIceCreams and coneTotal > 0:
-			cont = true
+	var cones = []
+	var numCones = randi_range(1,maxIceCreams)
+	for i in 3:
+		var rand = randi_range(0,numCones)
+		if i == 2:
+			rand = numCones
+		cones.append(rand)
+		numCones -= rand
+	cones.shuffle()
 	return cones
 func generatePrice(cones) -> float:
-	var greed = randf_range(0, maxGreed)
 	var index = 0
 	var price = 0
 	for c in cones:
-		var greedPrice = iceCreamData[index][1] - greed
 		for i in c:
-			price += (greedPrice + randf_range(priceVariation[0], priceVariation[1]))
+			price += iceCreamData[index][1]
 		index += 1
-	price = snappedf(price, 0.25)
 	return price
 #END CUSTOMER LOGIC
 
