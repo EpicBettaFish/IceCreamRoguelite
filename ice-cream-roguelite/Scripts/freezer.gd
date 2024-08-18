@@ -11,7 +11,6 @@ extends Node2D
 
 @export var iceCreamID: int
 @onready var iceCreamSpawns = [$IceCreamSpawns/SpawnPos, $IceCreamSpawns/SpawnPos2, $IceCreamSpawns/SpawnPos3, $IceCreamSpawns/SpawnPos4, $IceCreamSpawns/SpawnPos5]
-@onready var iceCreamParent = $IceCreamSpawns
 
 @onready var freezerAreaCollider = $Freezer/CollisionShape2D
 
@@ -28,13 +27,16 @@ func spawnIceCreams() -> void:
 		newIceCream.normalTexture = iceCreamNormalTexture
 		newIceCream.freezerTexture = iceCreamFreezerTexture
 		newIceCream.global_position = iceCreamSpawns[i].global_position
-		iceCreamParent.add_child(newIceCream)
+		add_child(newIceCream)
 
-
+#OPEN FREEZER
 func _on_closed_pressed():
 	closedLid.visible = false
 	openLid.visible = true
+	freezerAreaCollider.disabled = false
 
+#CLOSE FREEZER
 func _on_open_pressed():
 	closedLid.visible = true
 	openLid.visible = false
+	freezerAreaCollider.disabled = true
