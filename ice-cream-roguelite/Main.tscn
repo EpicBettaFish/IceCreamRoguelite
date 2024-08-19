@@ -1,4 +1,4 @@
-[gd_scene load_steps=40 format=3 uid="uid://brx8cesxl8wrj"]
+[gd_scene load_steps=45 format=3 uid="uid://brx8cesxl8wrj"]
 
 [ext_resource type="Texture2D" uid="uid://dgccxaaxedvst" path="res://assets/truck/truck_interiror.png" id="1_m7kw3"]
 [ext_resource type="Script" path="res://Scripts/main.gd" id="1_yedyt"]
@@ -20,10 +20,15 @@
 [ext_resource type="Texture2D" uid="uid://b4sbio1mhwatf" path="res://Programmer Art/tentacle1.png" id="15_f5ces"]
 [ext_resource type="FontFile" uid="uid://dh3r0t715nyei" path="res://fonts/m5x7.ttf" id="15_juj3m"]
 [ext_resource type="Texture2D" uid="uid://cq82gfd3k00gs" path="res://Programmer Art/insertCoin.png" id="16_vb8qn"]
+[ext_resource type="Texture2D" uid="uid://cc14wet4hb7bd" path="res://assets/truck/thermometer_over.png" id="17_42ca5"]
+[ext_resource type="Texture2D" uid="uid://cv7st7h6ffec7" path="res://assets/truck/thermometer_fill.png" id="18_i0feb"]
 [ext_resource type="Texture2D" uid="uid://dqjleds416fj" path="res://Programmer Art/tentacle2.png" id="18_y1hmc"]
+[ext_resource type="Texture2D" uid="uid://b8ag54iqmdfnv" path="res://Programmer Art/sticky1.png" id="19_nfawq"]
 [ext_resource type="Texture2D" uid="uid://duq5t6ijrbbia" path="res://Programmer Art/check.png" id="19_vx5k3"]
+[ext_resource type="Texture2D" uid="uid://dcwpdys5u57qe" path="res://Programmer Art/sticky2.png" id="20_psath"]
 [ext_resource type="Texture2D" uid="uid://cg3lmwdh0wr0f" path="res://Programmer Art/cross.png" id="20_wlhqs"]
 [ext_resource type="Texture2D" uid="uid://bbock4iidfttx" path="res://Programmer Art/tentacle3.png" id="20_yqlge"]
+[ext_resource type="Texture2D" uid="uid://ddtj83dmfu4eh" path="res://Programmer Art/sticky3.png" id="21_2klvf"]
 
 [sub_resource type="Animation" id="Animation_hyao0"]
 resource_name = "CustomerEnter"
@@ -478,6 +483,63 @@ position = Vector2(80, 245)
 [node name="SpawnPos5" type="Node2D" parent="Interactable/Freezer/IceCreamSpawns"]
 position = Vector2(107, 251)
 
+[node name="Skew" type="Node2D" parent="Interactable/Freezer"]
+position = Vector2(14, 160)
+
+[node name="Temperature" type="TextureProgressBar" parent="Interactable/Freezer/Skew"]
+texture_filter = 1
+offset_left = -5.0
+offset_top = -15.0
+offset_right = 6.0
+offset_bottom = 17.0
+min_value = -50.0
+max_value = 50.0
+value = -17.0
+fill_mode = 3
+texture_over = ExtResource("17_42ca5")
+texture_progress = ExtResource("18_i0feb")
+metadata/_edit_use_anchors_ = true
+
+[node name="StickyNote" type="Sprite2D" parent="Interactable/Freezer/Skew"]
+texture_filter = 1
+position = Vector2(1, -23)
+texture = ExtResource("19_nfawq")
+
+[node name="ColorRect" type="ColorRect" parent="Interactable/Freezer/Skew"]
+offset_left = -14.0
+offset_top = 18.0
+offset_right = 15.0
+offset_bottom = 27.0
+color = Color(0, 0, 0, 1)
+
+[node name="Readout" type="Label" parent="Interactable/Freezer/Skew"]
+modulate = Color(1, 0.803922, 0, 1)
+texture_filter = 1
+offset_left = -13.0
+offset_top = 15.0
+offset_right = 5.0
+offset_bottom = 28.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 1
+theme_override_fonts/font = ExtResource("15_juj3m")
+theme_override_font_sizes/font_size = 16
+text = "-17"
+horizontal_alignment = 2
+
+[node name="Degrees" type="Label" parent="Interactable/Freezer/Skew"]
+modulate = Color(1, 0.803922, 0, 1)
+texture_filter = 1
+offset_left = 6.0
+offset_top = 15.0
+offset_right = 15.0
+offset_bottom = 28.0
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 1
+theme_override_fonts/font = ExtResource("15_juj3m")
+theme_override_font_sizes/font_size = 16
+text = "°c"
+
 [node name="Freezer2" type="Node2D" parent="Interactable"]
 y_sort_enabled = true
 script = ExtResource("9_yofj3")
@@ -514,10 +576,10 @@ polygon = PackedVector2Array(-26, -48, 34, -49, 36, 8, -25, 7, -28, -41)
 position = Vector2(173, 241)
 
 [node name="SpawnPos2" type="Node2D" parent="Interactable/Freezer2/IceCreamSpawns"]
-position = Vector2(155, 231)
+position = Vector2(161, 231)
 
 [node name="SpawnPos3" type="Node2D" parent="Interactable/Freezer2/IceCreamSpawns"]
-position = Vector2(182, 231)
+position = Vector2(187, 231)
 
 [node name="SpawnPos4" type="Node2D" parent="Interactable/Freezer2/IceCreamSpawns"]
 position = Vector2(150, 250)
@@ -536,6 +598,64 @@ offset = Vector2(0.5, 0.5)
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Interactable/Freezer2/TentacleArea"]
 polygon = PackedVector2Array(147, 215, 211, 218, 207, 262, 126, 260)
+
+[node name="Skew" type="Node2D" parent="Interactable/Freezer2"]
+position = Vector2(44, 162)
+
+[node name="Temperature" type="TextureProgressBar" parent="Interactable/Freezer2/Skew"]
+texture_filter = 1
+offset_left = -5.0
+offset_top = -15.0
+offset_right = 6.0
+offset_bottom = 17.0
+min_value = -50.0
+max_value = 50.0
+value = -17.0
+fill_mode = 3
+texture_over = ExtResource("17_42ca5")
+texture_progress = ExtResource("18_i0feb")
+metadata/_edit_use_anchors_ = true
+
+[node name="StickyNote" type="Sprite2D" parent="Interactable/Freezer2/Skew"]
+texture_filter = 1
+position = Vector2(1, -23)
+texture = ExtResource("20_psath")
+
+[node name="ColorRect" type="ColorRect" parent="Interactable/Freezer2/Skew"]
+offset_left = -14.0
+offset_top = 18.0
+offset_right = 15.0
+offset_bottom = 27.0
+color = Color(0, 0, 0, 1)
+
+[node name="Readout" type="Label" parent="Interactable/Freezer2/Skew"]
+modulate = Color(1, 0.803922, 0, 1)
+texture_filter = 1
+offset_left = -13.0
+offset_top = 15.0
+offset_right = 5.0
+offset_bottom = 28.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 1
+theme_override_fonts/font = ExtResource("15_juj3m")
+theme_override_font_sizes/font_size = 16
+text = "-17"
+horizontal_alignment = 2
+
+[node name="Degrees" type="Label" parent="Interactable/Freezer2/Skew"]
+modulate = Color(1, 0.803922, 0, 1)
+texture_filter = 1
+offset_left = 6.0
+offset_top = 15.0
+offset_right = 15.0
+offset_bottom = 28.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 1
+theme_override_fonts/font = ExtResource("15_juj3m")
+theme_override_font_sizes/font_size = 16
+text = "°c"
 
 [node name="Freezer3" type="Node2D" parent="Interactable"]
 y_sort_enabled = true
@@ -595,6 +715,64 @@ offset = Vector2(0.5, 0.5)
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Interactable/Freezer3/TentacleArea"]
 polygon = PackedVector2Array(213, 218, 273, 218, 297, 259, 214, 260)
+
+[node name="Skew" type="Node2D" parent="Interactable/Freezer3"]
+position = Vector2(74, 164)
+
+[node name="Temperature" type="TextureProgressBar" parent="Interactable/Freezer3/Skew"]
+texture_filter = 1
+offset_left = -5.0
+offset_top = -15.0
+offset_right = 6.0
+offset_bottom = 17.0
+min_value = -50.0
+max_value = 50.0
+value = -17.0
+fill_mode = 3
+texture_over = ExtResource("17_42ca5")
+texture_progress = ExtResource("18_i0feb")
+metadata/_edit_use_anchors_ = true
+
+[node name="StickyNote" type="Sprite2D" parent="Interactable/Freezer3/Skew"]
+texture_filter = 1
+position = Vector2(1, -23)
+texture = ExtResource("21_2klvf")
+
+[node name="ColorRect" type="ColorRect" parent="Interactable/Freezer3/Skew"]
+offset_left = -14.0
+offset_top = 18.0
+offset_right = 15.0
+offset_bottom = 27.0
+color = Color(0, 0, 0, 1)
+
+[node name="Readout" type="Label" parent="Interactable/Freezer3/Skew"]
+modulate = Color(1, 0.803922, 0, 1)
+texture_filter = 1
+offset_left = -13.0
+offset_top = 15.0
+offset_right = 5.0
+offset_bottom = 28.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 1
+theme_override_fonts/font = ExtResource("15_juj3m")
+theme_override_font_sizes/font_size = 16
+text = "-17"
+horizontal_alignment = 2
+
+[node name="Degrees" type="Label" parent="Interactable/Freezer3/Skew"]
+modulate = Color(1, 0.803922, 0, 1)
+texture_filter = 1
+offset_left = 6.0
+offset_top = 15.0
+offset_right = 15.0
+offset_bottom = 28.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 1
+theme_override_fonts/font = ExtResource("15_juj3m")
+theme_override_font_sizes/font_size = 16
+text = "°c"
 
 [node name="Register" type="Area2D" parent="Interactable"]
 

@@ -14,6 +14,15 @@ extends Node2D
 @onready var tentacleSprite = $Tentacle
 @onready var tentacleArea = $TentacleArea/CollisionPolygon2D
 
+var temperature = -16
+@onready var temperatureGauge = $Skew/Temperature
+@onready var temperatureReadout = $Skew/Readout
+@onready var temperatureCelsius = $Skew/Degrees
+var freezerOpen = false
+var targetTemp = 0
+var overheating = false
+@export var heatLimit = 29
+
 var tentacleHits
 
 var activeSlots = [false,false,false,false,false]
@@ -26,6 +35,38 @@ func _ready():
 	tentacleSprite.visible = false
 	tentacleArea.disabled = true
 	spawnIceCreams()
+	
+	var tempRand = randi_range(-2,2)
+	temperature += tempRand
+	targetTemp = temperature
+	temperatureGauge.value = temperature
+	var prefix = ""
+	if int(temperature) < 0:
+		prefix = "-"
+	temperatureReadout.text = prefix + ("%02d" % abs(temperature))
+
+func _process(delta):
+	if freezerOpen and !overheating:
+		temperature += delta / 2
+		temperatureGauge.value = temperature
+		var prefix = ""
+		if int(temperature) < 0:
+			prefix = "-"
+		temperatureReadout.text = prefix + ("%02d" % abs(temperature))
+		if int(temperature) >= 29:
+			overheat()
+	elif temperature > targetTemp and !freezerOpen:
+		if !overheating:
+			temperature -= delta
+		else:
+			temperature -= delta * 2
+			if temperature <= targetTemp + 4:
+				stopOverheat()
+		temperatureGauge.value = temperature
+		var prefix = ""
+		if int(temperature) < 0:
+			prefix = "-"
+		temperatureReadout.text = prefix + ("%02d" % abs(temperature))
 
 func spawnIceCreams() -> void:
 	for i in main.inventory[iceCreamID]:
@@ -47,21 +88,23 @@ func _on_open_input_event(viewport, event, shape_idx):
 	if event.is_action_pressed("click"):
 		openLid.visible = true
 		freezerAreaCollider.disabled = false
+		freezerOpen = true
 
 #CLOSE FREEZER
 func _on_close_input_event(viewport, event, shape_idx):
 	if event.is_action_pressed("click"):
 		openLid.visible = false
 		freezerAreaCollider.disabled = true
+		freezerOpen = false
 
 func removeIceCream(index) -> void:
 	activeSlots[index] = false
 	main.inventory[iceCreamID] -= 1
-	if main.inventory[iceCreamID] >= 5: spawnNewIceCream(index)
+	if main.inventory[iceCreamID] >= 5 and !overheating: spawnNewIceCream(index)
 
 func addIceCream(index) -> void:
 	main.inventory[iceCreamID] += 1
-	if activeSlots[index] == false:
+	if activeSlots[index] == false and !overheating:
 		activeSlots[index] = true
 		spawnNewIceCream(index)
 
@@ -82,3 +125,19 @@ func _on_tentacle_area_input_event(viewport, event, shape_idx):
 			openAreaCollider.disabled = false
 			tentacleArea.disabled = true
 			tentacleSprite.visible = false
+
+#Temperature
+func overheat() -> void:
+	for i in get_children():
+		if i.is_in_group("icecream"):
+			if !i.pickup:
+				i.queue_free()
+	overheating = true
+	temperatureReadout.modulate = "ff0000"
+	temperatureCelsius.modulate = "ff0000"
+
+func stopOverheat() -> void:
+	overheating = false
+	temperatureReadout.modulate = "ffcd00"
+	temperatureCelsius.modulate = "ffcd00"
+	spawnIceCreams()

@@ -56,7 +56,7 @@ var moneyScene = preload("res://Scenes/money.tscn")
 
 @export var testingMode: bool = false
 
-var inventory = [100,100,100]
+var inventory = [5,5,5]
 
 var grabbingItem = false
 
