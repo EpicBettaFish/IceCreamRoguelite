@@ -1,20 +1,22 @@
-[gd_scene load_steps=4 format=3 uid="uid://kph7vv3bwhye"]
+[gd_scene load_steps=4 format=3 uid="uid://bkffcqoynvpcj"]
 
-[ext_resource type="Script" path="res://Scripts/money.gd" id="1_dkijf"]
-[ext_resource type="Texture2D" uid="uid://mouf1spivuea" path="res://assets/truck/bills.png" id="1_gx727"]
+[ext_resource type="Script" path="res://Scripts/money.gd" id="1_t1uxf"]
+[ext_resource type="Texture2D" uid="uid://0h7fp3pxa4ny" path="res://assets/truck/coin.png" id="2_cfmgo"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rbwr6"]
-size = Vector2(61, 32)
+size = Vector2(30, 15)
 
-[node name="Money" type="Area2D"]
-script = ExtResource("1_dkijf")
+[node name="Coin" type="Area2D"]
+script = ExtResource("1_t1uxf")
+coin = true
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 1
-texture = ExtResource("1_gx727")
+position = Vector2(-1, -6)
+texture = ExtResource("2_cfmgo")
+offset = Vector2(0, 0.5)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(1, 0)
 shape = SubResource("RectangleShape2D_rbwr6")
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://brx8cesxl8wrj"]
+[gd_scene load_steps=36 format=3 uid="uid://brx8cesxl8wrj"]
 
 [ext_resource type="Texture2D" uid="uid://dgccxaaxedvst" path="res://assets/truck/truck_interiror.png" id="1_m7kw3"]
 [ext_resource type="Script" path="res://Scripts/main.gd" id="1_yedyt"]
@@ -6,11 +6,22 @@
 [ext_resource type="Texture2D" uid="uid://0f4q8tklspm3" path="res://Programmer Art/iceCream1.png" id="2_36aa8"]
 [ext_resource type="Texture2D" uid="uid://cksno5gdrcdn" path="res://Programmer Art/iceCream2.png" id="3_j1pde"]
 [ext_resource type="Texture2D" uid="uid://x2wyjv07b3y7" path="res://Programmer Art/iceCream3.png" id="4_ulnio"]
+[ext_resource type="Texture2D" uid="uid://jitdgqcxi2ar" path="res://assets/customers/giant.png" id="6_s60f8"]
+[ext_resource type="Texture2D" uid="uid://d4l38vybqshck" path="res://assets/customers/Icecreamtongueguy.png" id="7_suegs"]
+[ext_resource type="Texture2D" uid="uid://435sqscmnd2m" path="res://Programmer Art/TimerRed.png" id="8_elgp8"]
+[ext_resource type="Texture2D" uid="uid://b122mkfhi8sth" path="res://Programmer Art/TimerYellow.png" id="8_hlvqr"]
+[ext_resource type="Texture2D" uid="uid://byrr2vf0qgi7n" path="res://Programmer Art/dialogueContinue.png" id="9_lnxol"]
 [ext_resource type="Texture2D" uid="uid://jrmgi5502ymv" path="res://assets/truck/cooler_2_open.png" id="9_o5wdo"]
 [ext_resource type="Script" path="res://Scripts/freezer.gd" id="9_yofj3"]
 [ext_resource type="Texture2D" uid="uid://d1uiby8u5m77r" path="res://assets/truck/cooler_3_open.png" id="10_m5u1l"]
+[ext_resource type="Texture2D" uid="uid://bq7x6g3rtlhfj" path="res://Programmer Art/dialogueTimer.png" id="11_1lriu"]
 [ext_resource type="Texture2D" uid="uid://b8rc4rtgkjfwe" path="res://Programmer Art/TimerBlue.png" id="11_nc4va"]
 [ext_resource type="Texture2D" uid="uid://qr71e5ik1rkk" path="res://assets/truck/cooler_1_open.png" id="12_b2xxy"]
+[ext_resource type="Texture2D" uid="uid://ddu7knqjnoxvk" path="res://Programmer Art/openRegister.png" id="13_xd1og"]
+[ext_resource type="FontFile" uid="uid://dh3r0t715nyei" path="res://fonts/m5x7.ttf" id="15_juj3m"]
+[ext_resource type="Texture2D" uid="uid://cq82gfd3k00gs" path="res://Programmer Art/insertCoin.png" id="16_vb8qn"]
+[ext_resource type="Texture2D" uid="uid://duq5t6ijrbbia" path="res://Programmer Art/check.png" id="19_vx5k3"]
+[ext_resource type="Texture2D" uid="uid://cg3lmwdh0wr0f" path="res://Programmer Art/cross.png" id="20_wlhqs"]
 
 [sub_resource type="Animation" id="Animation_hyao0"]
 resource_name = "CustomerEnter"
@@ -76,24 +87,156 @@ corner_radius_bottom_right = 2
 corner_radius_bottom_left = 2
 anti_aliasing = false
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_he1hi"]
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tyqmt"]
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+anti_aliasing = false
+
+[sub_resource type="Animation" id="Animation_4jin4"]
+resource_name = "continuePopout"
+length = 0.3
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Panel:modulate")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Panel:position")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(67, 99), Vector2(67, 111)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("DialogueTimer:position")
+tracks/2/interp = 2
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(58, 116), Vector2(58, 116), Vector2(58, 118)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("DialogueTimer:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_goo7d"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Panel:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Panel:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(67, 99)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("DialogueTimer:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(58, 116)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("DialogueTimer:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_skeme"]
+_data = {
+"RESET": SubResource("Animation_goo7d"),
+"continuePopout": SubResource("Animation_4jin4")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_w6o7p"]
+size = Vector2(28, 26)
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wf083"]
 size = Vector2(93, 139)
 
 [node name="Main" type="Node2D"]
+y_sort_enabled = true
 script = ExtResource("1_yedyt")
 iceCreamData = {
 0: [ExtResource("2_36aa8"), 1.25],
 1: [ExtResource("3_j1pde"), 2.5],
 2: [ExtResource("4_ulnio"), 2.0]
 }
+timerMaxTime = 10.0
+customerSprites = [ExtResource("2_2k4am"), ExtResource("6_s60f8"), ExtResource("7_suegs")]
+testingMode = true
+dialogueOptions = ["[wave]test| dialogue| is| very| cool.|||[/wave] its true!", "wow, isn't test dialogue just great!?", "hmm i sure do love me some test dialogue. yes, that i do.", "[rainbow]your mother[/rainbow]"]
 
 [node name="BG" type="ColorRect" parent="."]
+z_index = -100
 offset_right = 480.0
 offset_bottom = 270.0
 mouse_filter = 2
-color = Color(0, 0, 0, 1)
+color = Color(0.367842, 0.113973, 0, 1)
 
 [node name="Customer" type="Sprite2D" parent="."]
+z_index = -2
 texture_filter = 1
 position = Vector2(272, 193)
 texture = ExtResource("2_2k4am")
@@ -106,11 +249,14 @@ libraries = {
 }
 
 [node name="TempEnv" type="Sprite2D" parent="."]
+z_index = -1
 texture_filter = 1
 texture = ExtResource("1_m7kw3")
 offset = Vector2(240, 135)
 
 [node name="UI" type="Control" parent="."]
+visible = false
+z_index = -1
 layout_mode = 3
 anchors_preset = 0
 offset_left = 90.0
@@ -159,6 +305,108 @@ layout_mode = 0
 offset_right = 56.0
 offset_bottom = 4.0
 
+[node name="DialogueUI" type="Control" parent="."]
+layout_mode = 3
+offset_left = 90.0
+offset_top = 53.0
+offset_right = 174.0
+offset_bottom = 192.0
+grow_vertical = 0
+
+[node name="Panel" type="Panel" parent="DialogueUI"]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 0
+offset_left = 67.0
+offset_top = 99.0
+offset_right = 84.0
+offset_bottom = 114.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_he1hi")
+
+[node name="Sprite2D" type="Sprite2D" parent="DialogueUI/Panel"]
+texture_filter = 1
+position = Vector2(9, 8)
+texture = ExtResource("9_lnxol")
+
+[node name="PanelContainer" type="PanelContainer" parent="DialogueUI"]
+layout_mode = 1
+anchors_preset = -1
+offset_left = 6.0
+offset_top = 99.0
+offset_right = 86.0
+offset_bottom = 112.0
+grow_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_tyqmt")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="DialogueUI/PanelContainer"]
+texture_filter = 1
+layout_mode = 2
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_fonts/normal_font = ExtResource("15_juj3m")
+bbcode_enabled = true
+text = "[rainbow]your mother"
+fit_content = true
+scroll_active = false
+visible_characters_behavior = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="DialogueUI"]
+libraries = {
+"": SubResource("AnimationLibrary_skeme")
+}
+
+[node name="ContinueDialogue" type="Button" parent="DialogueUI"]
+modulate = Color(1, 1, 1, 0)
+offset_right = 182.0
+offset_bottom = 139.0
+
+[node name="DialogueTimer" type="TextureProgressBar" parent="DialogueUI"]
+modulate = Color(1, 1, 1, 0)
+texture_filter = 1
+layout_mode = 0
+offset_left = 58.0
+offset_top = 116.0
+offset_right = 66.0
+offset_bottom = 124.0
+max_value = 3.0
+step = 0.01
+value = 3.0
+fill_mode = 5
+texture_progress = ExtResource("11_1lriu")
+
+[node name="SecondaryTimer" type="TextureProgressBar" parent="."]
+texture_filter = 1
+offset_left = 248.0
+offset_top = 53.0
+offset_right = 272.0
+offset_bottom = 77.0
+step = 0.1
+value = 100.0
+fill_mode = 5
+texture_progress = ExtResource("11_nc4va")
+
+[node name="TertiaryTimer" type="TextureProgressBar" parent="."]
+texture_filter = 1
+offset_left = 248.0
+offset_top = 53.0
+offset_right = 272.0
+offset_bottom = 77.0
+step = 0.1
+value = 80.0
+fill_mode = 5
+texture_progress = ExtResource("8_hlvqr")
+
+[node name="PrimaryTimer" type="TextureProgressBar" parent="."]
+texture_filter = 1
+offset_left = 248.0
+offset_top = 53.0
+offset_right = 272.0
+offset_bottom = 77.0
+step = 0.1
+value = 33.0
+fill_mode = 5
+texture_progress = ExtResource("8_elgp8")
+
+[node name="Items" type="Node2D" parent="."]
+
 [node name="Interactable" type="Node2D" parent="."]
 
 [node name="Freezer" type="Node2D" parent="Interactable"]
@@ -192,7 +440,7 @@ polygon = PackedVector2Array(-30, -41, -21, -46, 37, -45, 45, 3, 39, 6, -16, 5)
 [node name="IceCreamSpawns" type="Node2D" parent="Interactable/Freezer"]
 
 [node name="SpawnPos" type="Node2D" parent="Interactable/Freezer/IceCreamSpawns"]
-position = Vector2(104, 238)
+position = Vector2(106, 236)
 
 [node name="SpawnPos2" type="Node2D" parent="Interactable/Freezer/IceCreamSpawns"]
 position = Vector2(96, 228)
@@ -298,23 +546,128 @@ position = Vector2(236, 247)
 [node name="SpawnPos5" type="Node2D" parent="Interactable/Freezer3/IceCreamSpawns"]
 position = Vector2(266, 248)
 
+[node name="Register" type="Area2D" parent="Interactable"]
+
+[node name="OpenRegister" type="Sprite2D" parent="Interactable/Register"]
+visible = false
+z_index = -1
+texture_filter = 1
+position = Vector2(366, 237)
+texture = ExtResource("13_xd1og")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Interactable/Register"]
+polygon = PackedVector2Array(334, 220, 372, 199, 386, 162, 397, 157, 463, 167, 456, 241, 412, 271, 333, 246)
+
+[node name="Label" type="Label" parent="Interactable/Register"]
+texture_filter = 1
+offset_left = 426.0
+offset_top = 140.0
+offset_right = 432.0
+offset_bottom = 153.0
+theme_override_colors/font_color = Color(1, 0.803922, 0, 1)
+theme_override_colors/font_outline_color = Color(1, 0.803922, 0, 1)
+theme_override_constants/outline_size = 1
+theme_override_fonts/font = ExtResource("15_juj3m")
+theme_override_font_sizes/font_size = 16
+text = "$"
+
+[node name="Dollar Counter" type="Label" parent="Interactable/Register"]
+texture_filter = 1
+offset_left = 432.0
+offset_top = 140.0
+offset_right = 464.0
+offset_bottom = 153.0
+theme_override_colors/font_color = Color(1, 0.803922, 0, 1)
+theme_override_colors/font_outline_color = Color(1, 0.803922, 0, 1)
+theme_override_constants/outline_size = 1
+theme_override_fonts/font = ExtResource("15_juj3m")
+theme_override_font_sizes/font_size = 16
+text = "0.00"
+horizontal_alignment = 2
+
+[node name="DollarDetector" type="Area2D" parent="Interactable/Register" groups=["register"]]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Interactable/Register/DollarDetector"]
+polygon = PackedVector2Array(339, 230, 406, 246, 369, 284, 303, 263)
+disabled = true
+
+[node name="InsertCoin" type="Area2D" parent="Interactable" groups=["InsertCoin"]]
+z_index = -1
+
+[node name="Sprite2D" type="Sprite2D" parent="Interactable/InsertCoin"]
+texture_filter = 1
+position = Vector2(391, 188)
+texture = ExtResource("16_vb8qn")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Interactable/InsertCoin"]
+position = Vector2(391, 188)
+shape = SubResource("RectangleShape2D_w6o7p")
+
+[node name="ColorRect" type="ColorRect" parent="Interactable/InsertCoin"]
+offset_left = 383.0
+offset_top = 166.0
+offset_right = 404.0
+offset_bottom = 177.0
+color = Color(0, 0, 0, 1)
+
+[node name="Coin Counter" type="Label" parent="Interactable/InsertCoin"]
+texture_filter = 1
+offset_left = 378.0
+offset_top = 164.0
+offset_right = 410.0
+offset_bottom = 177.0
+theme_override_colors/font_color = Color(0.545098, 0.792157, 0.905882, 1)
+theme_override_colors/font_outline_color = Color(0.545098, 0.792157, 0.905882, 1)
+theme_override_constants/outline_size = 1
+theme_override_fonts/font = ExtResource("15_juj3m")
+theme_override_font_sizes/font_size = 16
+text = "000"
+horizontal_alignment = 1
+
 [node name="CustomerPocket" type="Area2D" parent="." groups=["customer"]]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CustomerPocket"]
 position = Vector2(225.5, 122.5)
 shape = SubResource("RectangleShape2D_wf083")
 
-[node name="TextureProgressBar" type="TextureProgressBar" parent="."]
-texture_filter = 1
-offset_right = 24.0
-offset_bottom = 24.0
-value = 69.0
-fill_mode = 5
-texture_progress = ExtResource("11_nc4va")
+[node name="MoneySpawnPos" type="Node2D" parent="."]
+position = Vector2(227, 190)
 
+[node name="CoinSpawnPos" type="Node2D" parent="."]
+position = Vector2(173, 197)
+
+[node name="TESTING BUTTONS" type="Control" parent="."]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_right = 74.0
+offset_bottom = 120.0
+
+[node name="TestingPass" type="TextureButton" parent="TESTING BUTTONS"]
+texture_filter = 1
+offset_left = 30.0
+offset_top = 38.0
+offset_right = 62.0
+offset_bottom = 71.0
+texture_normal = ExtResource("19_vx5k3")
+stretch_mode = 0
+
+[node name="TestingFail" type="TextureButton" parent="TESTING BUTTONS"]
+texture_filter = 1
+offset_left = 32.0
+offset_top = 76.0
+offset_right = 64.0
+offset_bottom = 109.0
+texture_normal = ExtResource("20_wlhqs")
+stretch_mode = 0
+
+[connection signal="pressed" from="DialogueUI/ContinueDialogue" to="." method="_on_continue_dialogue_pressed"]
 [connection signal="input_event" from="Interactable/Freezer/Open" to="Interactable/Freezer" method="_on_open_input_event"]
 [connection signal="input_event" from="Interactable/Freezer/FreezerOpen/Close" to="Interactable/Freezer" method="_on_close_input_event"]
 [connection signal="input_event" from="Interactable/Freezer2/Open" to="Interactable/Freezer2" method="_on_open_input_event"]
 [connection signal="input_event" from="Interactable/Freezer2/FreezerOpen/Close" to="Interactable/Freezer2" method="_on_close_input_event"]
 [connection signal="input_event" from="Interactable/Freezer3/Open" to="Interactable/Freezer3" method="_on_open_input_event"]
 [connection signal="input_event" from="Interactable/Freezer3/FreezerOpen/Close" to="Interactable/Freezer3" method="_on_close_input_event"]
+[connection signal="input_event" from="Interactable/Register" to="." method="_on_register_input_event"]
+[connection signal="pressed" from="TESTING BUTTONS/TestingPass" to="." method="_on_testing_pass_pressed"]
+[connection signal="pressed" from="TESTING BUTTONS/TestingFail" to="." method="_on_testing_fail_pressed"]

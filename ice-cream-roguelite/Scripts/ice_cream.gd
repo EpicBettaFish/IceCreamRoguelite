@@ -48,16 +48,19 @@ func _on_input_event(viewport, event, shape_idx):
 	if event.is_action_pressed("click"):
 		startPickup()
 	if event.is_action_released("click") and pickup:
+		main.grabbingItem = false
 		if atCustomer and main.activeCustomer:
 			giveToCustomer()
 		else:
 			stopPickupFreezer()
 
 func startPickup() -> void:
-	pickup = true
-	z_index = 2
-	sprite.texture = normalTexture
-	freezer.removeIceCream(spawnIndex)
+	if main.grabbingItem == false:
+		pickup = true
+		z_index = 2
+		sprite.texture = normalTexture
+		freezer.removeIceCream(spawnIndex)
+		main.grabbingItem = true
 
 func stopPickupFreezer() -> void:
 	freezer.addIceCream(spawnIndex)
