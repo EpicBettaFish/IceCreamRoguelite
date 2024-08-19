@@ -21,7 +21,7 @@ var iceCreamDisplay = preload("res://Scenes/UI/CustomerIceCreamDisplay.tscn")
 var currentOffer
 var activeCustomer = false
 
-var inventory = [5,5,5]
+var inventory = [100,100,100]
 
 func _ready():
 	newCustomer()
@@ -97,3 +97,6 @@ func customerLeave() -> void:
 func giveIceCream(iceCreamID) -> void:
 	currentOffer[0][iceCreamID] -= 1
 	activeUINodes[iceCreamID].updateValue(currentOffer[0][iceCreamID])
+	if currentOffer[0] == [0,0,0]:
+		acceptOffer()
+		customerLeave()

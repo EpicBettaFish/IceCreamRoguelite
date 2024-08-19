@@ -67,3 +67,5 @@ func giveToCustomer() -> void:
 	if main.currentOffer[0][iceCreamType] > 0:
 		main.giveIceCream(iceCreamType)
 		queue_free()
+	else:
+		stopPickupFreezer()

@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://brx8cesxl8wrj"]
+[gd_scene load_steps=19 format=3 uid="uid://brx8cesxl8wrj"]
 
 [ext_resource type="Texture2D" uid="uid://dgccxaaxedvst" path="res://assets/truck/truck_interiror.png" id="1_m7kw3"]
 [ext_resource type="Script" path="res://Scripts/main.gd" id="1_yedyt"]
@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://jrmgi5502ymv" path="res://assets/truck/cooler_2_open.png" id="9_o5wdo"]
 [ext_resource type="Script" path="res://Scripts/freezer.gd" id="9_yofj3"]
 [ext_resource type="Texture2D" uid="uid://d1uiby8u5m77r" path="res://assets/truck/cooler_3_open.png" id="10_m5u1l"]
+[ext_resource type="Texture2D" uid="uid://b8rc4rtgkjfwe" path="res://Programmer Art/TimerBlue.png" id="11_nc4va"]
 [ext_resource type="Texture2D" uid="uid://qr71e5ik1rkk" path="res://assets/truck/cooler_1_open.png" id="12_b2xxy"]
 
 [sub_resource type="Animation" id="Animation_hyao0"]
@@ -172,7 +173,7 @@ polygon = PackedVector2Array(84, 215, 141, 218, 120, 259, 56, 253)
 [node name="FreezerOpen" type="Sprite2D" parent="Interactable/Freezer"]
 visible = false
 texture_filter = 1
-position = Vector2(101, 214)
+position = Vector2(100, 214)
 texture = ExtResource("12_b2xxy")
 offset = Vector2(0, 0.5)
 
@@ -302,6 +303,14 @@ position = Vector2(266, 248)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CustomerPocket"]
 position = Vector2(225.5, 122.5)
 shape = SubResource("RectangleShape2D_wf083")
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="."]
+texture_filter = 1
+offset_right = 24.0
+offset_bottom = 24.0
+value = 69.0
+fill_mode = 5
+texture_progress = ExtResource("11_nc4va")
 
 [connection signal="input_event" from="Interactable/Freezer/Open" to="Interactable/Freezer" method="_on_open_input_event"]
 [connection signal="input_event" from="Interactable/Freezer/FreezerOpen/Close" to="Interactable/Freezer" method="_on_close_input_event"]
