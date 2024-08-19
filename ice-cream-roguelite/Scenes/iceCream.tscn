@@ -1,29 +1,24 @@
 [gd_scene load_steps=4 format=3 uid="uid://b2gq0q3tr1cqt"]
 
-[ext_resource type="Texture2D" uid="uid://btofj0rlu3rlm" path="res://Programmer Art/popsicleInFreezer.png" id="1_vhu7g"]
 [ext_resource type="Script" path="res://Scripts/ice_cream.gd" id="1_w70gc"]
+[ext_resource type="Texture2D" uid="uid://dnuxebkjxy8vn" path="res://assets/truck/icecreamsheet2.png" id="2_x57c1"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_m6ghs"]
-size = Vector2(16, 16)
+size = Vector2(13, 11)
 
-[node name="IceCream" type="Area2D"]
+[node name="IceCream" type="Area2D" groups=["icecream"]]
 script = ExtResource("1_w70gc")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("RectangleShape2D_m6ghs")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 1
-texture = ExtResource("1_vhu7g")
+position = Vector2(0, -3)
+texture = ExtResource("2_x57c1")
+hframes = 3
 
-[node name="Button" type="Button" parent="."]
-modulate = Color(1, 1, 1, 0)
-offset_left = -8.0
-offset_top = -8.0
-offset_right = 8.0
-offset_bottom = 8.0
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-1.5, -4)
+shape = SubResource("RectangleShape2D_m6ghs")
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
 [connection signal="area_exited" from="." to="." method="_on_area_exited"]
-[connection signal="button_down" from="Button" to="." method="_on_button_button_down"]
-[connection signal="button_up" from="Button" to="." method="_on_button_button_up"]
+[connection signal="input_event" from="." to="." method="_on_input_event"]
