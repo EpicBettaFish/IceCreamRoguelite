@@ -24,7 +24,7 @@ func _ready():
 
 func _process(delta):
 	if pickup:
-		global_position = get_global_mouse_position()
+		global_position = get_global_mouse_position().snapped(Vector2(1,1))
 
 func _on_area_entered(area):
 	if area.is_in_group("freezer"):

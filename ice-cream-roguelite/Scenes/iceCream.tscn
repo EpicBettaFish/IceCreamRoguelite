@@ -4,19 +4,20 @@
 [ext_resource type="Texture2D" uid="uid://dnuxebkjxy8vn" path="res://assets/truck/icecreamsheet2.png" id="2_x57c1"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_m6ghs"]
-size = Vector2(13, 11)
+size = Vector2(24, 15)
 
 [node name="IceCream" type="Area2D" groups=["icecream"]]
+y_sort_enabled = true
 script = ExtResource("1_w70gc")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 1
-position = Vector2(0, -3)
+position = Vector2(0, -6)
 texture = ExtResource("2_x57c1")
 hframes = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-1.5, -4)
+position = Vector2(-1, -5)
 shape = SubResource("RectangleShape2D_m6ghs")
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]

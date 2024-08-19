@@ -1,4 +1,4 @@
-[gd_scene load_steps=40 format=3 uid="uid://brx8cesxl8wrj"]
+[gd_scene load_steps=35 format=3 uid="uid://brx8cesxl8wrj"]
 
 [ext_resource type="Texture2D" uid="uid://dgccxaaxedvst" path="res://assets/truck/truck_interiror.png" id="1_m7kw3"]
 [ext_resource type="Script" path="res://Scripts/main.gd" id="1_yedyt"]
@@ -17,13 +17,10 @@
 [ext_resource type="Texture2D" uid="uid://b8rc4rtgkjfwe" path="res://Programmer Art/TimerBlue.png" id="11_nc4va"]
 [ext_resource type="Texture2D" uid="uid://qr71e5ik1rkk" path="res://assets/truck/cooler_1_open.png" id="12_b2xxy"]
 [ext_resource type="Texture2D" uid="uid://ddu7knqjnoxvk" path="res://Programmer Art/openRegister.png" id="13_xd1og"]
-[ext_resource type="Texture2D" uid="uid://b4sbio1mhwatf" path="res://Programmer Art/tentacle1.png" id="15_f5ces"]
 [ext_resource type="FontFile" uid="uid://dh3r0t715nyei" path="res://fonts/m5x7.ttf" id="15_juj3m"]
 [ext_resource type="Texture2D" uid="uid://cq82gfd3k00gs" path="res://Programmer Art/insertCoin.png" id="16_vb8qn"]
-[ext_resource type="Texture2D" uid="uid://dqjleds416fj" path="res://Programmer Art/tentacle2.png" id="18_y1hmc"]
 [ext_resource type="Texture2D" uid="uid://duq5t6ijrbbia" path="res://Programmer Art/check.png" id="19_vx5k3"]
 [ext_resource type="Texture2D" uid="uid://cg3lmwdh0wr0f" path="res://Programmer Art/cross.png" id="20_wlhqs"]
-[ext_resource type="Texture2D" uid="uid://bbock4iidfttx" path="res://Programmer Art/tentacle3.png" id="20_yqlge"]
 
 [sub_resource type="Animation" id="Animation_hyao0"]
 resource_name = "CustomerEnter"
@@ -31,7 +28,7 @@ length = 0.5
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("SubViewport/Customer:position")
+tracks/0/path = NodePath("Customer:position")
 tracks/0/interp = 2
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -47,7 +44,7 @@ length = 0.5
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("SubViewport/Customer:position")
+tracks/0/path = NodePath("Customer:position")
 tracks/0/interp = 2
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -62,7 +59,7 @@ length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("SubViewport/Customer:position")
+tracks/0/path = NodePath("Customer:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -211,12 +208,6 @@ _data = {
 "continuePopout": SubResource("Animation_4jin4")
 }
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_byait"]
-size = Vector2(182, 139)
-
-[sub_resource type="ViewportTexture" id="ViewportTexture_4w00w"]
-viewport_path = NodePath("SubViewport")
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_w6o7p"]
 size = Vector2(28, 26)
 
@@ -233,7 +224,6 @@ iceCreamData = {
 }
 timerMaxTime = 10.0
 customerSprites = [ExtResource("2_2k4am"), ExtResource("6_s60f8"), ExtResource("7_suegs")]
-testingMode = true
 dialogueOptions = ["[wave]test| dialogue| is| very| cool.|||[/wave] its true!", "wow, isn't test dialogue just great!?", "hmm i sure do love me some test dialogue. yes, that i do.", "[rainbow]your mother[/rainbow]"]
 
 [node name="BG" type="ColorRect" parent="."]
@@ -243,46 +233,26 @@ offset_bottom = 270.0
 mouse_filter = 2
 color = Color(0.367842, 0.113973, 0, 1)
 
-[node name="SubViewport" type="SubViewport" parent="."]
-transparent_bg = true
-size = Vector2i(480, 270)
-
-[node name="Customer" type="Sprite2D" parent="SubViewport"]
+[node name="Customer" type="Sprite2D" parent="."]
 z_index = -2
 texture_filter = 1
 position = Vector2(272, 193)
 texture = ExtResource("2_2k4am")
 offset = Vector2(64, -64)
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="SubViewport/Customer"]
-root_node = NodePath("../../..")
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Customer"]
+root_node = NodePath("../..")
 libraries = {
 "": SubResource("AnimationLibrary_8fw2g")
 }
 
-[node name="SecondaryTimer" type="TextureProgressBar" parent="SubViewport"]
+[node name="TempEnv" type="Sprite2D" parent="."]
+z_index = -1
 texture_filter = 1
-offset_left = 248.0
-offset_top = 53.0
-offset_right = 272.0
-offset_bottom = 77.0
-step = 0.1
-value = 100.0
-fill_mode = 5
-texture_progress = ExtResource("11_nc4va")
+texture = ExtResource("1_m7kw3")
+offset = Vector2(240, 135)
 
-[node name="PrimaryTimer" type="TextureProgressBar" parent="SubViewport"]
-texture_filter = 1
-offset_left = 248.0
-offset_top = 53.0
-offset_right = 272.0
-offset_bottom = 77.0
-step = 0.1
-value = 33.0
-fill_mode = 5
-texture_progress = ExtResource("8_elgp8")
-
-[node name="UI" type="Control" parent="SubViewport"]
+[node name="UI" type="Control" parent="."]
 visible = false
 z_index = -1
 layout_mode = 3
@@ -294,7 +264,7 @@ offset_bottom = 192.0
 grow_vertical = 0
 mouse_filter = 2
 
-[node name="Ice Creams" type="PanelContainer" parent="SubViewport/UI"]
+[node name="Ice Creams" type="PanelContainer" parent="UI"]
 layout_mode = 1
 anchors_preset = -1
 offset_left = 18.0
@@ -304,12 +274,12 @@ offset_bottom = 92.0
 grow_vertical = 0
 theme_override_styles/panel = SubResource("StyleBoxFlat_dcrwq")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="SubViewport/UI/Ice Creams"]
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/Ice Creams"]
 layout_mode = 2
 theme_override_constants/separation = 1
 alignment = 2
 
-[node name="Money" type="Panel" parent="SubViewport/UI"]
+[node name="Money" type="Panel" parent="UI"]
 layout_mode = 0
 offset_left = 18.0
 offset_top = 91.0
@@ -317,7 +287,7 @@ offset_right = 74.0
 offset_bottom = 117.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_ekev7")
 
-[node name="Label" type="Label" parent="SubViewport/UI/Money"]
+[node name="Label" type="Label" parent="UI/Money"]
 texture_filter = 1
 layout_mode = 0
 offset_top = 3.0
@@ -328,12 +298,12 @@ text = "$100"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="HSeparator" type="HSeparator" parent="SubViewport/UI/Money"]
+[node name="HSeparator" type="HSeparator" parent="UI/Money"]
 layout_mode = 0
 offset_right = 56.0
 offset_bottom = 4.0
 
-[node name="DialogueUI" type="Control" parent="SubViewport"]
+[node name="DialogueUI" type="Control" parent="."]
 visible = false
 layout_mode = 3
 anchors_preset = 0
@@ -343,7 +313,7 @@ offset_right = 174.0
 offset_bottom = 192.0
 grow_vertical = 0
 
-[node name="Panel" type="Panel" parent="SubViewport/DialogueUI"]
+[node name="Panel" type="Panel" parent="DialogueUI"]
 modulate = Color(1, 1, 1, 0)
 layout_mode = 0
 offset_left = 67.0
@@ -352,12 +322,12 @@ offset_right = 84.0
 offset_bottom = 114.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_he1hi")
 
-[node name="Sprite2D" type="Sprite2D" parent="SubViewport/DialogueUI/Panel"]
+[node name="Sprite2D" type="Sprite2D" parent="DialogueUI/Panel"]
 texture_filter = 1
 position = Vector2(9, 8)
 texture = ExtResource("9_lnxol")
 
-[node name="PanelContainer" type="PanelContainer" parent="SubViewport/DialogueUI"]
+[node name="PanelContainer" type="PanelContainer" parent="DialogueUI"]
 layout_mode = 1
 anchors_preset = -1
 offset_left = 6.0
@@ -367,7 +337,7 @@ offset_bottom = 112.0
 grow_vertical = 0
 theme_override_styles/panel = SubResource("StyleBoxFlat_tyqmt")
 
-[node name="RichTextLabel" type="RichTextLabel" parent="SubViewport/DialogueUI/PanelContainer"]
+[node name="RichTextLabel" type="RichTextLabel" parent="DialogueUI/PanelContainer"]
 texture_filter = 1
 layout_mode = 2
 theme_override_colors/default_color = Color(0, 0, 0, 1)
@@ -378,12 +348,18 @@ fit_content = true
 scroll_active = false
 visible_characters_behavior = 1
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="SubViewport/DialogueUI"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="DialogueUI"]
 libraries = {
 "": SubResource("AnimationLibrary_skeme")
 }
 
-[node name="DialogueTimer" type="TextureProgressBar" parent="SubViewport/DialogueUI"]
+[node name="ContinueDialogue" type="Button" parent="DialogueUI"]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 0
+offset_right = 182.0
+offset_bottom = 139.0
+
+[node name="DialogueTimer" type="TextureProgressBar" parent="DialogueUI"]
 modulate = Color(1, 1, 1, 0)
 texture_filter = 1
 layout_mode = 0
@@ -397,31 +373,33 @@ value = 3.0
 fill_mode = 5
 texture_progress = ExtResource("11_1lriu")
 
-[node name="ContinueDialogue" type="Area2D" parent="."]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="ContinueDialogue"]
-position = Vector2(181, 122.5)
-shape = SubResource("RectangleShape2D_byait")
-
-[node name="CustomerAndUI" type="Sprite2D" parent="."]
-z_index = -2
+[node name="SecondaryTimer" type="TextureProgressBar" parent="."]
 texture_filter = 1
-position = Vector2(240, 135)
-texture = SubResource("ViewportTexture_4w00w")
+offset_left = 248.0
+offset_top = 53.0
+offset_right = 272.0
+offset_bottom = 77.0
+step = 0.1
+value = 100.0
+fill_mode = 5
+texture_progress = ExtResource("11_nc4va")
 
-[node name="TempEnv" type="Sprite2D" parent="."]
-z_index = -1
+[node name="PrimaryTimer" type="TextureProgressBar" parent="."]
 texture_filter = 1
-texture = ExtResource("1_m7kw3")
-offset = Vector2(240, 135)
+offset_left = 248.0
+offset_top = 53.0
+offset_right = 272.0
+offset_bottom = 77.0
+step = 0.1
+value = 33.0
+fill_mode = 5
+texture_progress = ExtResource("8_elgp8")
 
 [node name="Items" type="Node2D" parent="."]
 
 [node name="Interactable" type="Node2D" parent="."]
-y_sort_enabled = true
 
 [node name="Freezer" type="Node2D" parent="Interactable"]
-y_sort_enabled = true
 script = ExtResource("9_yofj3")
 mainPath = NodePath("../..")
 
@@ -429,18 +407,6 @@ mainPath = NodePath("../..")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Interactable/Freezer/Open"]
 polygon = PackedVector2Array(84, 215, 141, 218, 120, 259, 56, 253)
-
-[node name="TentacleArea" type="Area2D" parent="Interactable/Freezer"]
-
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Interactable/Freezer/TentacleArea"]
-polygon = PackedVector2Array(83, 213, 141, 216, 122, 262, 55, 255, 84, 213)
-
-[node name="Tentacle" type="Sprite2D" parent="Interactable/Freezer"]
-visible = false
-texture_filter = 1
-position = Vector2(98, 237)
-texture = ExtResource("15_f5ces")
-offset = Vector2(0.5, 0.5)
 
 [node name="FreezerOpen" type="Sprite2D" parent="Interactable/Freezer"]
 visible = false
@@ -464,22 +430,21 @@ polygon = PackedVector2Array(-30, -41, -21, -46, 37, -45, 45, 3, 39, 6, -16, 5)
 [node name="IceCreamSpawns" type="Node2D" parent="Interactable/Freezer"]
 
 [node name="SpawnPos" type="Node2D" parent="Interactable/Freezer/IceCreamSpawns"]
-position = Vector2(100, 238)
+position = Vector2(101, 235)
 
 [node name="SpawnPos2" type="Node2D" parent="Interactable/Freezer/IceCreamSpawns"]
-position = Vector2(92, 226)
+position = Vector2(90, 226)
 
 [node name="SpawnPos3" type="Node2D" parent="Interactable/Freezer/IceCreamSpawns"]
-position = Vector2(118, 230)
+position = Vector2(122, 230)
 
 [node name="SpawnPos4" type="Node2D" parent="Interactable/Freezer/IceCreamSpawns"]
-position = Vector2(80, 245)
+position = Vector2(84, 243)
 
 [node name="SpawnPos5" type="Node2D" parent="Interactable/Freezer/IceCreamSpawns"]
 position = Vector2(107, 251)
 
 [node name="Freezer2" type="Node2D" parent="Interactable"]
-y_sort_enabled = true
 script = ExtResource("9_yofj3")
 mainPath = NodePath("../..")
 iceCreamID = 1
@@ -503,7 +468,7 @@ position = Vector2(-101, -214)
 polygon = PackedVector2Array(81, 225, 129, 226, 126, 247, 72, 248)
 disabled = true
 
-[node name="Close" type="Area2D" parent="Interactable/Freezer2/FreezerOpen" groups=["moneyoccluder"]]
+[node name="Close" type="Area2D" parent="Interactable/Freezer2/FreezerOpen"]
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Interactable/Freezer2/FreezerOpen/Close"]
 polygon = PackedVector2Array(-26, -48, 34, -49, 36, 8, -25, 7, -28, -41)
@@ -517,28 +482,15 @@ position = Vector2(173, 241)
 position = Vector2(155, 231)
 
 [node name="SpawnPos3" type="Node2D" parent="Interactable/Freezer2/IceCreamSpawns"]
-position = Vector2(182, 231)
+position = Vector2(190, 233)
 
 [node name="SpawnPos4" type="Node2D" parent="Interactable/Freezer2/IceCreamSpawns"]
 position = Vector2(150, 250)
 
 [node name="SpawnPos5" type="Node2D" parent="Interactable/Freezer2/IceCreamSpawns"]
-position = Vector2(185, 249)
-
-[node name="Tentacle" type="Sprite2D" parent="Interactable/Freezer2"]
-visible = false
-texture_filter = 1
-position = Vector2(168, 238)
-texture = ExtResource("18_y1hmc")
-offset = Vector2(0.5, 0.5)
-
-[node name="TentacleArea" type="Area2D" parent="Interactable/Freezer2"]
-
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Interactable/Freezer2/TentacleArea"]
-polygon = PackedVector2Array(147, 215, 211, 218, 207, 262, 126, 260)
+position = Vector2(192, 249)
 
 [node name="Freezer3" type="Node2D" parent="Interactable"]
-y_sort_enabled = true
 script = ExtResource("9_yofj3")
 mainPath = NodePath("../..")
 iceCreamID = 2
@@ -562,7 +514,7 @@ position = Vector2(-101, -214)
 polygon = PackedVector2Array(71, 227, 114, 226, 126, 247, 71, 250)
 disabled = true
 
-[node name="Close" type="Area2D" parent="Interactable/Freezer3/FreezerOpen" groups=["moneyoccluder"]]
+[node name="Close" type="Area2D" parent="Interactable/Freezer3/FreezerOpen"]
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Interactable/Freezer3/FreezerOpen/Close"]
 polygon = PackedVector2Array(-40, 10, 20, 7, 24, -41, 16, -48, -41, -47)
@@ -570,31 +522,19 @@ polygon = PackedVector2Array(-40, 10, 20, 7, 24, -41, 16, -48, -41, -47)
 [node name="IceCreamSpawns" type="Node2D" parent="Interactable/Freezer3"]
 
 [node name="SpawnPos" type="Node2D" parent="Interactable/Freezer3/IceCreamSpawns"]
-position = Vector2(247, 240)
+position = Vector2(249, 240)
 
 [node name="SpawnPos2" type="Node2D" parent="Interactable/Freezer3/IceCreamSpawns"]
-position = Vector2(228, 230)
+position = Vector2(232, 234)
 
 [node name="SpawnPos3" type="Node2D" parent="Interactable/Freezer3/IceCreamSpawns"]
-position = Vector2(260, 233)
+position = Vector2(263, 236)
 
 [node name="SpawnPos4" type="Node2D" parent="Interactable/Freezer3/IceCreamSpawns"]
 position = Vector2(236, 247)
 
 [node name="SpawnPos5" type="Node2D" parent="Interactable/Freezer3/IceCreamSpawns"]
-position = Vector2(266, 247)
-
-[node name="Tentacle" type="Sprite2D" parent="Interactable/Freezer3"]
-visible = false
-texture_filter = 1
-position = Vector2(254, 239)
-texture = ExtResource("20_yqlge")
-offset = Vector2(0.5, 0.5)
-
-[node name="TentacleArea" type="Area2D" parent="Interactable/Freezer3"]
-
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Interactable/Freezer3/TentacleArea"]
-polygon = PackedVector2Array(213, 218, 273, 218, 297, 259, 214, 260)
+position = Vector2(266, 248)
 
 [node name="Register" type="Area2D" parent="Interactable"]
 
@@ -608,23 +548,12 @@ texture = ExtResource("13_xd1og")
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Interactable/Register"]
 polygon = PackedVector2Array(334, 220, 372, 199, 386, 162, 397, 157, 463, 167, 456, 241, 412, 271, 333, 246)
 
-[node name="DollarDetector" type="Area2D" parent="Interactable/Register" groups=["register"]]
-
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Interactable/Register/DollarDetector"]
-polygon = PackedVector2Array(339, 230, 406, 246, 369, 284, 303, 263)
-disabled = true
-
-[node name="Skew" type="Node2D" parent="Interactable/Register"]
-position = Vector2(440, 149)
-rotation = 0.120428
-skew = -0.125664
-
-[node name="Label" type="Label" parent="Interactable/Register/Skew"]
+[node name="Label" type="Label" parent="Interactable/Register"]
 texture_filter = 1
-offset_left = -18.0
-offset_top = -8.0
-offset_right = -12.0
-offset_bottom = 5.0
+offset_left = 426.0
+offset_top = 140.0
+offset_right = 432.0
+offset_bottom = 153.0
 theme_override_colors/font_color = Color(1, 0.803922, 0, 1)
 theme_override_colors/font_outline_color = Color(1, 0.803922, 0, 1)
 theme_override_constants/outline_size = 1
@@ -632,19 +561,25 @@ theme_override_fonts/font = ExtResource("15_juj3m")
 theme_override_font_sizes/font_size = 16
 text = "$"
 
-[node name="Dollar Counter" type="Label" parent="Interactable/Register/Skew"]
+[node name="Dollar Counter" type="Label" parent="Interactable/Register"]
 texture_filter = 1
-offset_left = -12.0
-offset_top = -8.0
-offset_right = 20.0
-offset_bottom = 5.0
+offset_left = 432.0
+offset_top = 140.0
+offset_right = 464.0
+offset_bottom = 153.0
 theme_override_colors/font_color = Color(1, 0.803922, 0, 1)
 theme_override_colors/font_outline_color = Color(1, 0.803922, 0, 1)
 theme_override_constants/outline_size = 1
 theme_override_fonts/font = ExtResource("15_juj3m")
 theme_override_font_sizes/font_size = 16
-text = "100.00"
+text = "0.00"
 horizontal_alignment = 2
+
+[node name="DollarDetector" type="Area2D" parent="Interactable/Register" groups=["register"]]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Interactable/Register/DollarDetector"]
+polygon = PackedVector2Array(339, 230, 406, 246, 369, 284, 303, 263)
+disabled = true
 
 [node name="InsertCoin" type="Area2D" parent="Interactable" groups=["InsertCoin"]]
 z_index = -1
@@ -718,20 +653,13 @@ offset_bottom = 109.0
 texture_normal = ExtResource("20_wlhqs")
 stretch_mode = 0
 
-[node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(240, 135)
-zoom = Vector2(4, 4)
-
-[connection signal="input_event" from="ContinueDialogue" to="." method="_on_continue_dialogue_input_event"]
+[connection signal="pressed" from="DialogueUI/ContinueDialogue" to="." method="_on_continue_dialogue_pressed"]
 [connection signal="input_event" from="Interactable/Freezer/Open" to="Interactable/Freezer" method="_on_open_input_event"]
-[connection signal="input_event" from="Interactable/Freezer/TentacleArea" to="Interactable/Freezer" method="_on_tentacle_area_input_event"]
 [connection signal="input_event" from="Interactable/Freezer/FreezerOpen/Close" to="Interactable/Freezer" method="_on_close_input_event"]
 [connection signal="input_event" from="Interactable/Freezer2/Open" to="Interactable/Freezer2" method="_on_open_input_event"]
 [connection signal="input_event" from="Interactable/Freezer2/FreezerOpen/Close" to="Interactable/Freezer2" method="_on_close_input_event"]
-[connection signal="input_event" from="Interactable/Freezer2/TentacleArea" to="Interactable/Freezer2" method="_on_tentacle_area_input_event"]
 [connection signal="input_event" from="Interactable/Freezer3/Open" to="Interactable/Freezer3" method="_on_open_input_event"]
 [connection signal="input_event" from="Interactable/Freezer3/FreezerOpen/Close" to="Interactable/Freezer3" method="_on_close_input_event"]
-[connection signal="input_event" from="Interactable/Freezer3/TentacleArea" to="Interactable/Freezer3" method="_on_tentacle_area_input_event"]
 [connection signal="input_event" from="Interactable/Register" to="." method="_on_register_input_event"]
 [connection signal="pressed" from="TESTING BUTTONS/TestingPass" to="." method="_on_testing_pass_pressed"]
 [connection signal="pressed" from="TESTING BUTTONS/TestingFail" to="." method="_on_testing_fail_pressed"]

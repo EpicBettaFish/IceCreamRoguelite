@@ -1,14 +1,13 @@
 extends Node2D
 
-@onready var customerAnimation = $Customer/AnimationPlayer
-@onready var customerSprite = $Customer
-@onready var UI = $UI
-@onready var UIiceCreamsContainer = $"UI/Ice Creams/VBoxContainer"
-@onready var UIaskingPrice = $UI/Money/Label
+@onready var customerAnimation = $SubViewport/Customer/AnimationPlayer
+@onready var customerSprite = $SubViewport/Customer
+@onready var UI = $SubViewport/UI
+@onready var UIiceCreamsContainer = $"SubViewport/UI/Ice Creams/VBoxContainer"
+@onready var UIaskingPrice = $SubViewport/UI/Money/Label
 
-@onready var mainTimer = $PrimaryTimer
-@onready var secondaryTimer = $SecondaryTimer
-@onready var tertiaryTimer = $TertiaryTimer
+@onready var mainTimer = $SubViewport/PrimaryTimer
+@onready var secondaryTimer = $SubViewport/SecondaryTimer
 
 var activeUINodes = [null,null,null]
 
@@ -31,7 +30,7 @@ var soulCoins: int = 0
 
 var registerOpen = false
 @onready var openRegisterSprite = $Interactable/Register/OpenRegister
-@onready var registerMoneyCounter = $"Interactable/Register/Dollar Counter"
+@onready var registerMoneyCounter = $"Interactable/Register/Skew/Dollar Counter"
 @onready var dollarDetector = $Interactable/Register/DollarDetector/CollisionPolygon2D
 
 @onready var registerCoinCounter = $"Interactable/InsertCoin/Coin Counter"
@@ -46,8 +45,8 @@ var timerTimeRecover = false
 var timerTimeTarget: float = 0.0
 @export var timerMaxTime: float = 20.0
 var timeRemaining: float = 100.0
-@export var soulTime: float = 3.0
-@export var regenTime: float = 2.0
+@export var soulTime: float = 2.0
+@export var regenTime : float = 0.5
 
 var moneyScene = preload("res://Scenes/money.tscn")
 @onready var moneySpawn = $MoneySpawnPos
@@ -61,18 +60,21 @@ var inventory = [100,100,100]
 
 var grabbingItem = false
 
-@onready var dialogueUI = $DialogueUI
-@onready var dialoguePanel = $DialogueUI/PanelContainer
-@onready var dialogueText = $DialogueUI/PanelContainer/RichTextLabel
+@onready var dialogueUI = $SubViewport/DialogueUI
+@onready var dialoguePanel = $SubViewport/DialogueUI/PanelContainer
+@onready var dialogueText = $SubViewport/DialogueUI/PanelContainer/RichTextLabel
 @export var dialogueOptions: Array
-@onready var dialogueAnim = $DialogueUI/AnimationPlayer
-@onready var dialogueTimer = $DialogueUI/DialogueTimer
+@onready var dialogueAnim = $SubViewport/DialogueUI/AnimationPlayer
+@onready var dialogueTimer = $SubViewport/DialogueUI/DialogueTimer
 var canContinueDialogue = false
 var dialogueActive = false
 var skipDialogue = false
 var previousDialogue = null
 var dialogueTimerTimeRemaining = 3.0
 var dialogueTimerCountdown = false
+@onready var continueDialogue = $ContinueDialogue/CollisionShape2D
+
+@export var tentacleHits = 15
 
 func _ready():
 	newCustomer()
@@ -81,7 +83,7 @@ func _ready():
 	dialogueUI.visible = false
 	mainTimer.value = 0
 	secondaryTimer.value = 0
-	tertiaryTimer.value = 0
+	continueDialogue.disabled = true
 	$"TESTING BUTTONS".visible = testingMode
 
 func _process(delta):
@@ -93,14 +95,10 @@ func _process(delta):
 				timeRemaining = timerTimeTarget
 		elif activeCustomer:
 			timeRemaining -= delta
-		if timeRemaining < regenTime:
+		if timeRemaining < timerMaxTime - soulTime:
 			mainTimer.value = timeRemaining
 		else:
-			mainTimer.value = regenTime
-		if timeRemaining < timerMaxTime - soulTime:
-			tertiaryTimer.value = timeRemaining
-		else:
-			tertiaryTimer.value = timerMaxTime - soulTime
+			mainTimer.value = timerMaxTime - soulTime
 		secondaryTimer.value = timeRemaining
 		if timeRemaining <= 0:
 			rejectOffer()
@@ -149,12 +147,19 @@ func playDialogue() -> void:
 	dialogueText.text = finalDialogue
 	dialogueText.visible_ratio = 0
 	var bbCode = false
+	continueDialogue.disabled = false
 	for i in currentDialogue:
 		if skipDialogue:
-			skipDialogue = false
-			dialogueText.visible_ratio = 1
 			dialogueAnim.play("continuePopout")
+			skipDialogue = false
 			canContinueDialogue = true
+			dialogueActive = false
+			dialogueTimer.value = 3
+			dialogueText.visible_ratio = 1
+			await get_tree().create_timer(0.4).timeout
+			dialogueTimerTimeRemaining = 3.0
+			dialogueTimerCountdown = true
+			continueDialogue.disabled = false
 			return
 		match i:
 			"|":
@@ -180,6 +185,7 @@ func playDialogue() -> void:
 	await get_tree().create_timer(0.4).timeout
 	dialogueTimerTimeRemaining = 3.0
 	dialogueTimerCountdown = true
+	continueDialogue.disabled = false
 
 func setUI(cones, price) -> void:
 	activeUINodes = [null, null, null]
@@ -220,11 +226,9 @@ func generatePrice(cones) -> float:
 func setTimers() -> void:
 	timeRemaining = timerMaxTime
 	mainTimer.max_value = timeRemaining
-	mainTimer.value = regenTime
+	mainTimer.value = timeRemaining - soulTime
 	secondaryTimer.max_value = timeRemaining
 	secondaryTimer.value = timeRemaining
-	tertiaryTimer.max_value = timeRemaining
-	tertiaryTimer.value = timeRemaining - soulTime
 	timerActive = true
 #END CUSTOMER LOGIC
 
@@ -284,9 +288,8 @@ func customerLeave() -> void:
 func giveIceCream(iceCreamID) -> void:
 	currentOffer[0][iceCreamID] -= 1
 	activeUINodes[iceCreamID].updateValue(currentOffer[0][iceCreamID])
-	if timeRemaining < regenTime:
-		timerTimeRecover = true
-		timerTimeTarget = regenTime
+	timerTimeRecover = true
+	timerTimeTarget = timeRemaining + regenTime
 	if currentOffer[0] == [0,0,0]:
 		acceptOffer()
 		customerLeave()
@@ -305,11 +308,13 @@ func _on_register_input_event(viewport, event, shape_idx):
 		dollarDetector.disabled = !registerOpen
 
 
-func _on_continue_dialogue_pressed():
-	if canContinueDialogue:
-		dialogueTimerCountdown = false
-		canContinueDialogue = false
-		dialogueAnim.play("RESET")
-		startOrder()
-	elif dialogueActive:
-		skipDialogue = true
+func _on_continue_dialogue_input_event(viewport, event, shape_idx):
+	if event.is_action_pressed("click"):
+		if canContinueDialogue:
+			dialogueTimerCountdown = false
+			canContinueDialogue = false
+			continueDialogue.disabled = true
+			dialogueAnim.play("RESET")
+			startOrder()
+		elif dialogueActive:
+			skipDialogue = true

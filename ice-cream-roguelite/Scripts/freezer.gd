@@ -10,12 +10,21 @@ extends Node2D
 
 @onready var freezerAreaCollider = $FreezerOpen/FreezerArea/CollisionPolygon2D
 
+@onready var openAreaCollider = $Open/CollisionPolygon2D
+@onready var tentacleSprite = $Tentacle
+@onready var tentacleArea = $TentacleArea/CollisionPolygon2D
+
+var tentacleHits
+
 var activeSlots = [false,false,false,false,false]
 
 var iceCreamScene = preload("res://Scenes/iceCream.tscn")
 
 func _ready():
+	tentacleHits = main.tentacleHits
 	openLid.visible = false
+	tentacleSprite.visible = false
+	tentacleArea.disabled = true
 	spawnIceCreams()
 
 func spawnIceCreams() -> void:
@@ -55,3 +64,21 @@ func addIceCream(index) -> void:
 	if activeSlots[index] == false:
 		activeSlots[index] = true
 		spawnNewIceCream(index)
+
+
+#Tentacle
+func spawnTentacle() -> void:
+	openLid.visible = false
+	freezerAreaCollider.disabled = true
+	tentacleHits = main.tentacleHits
+	openAreaCollider.disabled = true
+	tentacleArea.disabled = false
+	tentacleSprite.visible = true
+
+func _on_tentacle_area_input_event(viewport, event, shape_idx):
+	if event.is_action_pressed("click"):
+		tentacleHits -= 1
+		if tentacleHits == 0:
+			openAreaCollider.disabled = false
+			tentacleArea.disabled = true
+			tentacleSprite.visible = false

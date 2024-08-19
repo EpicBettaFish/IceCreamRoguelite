@@ -9,6 +9,9 @@ var inRegister = false
 var inCoinSlot = false
 
 @export var coin = false
+@onready var collider = $CollisionShape2D
+
+var occluded = 0
 
 var main
 
@@ -17,7 +20,7 @@ func _ready():
 
 func _process(_delta):
 	if pickup:
-		global_position = get_global_mouse_position()
+		global_position = get_global_mouse_position().snapped(Vector2(1,1))
 
 
 func _on_input_event(viewport, event, shape_idx):
