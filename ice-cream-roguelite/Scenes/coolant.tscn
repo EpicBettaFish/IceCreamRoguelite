@@ -1,8 +1,9 @@
-[gd_scene load_steps=11 format=3 uid="uid://djfle7c6dg8y4"]
+[gd_scene load_steps=12 format=3 uid="uid://djfle7c6dg8y4"]
 
 [ext_resource type="Texture2D" uid="uid://c3xryoyhcdrhi" path="res://Programmer Art/coolantParticle.png" id="1_5iagu"]
 [ext_resource type="Script" path="res://Scripts/coolant.gd" id="1_64250"]
 [ext_resource type="Texture2D" uid="uid://4vcevbouxy1o" path="res://assets/truck/coolant_bottle.png" id="1_q63a4"]
+[ext_resource type="Texture2D" uid="uid://c14aemcocc4tm" path="res://assets/truck/water_bottle.png" id="2_8bx45"]
 
 [sub_resource type="Gradient" id="Gradient_a6v3v"]
 colors = PackedColorArray(0, 1, 1, 1, 0, 0.494118, 1, 1)
@@ -42,6 +43,7 @@ size = Vector2(334.315, 21.5981)
 [node name="Coolant" type="Area2D"]
 z_index = 2
 script = ExtResource("1_64250")
+spriteSheets = [ExtResource("2_8bx45"), ExtResource("1_q63a4")]
 
 [node name="Particles" type="GPUParticles2D" parent="."]
 z_index = -1
