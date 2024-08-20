@@ -76,6 +76,10 @@ var dialogueTimerCountdown = false
 
 @export var tentacleHits = 15
 
+var coolantSpeed = 1
+var coolantActive = false
+var freezers = []
+
 func _ready():
 	newCustomer()
 	registerCoinCounter.text = ("%03d" % soulCoins)
@@ -85,6 +89,7 @@ func _ready():
 	secondaryTimer.value = 0
 	continueDialogue.disabled = true
 	$"TESTING BUTTONS".visible = testingMode
+	loadEquipment()
 
 func _process(delta):
 	if timerActive:
@@ -318,3 +323,21 @@ func _on_continue_dialogue_input_event(viewport, event, shape_idx):
 			startOrder()
 		elif dialogueActive:
 			skipDialogue = true
+
+
+func loadEquipment() -> void:
+	coolantSpeed = Singleton.equipment.coolant[1]
+
+
+func _on_coolant_hole_area_entered(area):
+	if area.is_in_group("coolant"):
+		await get_tree().create_timer(0.7).timeout
+		coolantActive = true
+		for i in freezers:
+			i.coolantStart()
+func _on_coolant_hole_area_exited(area):
+	if area.is_in_group("coolant"):
+		await get_tree().create_timer(0.7).timeout
+		coolantActive = false
+		for i in freezers:
+			i.coolantEnd()

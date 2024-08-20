@@ -1,4 +1,4 @@
-[gd_scene load_steps=45 format=3 uid="uid://brx8cesxl8wrj"]
+[gd_scene load_steps=50 format=3 uid="uid://brx8cesxl8wrj"]
 
 [ext_resource type="Texture2D" uid="uid://dgccxaaxedvst" path="res://assets/truck/truck_interiror.png" id="1_m7kw3"]
 [ext_resource type="Script" path="res://Scripts/main.gd" id="1_yedyt"]
@@ -29,6 +29,9 @@
 [ext_resource type="Texture2D" uid="uid://cg3lmwdh0wr0f" path="res://Programmer Art/cross.png" id="20_wlhqs"]
 [ext_resource type="Texture2D" uid="uid://bbock4iidfttx" path="res://Programmer Art/tentacle3.png" id="20_yqlge"]
 [ext_resource type="Texture2D" uid="uid://ddtj83dmfu4eh" path="res://Programmer Art/sticky3.png" id="21_2klvf"]
+[ext_resource type="PackedScene" uid="uid://djfle7c6dg8y4" path="res://Scenes/coolant.tscn" id="30_snwc3"]
+[ext_resource type="Texture2D" uid="uid://61ujmnj5364o" path="res://Programmer Art/coolantHoleBack.png" id="31_ux50n"]
+[ext_resource type="Texture2D" uid="uid://glkc3a07yirp" path="res://Programmer Art/coolantHoleFront.png" id="32_v3ok1"]
 
 [sub_resource type="Animation" id="Animation_hyao0"]
 resource_name = "CustomerEnter"
@@ -228,6 +231,12 @@ size = Vector2(28, 26)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wf083"]
 size = Vector2(93, 139)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qyivp"]
+size = Vector2(16, 16)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_6bn6g"]
+polygon = PackedVector2Array(290, 243, 317, 243, 317, 270, 290, 270)
+
 [node name="Main" type="Node2D"]
 y_sort_enabled = true
 script = ExtResource("1_yedyt")
@@ -238,7 +247,6 @@ iceCreamData = {
 }
 timerMaxTime = 10.0
 customerSprites = [ExtResource("2_2k4am"), ExtResource("6_s60f8"), ExtResource("7_suegs")]
-testingMode = true
 dialogueOptions = ["[wave]test| dialogue| is| very| cool.|||[/wave] its true!", "wow, isn't test dialogue just great!?", "hmm i sure do love me some test dialogue. yes, that i do.", "[rainbow]your mother[/rainbow]"]
 
 [node name="BG" type="ColorRect" parent="."]
@@ -421,6 +429,9 @@ texture = ExtResource("1_m7kw3")
 offset = Vector2(240, 135)
 
 [node name="Items" type="Node2D" parent="."]
+
+[node name="Coolant" parent="Items" instance=ExtResource("30_snwc3")]
+position = Vector2(308, 190)
 
 [node name="Interactable" type="Node2D" parent="."]
 y_sort_enabled = true
@@ -794,7 +805,7 @@ disabled = true
 
 [node name="Skew" type="Node2D" parent="Interactable/Register"]
 position = Vector2(440, 149)
-rotation = 0.120428
+rotation = 0.149654
 skew = -0.125664
 
 [node name="Label" type="Label" parent="Interactable/Register/Skew"]
@@ -900,6 +911,28 @@ stretch_mode = 0
 position = Vector2(240, 135)
 zoom = Vector2(4, 4)
 
+[node name="CoolantHole" type="Area2D" parent="."]
+
+[node name="Back" type="Sprite2D" parent="CoolantHole"]
+z_index = -1
+texture_filter = 1
+position = Vector2(303, 243)
+texture = ExtResource("31_ux50n")
+
+[node name="Front" type="Sprite2D" parent="CoolantHole"]
+z_index = 1
+texture_filter = 1
+position = Vector2(303, 243)
+texture = ExtResource("32_v3ok1")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CoolantHole"]
+position = Vector2(303, 243)
+shape = SubResource("RectangleShape2D_qyivp")
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="CoolantHole"]
+occluder = SubResource("OccluderPolygon2D_6bn6g")
+occluder_light_mask = 0
+
 [connection signal="input_event" from="ContinueDialogue" to="." method="_on_continue_dialogue_input_event"]
 [connection signal="input_event" from="Interactable/Freezer/Open" to="Interactable/Freezer" method="_on_open_input_event"]
 [connection signal="input_event" from="Interactable/Freezer/TentacleArea" to="Interactable/Freezer" method="_on_tentacle_area_input_event"]
@@ -913,3 +946,5 @@ zoom = Vector2(4, 4)
 [connection signal="input_event" from="Interactable/Register" to="." method="_on_register_input_event"]
 [connection signal="pressed" from="TESTING BUTTONS/TestingPass" to="." method="_on_testing_pass_pressed"]
 [connection signal="pressed" from="TESTING BUTTONS/TestingFail" to="." method="_on_testing_fail_pressed"]
+[connection signal="area_entered" from="CoolantHole" to="." method="_on_coolant_hole_area_entered"]
+[connection signal="area_exited" from="CoolantHole" to="." method="_on_coolant_hole_area_exited"]

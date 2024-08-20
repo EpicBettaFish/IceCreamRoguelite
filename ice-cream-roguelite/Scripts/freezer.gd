@@ -23,6 +23,9 @@ var targetTemp = 0
 var overheating = false
 @export var heatLimit = 29
 
+var coolant = false
+var coolantSpeed = 1
+
 var tentacleHits
 
 var activeSlots = [false,false,false,false,false]
@@ -36,6 +39,9 @@ func _ready():
 	tentacleArea.disabled = true
 	spawnIceCreams()
 	
+	
+	main.freezers.append(self)
+	
 	var tempRand = randi_range(-2,2)
 	temperature += tempRand
 	targetTemp = temperature
@@ -47,7 +53,7 @@ func _ready():
 
 func _process(delta):
 	if freezerOpen and !overheating:
-		temperature += delta / 2
+		temperature += delta /2
 		temperatureGauge.value = temperature
 		var prefix = ""
 		if int(temperature) < 0:
@@ -56,12 +62,14 @@ func _process(delta):
 		if int(temperature) >= 29:
 			overheat()
 	elif temperature > targetTemp and !freezerOpen:
-		if !overheating:
-			temperature -= delta
-		else:
-			temperature -= delta * 2
+		var temperatureModifier = delta
+		if overheating:
+			temperatureModifier = delta / 2
 			if temperature <= targetTemp + 4:
 				stopOverheat()
+		if coolant:
+			temperatureModifier *= coolantSpeed
+		temperature -= temperatureModifier
 		temperatureGauge.value = temperature
 		var prefix = ""
 		if int(temperature) < 0:
@@ -133,11 +141,28 @@ func overheat() -> void:
 			if !i.pickup:
 				i.queue_free()
 	overheating = true
-	temperatureReadout.modulate = "ff0000"
-	temperatureCelsius.modulate = "ff0000"
+	if !coolant:
+		temperatureReadout.modulate = "ff0000"
+		temperatureCelsius.modulate = "ff0000"
 
 func stopOverheat() -> void:
 	overheating = false
-	temperatureReadout.modulate = "ffcd00"
-	temperatureCelsius.modulate = "ffcd00"
+	if !coolant:
+		temperatureReadout.modulate = "ffcd00"
+		temperatureCelsius.modulate = "ffcd00"
 	spawnIceCreams()
+
+func coolantStart() -> void:
+	coolant = true
+	temperatureReadout.modulate = "00cdff"
+	temperatureCelsius.modulate = "00cdff"
+	coolantSpeed = main.coolantSpeed
+
+func coolantEnd() -> void:
+	coolant = false
+	if overheating:
+		temperatureReadout.modulate = "ff0000"
+		temperatureCelsius.modulate = "ff0000"
+	else:
+		temperatureReadout.modulate = "ffcd00"
+		temperatureCelsius.modulate = "ffcd00"
