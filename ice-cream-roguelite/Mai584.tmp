@@ -1,4 +1,4 @@
-[gd_scene load_steps=53 format=3 uid="uid://brx8cesxl8wrj"]
+[gd_scene load_steps=51 format=3 uid="uid://brx8cesxl8wrj"]
 
 [ext_resource type="Texture2D" uid="uid://dgccxaaxedvst" path="res://assets/truck/truck_interiror.png" id="1_m7kw3"]
 [ext_resource type="Script" path="res://Scripts/main.gd" id="1_yedyt"]
@@ -33,7 +33,6 @@
 [ext_resource type="PackedScene" uid="uid://djfle7c6dg8y4" path="res://Scenes/coolant.tscn" id="30_snwc3"]
 [ext_resource type="Texture2D" uid="uid://61ujmnj5364o" path="res://Programmer Art/coolantHoleBack.png" id="31_ux50n"]
 [ext_resource type="Texture2D" uid="uid://glkc3a07yirp" path="res://Programmer Art/coolantHoleFront.png" id="32_v3ok1"]
-[ext_resource type="Texture2D" uid="uid://i8vshlxm66y" path="res://assets/truck/freezer_gremlin.png" id="34_koy7s"]
 
 [sub_resource type="Animation" id="Animation_hyao0"]
 resource_name = "CustomerEnter"
@@ -238,9 +237,6 @@ size = Vector2(16, 16)
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_6bn6g"]
 polygon = PackedVector2Array(290, 243, 317, 243, 317, 270, 290, 270)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_tvxot"]
-size = Vector2(56, 49)
 
 [node name="Main" type="Node2D"]
 y_sort_enabled = true
@@ -940,18 +936,6 @@ shape = SubResource("RectangleShape2D_qyivp")
 [node name="LightOccluder2D" type="LightOccluder2D" parent="CoolantHole"]
 occluder = SubResource("OccluderPolygon2D_6bn6g")
 occluder_light_mask = 0
-
-[node name="Gremlin" type="Area2D" parent="."]
-position = Vector2(90, 278)
-
-[node name="Sprite2D" type="Sprite2D" parent="Gremlin"]
-texture_filter = 1
-texture = ExtResource("34_koy7s")
-hframes = 5
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Gremlin"]
-position = Vector2(9, 16.5)
-shape = SubResource("RectangleShape2D_tvxot")
 
 [connection signal="input_event" from="ContinueDialogue" to="." method="_on_continue_dialogue_input_event"]
 [connection signal="input_event" from="Interactable/Freezer/Open" to="Interactable/Freezer" method="_on_open_input_event"]

@@ -39,7 +39,6 @@ func _ready():
 	tentacleArea.disabled = true
 	spawnIceCreams()
 	
-	
 	main.freezers.append(self)
 	
 	var tempRand = randi_range(-2,2)
@@ -53,7 +52,8 @@ func _ready():
 
 func _process(delta):
 	if freezerOpen and !overheating:
-		temperature += delta /2
+		if !coolant:
+			temperature += delta * 2
 		temperatureGauge.value = temperature
 		var prefix = ""
 		if int(temperature) < 0:
@@ -62,14 +62,14 @@ func _process(delta):
 		if int(temperature) >= 29:
 			overheat()
 	elif temperature > targetTemp and !freezerOpen:
-		var temperatureModifier = delta
+		var temperatureModifier = delta * 2
 		if overheating:
-			temperatureModifier = delta / 2
+			temperatureModifier = delta
 			if temperature <= targetTemp + 4:
 				stopOverheat()
 		if coolant:
 			temperatureModifier *= coolantSpeed
-		temperature -= temperatureModifier
+			temperature -= temperatureModifier
 		temperatureGauge.value = temperature
 		var prefix = ""
 		if int(temperature) < 0:

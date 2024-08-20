@@ -56,7 +56,7 @@ var moneyScene = preload("res://Scenes/money.tscn")
 
 @export var testingMode: bool = false
 
-var inventory = [5,5,5]
+var inventory = [100,100,100]
 
 var grabbingItem = false
 
@@ -79,6 +79,7 @@ var dialogueTimerCountdown = false
 var coolantSpeed = 1
 var coolantActive = false
 var freezers = []
+@onready var coolantNode = $Items/Coolant
 
 func _ready():
 	newCustomer()
@@ -88,6 +89,12 @@ func _ready():
 	mainTimer.value = 0
 	secondaryTimer.value = 0
 	continueDialogue.disabled = true
+	coolantNode.remainingCoolant = Singleton.equipment.coolant[2]
+	match Singleton.equipment.coolant[0]:
+		true:
+			coolantNode.type = 1
+		false:
+			coolantNode.type = 0
 	$"TESTING BUTTONS".visible = testingMode
 	loadEquipment()
 
