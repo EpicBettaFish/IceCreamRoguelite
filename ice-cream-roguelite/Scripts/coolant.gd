@@ -40,7 +40,10 @@ func _on_input_event(viewport, event, shape_idx):
 		rotation_degrees = 0
 		particles.emitting = false
 		global_position = spawnPos
+		$Sprite2D.frame = 1
 	if event.is_action_pressed("rclick") and pickup:
 		active = true
+		$Sprite2D.frame = 0
 	if event.is_action_released("rclick") and pickup:
 		active = false
+		$Sprite2D.frame = 1
