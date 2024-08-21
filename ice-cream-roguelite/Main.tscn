@@ -1,4 +1,4 @@
-[gd_scene load_steps=61 format=3 uid="uid://brx8cesxl8wrj"]
+[gd_scene load_steps=62 format=3 uid="uid://brx8cesxl8wrj"]
 
 [ext_resource type="Texture2D" uid="uid://dgccxaaxedvst" path="res://assets/truck/truck_interiror.png" id="1_m7kw3"]
 [ext_resource type="Script" path="res://Scripts/main.gd" id="1_yedyt"]
@@ -23,6 +23,7 @@
 [ext_resource type="PackedScene" uid="uid://2cq3xcy71nfx" path="res://Scenes/TentacleSpray.tscn" id="16_gfrr5"]
 [ext_resource type="Texture2D" uid="uid://cq82gfd3k00gs" path="res://Programmer Art/insertCoin.png" id="16_vb8qn"]
 [ext_resource type="Texture2D" uid="uid://cc14wet4hb7bd" path="res://assets/truck/thermometer_over.png" id="17_42ca5"]
+[ext_resource type="PackedScene" uid="uid://jdik5qb7tkai" path="res://Scenes/flyswatter.tscn" id="17_h745e"]
 [ext_resource type="Texture2D" uid="uid://cv7st7h6ffec7" path="res://assets/truck/thermometer_fill.png" id="18_i0feb"]
 [ext_resource type="Texture2D" uid="uid://dqjleds416fj" path="res://Programmer Art/tentacle2.png" id="18_y1hmc"]
 [ext_resource type="Texture2D" uid="uid://b8ag54iqmdfnv" path="res://Programmer Art/sticky1.png" id="19_nfawq"]
@@ -619,6 +620,9 @@ position = Vector2(305, 190)
 [node name="TentacleSpray" parent="Items" instance=ExtResource("16_gfrr5")]
 position = Vector2(31, 229)
 
+[node name="Flyswatter" parent="Items" instance=ExtResource("17_h745e")]
+position = Vector2(233, 53)
+
 [node name="Interactable" type="Node2D" parent="."]
 y_sort_enabled = true
 
@@ -1198,4 +1202,5 @@ position = Vector2(260, 295)
 [connection signal="pressed" from="TESTING BUTTONS/TestingFail" to="." method="_on_testing_fail_pressed"]
 [connection signal="area_entered" from="CoolantHole" to="." method="_on_coolant_hole_area_entered"]
 [connection signal="area_exited" from="CoolantHole" to="." method="_on_coolant_hole_area_exited"]
+[connection signal="area_entered" from="Gremlin/GremlinArea" to="." method="_on_gremlin_area_area_entered"]
 [connection signal="input_event" from="Gremlin/GremlinArea" to="." method="_on_gremlin_area_input_event"]

@@ -1,0 +1,127 @@
+[gd_scene load_steps=8 format=3 uid="uid://jdik5qb7tkai"]
+
+[ext_resource type="Script" path="res://Scripts/flyswatter.gd" id="1_k5pv1"]
+[ext_resource type="Texture2D" uid="uid://drwtyfrs46dyb" path="res://Programmer Art/flyswatter.png" id="1_ptyq1"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vmu8a"]
+size = Vector2(20, 46.4865)
+
+[sub_resource type="Animation" id="Animation_sdhyk"]
+resource_name = "slap"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Alter:scale")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0666667, 0.166667, 0.233333),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1, 0.23), Vector2(1, 0.405), Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Alter:skew")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.0666667, 0.166667, 0.233333),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 0.174533, 0.139626, 0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Swat/CollisionShape2D:disabled")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.0666667, 0.133333),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [true, false, true]
+}
+
+[sub_resource type="Animation" id="Animation_whkt3"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Alter:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Alter:skew")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Swat/CollisionShape2D:disabled")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_lb0tx"]
+_data = {
+"RESET": SubResource("Animation_whkt3"),
+"slap": SubResource("Animation_sdhyk")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ssk1i"]
+size = Vector2(24, 24)
+
+[node name="Flyswatter" type="Area2D"]
+z_index = 2
+script = ExtResource("1_k5pv1")
+
+[node name="Alter" type="Node2D" parent="."]
+position = Vector2(0, -1)
+
+[node name="Sprite2D" type="Sprite2D" parent="Alter"]
+texture_filter = 1
+position = Vector2(-3, 14)
+texture = ExtResource("1_ptyq1")
+flip_v = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-2, 12)
+rotation = 0.327749
+shape = SubResource("RectangleShape2D_vmu8a")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_lb0tx")
+}
+
+[node name="Swat" type="Area2D" parent="." groups=["flyswatter"]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Swat"]
+shape = SubResource("RectangleShape2D_ssk1i")
+disabled = true
+
+[connection signal="input_event" from="." to="." method="_on_input_event"]
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]

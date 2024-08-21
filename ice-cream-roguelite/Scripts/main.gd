@@ -82,6 +82,7 @@ var freezers = []
 @onready var coolantNode = $Items/Coolant
 
 @onready var tentacleSpray = $Items/TentacleSpray
+@onready var flyswatter = $Items/Flyswatter
 
 @export var gremlinSpawns: Array
 @onready var gremlin = $Gremlin
@@ -99,14 +100,7 @@ func _ready():
 	mainTimer.value = 0
 	secondaryTimer.value = 0
 	continueDialogue.disabled = true
-	coolantNode.remainingCoolant = Singleton.equipment.coolant[2]
-	match Singleton.equipment.coolant[0]:
-		true:
-			coolantNode.type = 1
-		false:
-			coolantNode.type = 0
-	if !Singleton.equipment.tentaclespray[0]:
-		tentacleSpray.free()
+	spawnGremlin()
 	$"TESTING BUTTONS".visible = testingMode
 	loadEquipment()
 
@@ -345,7 +339,18 @@ func _on_continue_dialogue_input_event(viewport, event, shape_idx):
 
 
 func loadEquipment() -> void:
+	coolantNode.remainingCoolant = Singleton.equipment.coolant[2]
 	coolantSpeed = Singleton.equipment.coolant[1]
+	match Singleton.equipment.coolant[0]:
+		true:
+			coolantNode.type = 1
+		false:
+			coolantNode.type = 0
+	
+	if !Singleton.equipment.tentaclespray[0]:
+		tentacleSpray.free()
+	if !Singleton.equipment.flyswatter[0]:
+		flyswatter.free()
 
 
 func _on_coolant_hole_area_entered(area):
@@ -396,7 +401,15 @@ func _on_gremlin_area_input_event(viewport, event, shape_idx):
 	if event.is_action_pressed("click"):
 		gremlinHealth -= 1
 		if gremlinHealth == 0:
-			continueGremlin = false
-			freezers[chosenCooler].canClose = true
-			gremlinAnim.play("run")
-			freezers[chosenCooler].startIceCreamPickup()
+			endGremlin()
+
+
+func _on_gremlin_area_area_entered(area):
+	if area.is_in_group("flyswatter"):
+		endGremlin()
+
+func endGremlin() -> void:
+	continueGremlin = false
+	freezers[chosenCooler].canClose = true
+	gremlinAnim.play("run")
+	freezers[chosenCooler].startIceCreamPickup()

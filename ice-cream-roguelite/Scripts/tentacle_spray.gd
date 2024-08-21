@@ -16,12 +16,12 @@ func _process(delta):
 
 
 func _on_input_event(viewport, event, shape_idx):
-	if event.is_action_pressed('click'):
+	if event.is_action_pressed('click') and !pickup:
 		pickup = true
-	if event.is_action_released('click'):
+	if event.is_action_released('click') and pickup:
 		pickup = false
 		global_position = spawnPos
-	if event.is_action_pressed('rclick'):
+	if event.is_action_pressed('rclick') and pickup:
 		var newParticles = particles.instantiate()
 		#newParticles.global_position = particleParent.global_position
 		particleParent.add_child(newParticles)
