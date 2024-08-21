@@ -1,4 +1,4 @@
-[gd_scene load_steps=62 format=3 uid="uid://brx8cesxl8wrj"]
+[gd_scene load_steps=64 format=3 uid="uid://brx8cesxl8wrj"]
 
 [ext_resource type="Texture2D" uid="uid://dgccxaaxedvst" path="res://assets/truck/truck_interiror.png" id="1_m7kw3"]
 [ext_resource type="Script" path="res://Scripts/main.gd" id="1_yedyt"]
@@ -24,6 +24,7 @@
 [ext_resource type="Texture2D" uid="uid://cq82gfd3k00gs" path="res://Programmer Art/insertCoin.png" id="16_vb8qn"]
 [ext_resource type="Texture2D" uid="uid://cc14wet4hb7bd" path="res://assets/truck/thermometer_over.png" id="17_42ca5"]
 [ext_resource type="PackedScene" uid="uid://jdik5qb7tkai" path="res://Scenes/flyswatter.tscn" id="17_h745e"]
+[ext_resource type="PackedScene" uid="uid://dy31jlffsx7ql" path="res://Scenes/fan.tscn" id="18_50wkj"]
 [ext_resource type="Texture2D" uid="uid://cv7st7h6ffec7" path="res://assets/truck/thermometer_fill.png" id="18_i0feb"]
 [ext_resource type="Texture2D" uid="uid://dqjleds416fj" path="res://Programmer Art/tentacle2.png" id="18_y1hmc"]
 [ext_resource type="Texture2D" uid="uid://b8ag54iqmdfnv" path="res://Programmer Art/sticky1.png" id="19_nfawq"]
@@ -38,6 +39,7 @@
 [ext_resource type="Texture2D" uid="uid://glkc3a07yirp" path="res://Programmer Art/coolantHoleFront.png" id="32_v3ok1"]
 [ext_resource type="Texture2D" uid="uid://i8vshlxm66y" path="res://assets/truck/freezer_gremlin.png" id="34_koy7s"]
 [ext_resource type="Texture2D" uid="uid://i8kj1trsbq5t" path="res://assets/truck/icecreamsheet1.png" id="34_ocs7p"]
+[ext_resource type="PackedScene" uid="uid://kpk2fud4apos" path="res://Scenes/fog.tscn" id="39_gchwy"]
 
 [sub_resource type="Animation" id="Animation_hyao0"]
 resource_name = "CustomerEnter"
@@ -246,47 +248,6 @@ polygon = PackedVector2Array(290, 243, 317, 243, 317, 270, 290, 270)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tvxot"]
 size = Vector2(56, 49)
 
-[sub_resource type="Animation" id="Animation_8gfio"]
-resource_name = "steal"
-length = 5.0
-step = 0.1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("GremlinArea:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.5, 4.4, 5),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 0,
-"values": [Vector2(0, 0), Vector2(0, -49), Vector2(0, -49), Vector2(0, 0)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("GremlinArea/Sprite2D:frame")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.5, 0.7, 0.9, 1.1, 1.3, 1.5, 1.7, 1.9, 2.1, 2.3, 2.5, 2.7, 3.7, 4.3),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
-"update": 1,
-"values": [0, 0, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 3, 4, 0]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("GremlinArea/Ice Cream:visible")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 2.4, 2.7, 3.6, 3.7),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
-"update": 1,
-"values": [false, false, true, true, false]
-}
-
 [sub_resource type="Animation" id="Animation_4pxtc"]
 length = 0.001
 tracks/0/type = "value"
@@ -325,6 +286,59 @@ tracks/2/keys = {
 "update": 1,
 "values": [false]
 }
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("GremlinArea/CollisionShape2D:disabled")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_nmdsw"]
+resource_name = "rummage"
+length = 6.0
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("GremlinArea:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 5.4, 6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, -49), Vector2(0, -49), Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("GremlinArea/Sprite2D:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5, 0.7, 0.9, 1.1, 1.3, 1.5, 1.7, 1.9, 2.1, 2.3, 2.5, 2.7, 2.9, 3.1, 3.3, 3.5, 3.7, 3.9, 4.1, 4.3, 4.5, 4.7, 4.9, 5.1, 5.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 0, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("GremlinArea/CollisionShape2D:disabled")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 5.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
 
 [sub_resource type="Animation" id="Animation_6w2aj"]
 resource_name = "run"
@@ -361,15 +375,27 @@ tracks/2/path = NodePath("GremlinArea/Ice Cream:visible")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(),
-"transitions": PackedFloat32Array(),
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 1,
-"values": []
+"values": [false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("GremlinArea/CollisionShape2D:disabled")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
 }
 
-[sub_resource type="Animation" id="Animation_nmdsw"]
-resource_name = "rummage"
-length = 5.0
+[sub_resource type="Animation" id="Animation_8gfio"]
+resource_name = "steal"
+length = 6.0
 step = 0.1
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -378,7 +404,7 @@ tracks/0/path = NodePath("GremlinArea:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.5, 4.4, 5),
+"times": PackedFloat32Array(0, 0.5, 5.4, 6),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
 "values": [Vector2(0, 0), Vector2(0, -49), Vector2(0, -49), Vector2(0, 0)]
@@ -390,10 +416,10 @@ tracks/1/path = NodePath("GremlinArea/Sprite2D:frame")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.5, 0.7, 0.9, 1.1, 1.3, 1.5, 1.7, 1.9, 2.1, 2.3, 2.5, 2.7, 2.9, 3.1, 3.3, 3.5, 3.7, 3.9, 4.1, 4.3),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.5, 0.7, 0.9, 1.1, 1.3, 1.5, 1.7, 1.9, 2.1, 2.3, 2.5, 2.7, 2.9, 3.1, 3.3, 3.5, 3.7, 4.7, 5.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 1,
-"values": [0, 0, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 0]
+"values": [0, 0, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 3, 4, 0]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -402,10 +428,22 @@ tracks/2/path = NodePath("GremlinArea/Ice Cream:visible")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0, 2.4),
+"times": PackedFloat32Array(0, 2.4, 3.7, 4.6, 4.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [false, false, true, true, false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("GremlinArea/CollisionShape2D:disabled")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 4.4),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
-"values": [false, false]
+"values": [false, true]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_d41nc"]
@@ -622,6 +660,9 @@ position = Vector2(31, 229)
 
 [node name="Flyswatter" parent="Items" instance=ExtResource("17_h745e")]
 position = Vector2(233, 53)
+
+[node name="Fan" parent="Items" instance=ExtResource("18_50wkj")]
+position = Vector2(167, 24)
 
 [node name="Interactable" type="Node2D" parent="."]
 y_sort_enabled = true
@@ -1153,6 +1194,7 @@ position = Vector2(260, 295)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Gremlin/GremlinArea"]
 position = Vector2(0, 0.5)
 shape = SubResource("RectangleShape2D_tvxot")
+disabled = true
 
 [node name="Ice Cream" type="Sprite2D" parent="Gremlin/GremlinArea"]
 visible = false
@@ -1184,7 +1226,11 @@ position = Vector2(177, 295)
 [node name="Spawn3" type="Marker2D" parent="GremlinSpawns"]
 position = Vector2(260, 295)
 
+[node name="Fog" parent="." instance=ExtResource("39_gchwy")]
+z_index = 5
+
 [connection signal="input_event" from="ContinueDialogue" to="." method="_on_continue_dialogue_input_event"]
+[connection signal="input_event" from="Items/Fan" to="." method="_on_fan_input_event"]
 [connection signal="input_event" from="Interactable/Freezer/Open" to="Interactable/Freezer" method="_on_open_input_event"]
 [connection signal="area_entered" from="Interactable/Freezer/TentacleArea" to="Interactable/Freezer" method="_on_tentacle_area_area_entered"]
 [connection signal="input_event" from="Interactable/Freezer/TentacleArea" to="Interactable/Freezer" method="_on_tentacle_area_input_event"]

@@ -48,7 +48,6 @@ func _ready():
 	tentacleArea.disabled = true
 	spawnIceCreams()
 	
-	spawnTentacle()
 	
 	main.freezers.append(self)
 	
@@ -207,6 +206,14 @@ func removeRandomIceCream() -> void:
 	iceCreams[rand].queue_free()
 	removeIceCream(rand)
 
+func addRandomIceCream() -> void:
+	var chosen = 0
+	var index = 0
+	for i in activeSlots:
+		if i == false:
+			chosen = index
+	addIceCream(chosen)
+
 func stopIceCreamPickup() -> void:
 	for i in iceCreams:
 		if i != null:
@@ -222,7 +229,6 @@ func startIceCreamPickup() -> void:
 
 func _on_tentacle_area_area_entered(area):
 	if area.is_in_group("tentaclebegone"):
-		print(area)
 		tentacleHits -= 5
 		if tentacleHits <= 0:
 			openAreaCollider.disabled = false

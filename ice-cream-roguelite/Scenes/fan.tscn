@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://dy31jlffsx7ql"]
+
+[ext_resource type="Texture2D" uid="uid://b6cftin7d5547" path="res://Programmer Art/fan.png" id="1_yfl15"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_4o4ih"]
+radius = 24.0
+
+[node name="Fan" type="Area2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = ExtResource("1_yfl15")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(1, -5)
+shape = SubResource("CircleShape2D_4o4ih")

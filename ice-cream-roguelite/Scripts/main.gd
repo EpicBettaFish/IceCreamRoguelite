@@ -91,6 +91,14 @@ var freezers = []
 var continueGremlin = false
 var chosenCooler
 var gremlinHealth = 5
+var canRecoverPopsicle = false
+
+@onready var fog = $Fog
+@onready var fogAnim = $Fog/AnimationPlayer
+var spawnedFog = false
+
+@onready var fan = $Items/Fan
+var fanEnabled = false
 
 func _ready():
 	newCustomer()
@@ -100,9 +108,10 @@ func _ready():
 	mainTimer.value = 0
 	secondaryTimer.value = 0
 	continueDialogue.disabled = true
-	spawnGremlin()
 	$"TESTING BUTTONS".visible = testingMode
+	spawnGremlin()
 	loadEquipment()
+	spawnFog()
 
 func _process(delta):
 	if timerActive:
@@ -223,13 +232,19 @@ func setUI(cones, price) -> void:
 
 func generateCones() -> Array:
 	var cones = []
-	var numCones = randi_range(1,maxIceCreams)
+	var numCones = -1
+	if inventory[0] + inventory[1] + inventory[2] >= maxIceCreams and inventory[0] + inventory[1] + inventory[2] > 0:
+		numCones = randi_range(1,maxIceCreams)
+	else:
+		numCones = randi_range(1,inventory[0] + inventory[1] + inventory[2])
 	for i in 3:
-		var rand = randi_range(0,numCones)
-		if i == 2:
-			rand = numCones
+		var rand = -1
+		rand = randi_range(0,numCones)
 		cones.append(rand)
 		numCones -= rand
+	if cones[0] + cones[1] + cones[2] < numCones:
+		var randCone = randi_range(0,2)
+		cones[randCone] = numCones
 	cones.shuffle()
 	return cones
 func generatePrice(cones) -> float:
@@ -351,6 +366,8 @@ func loadEquipment() -> void:
 		tentacleSpray.free()
 	if !Singleton.equipment.flyswatter[0]:
 		flyswatter.free()
+	if !Singleton.equipment.fan[0]:
+		fan.free()
 
 
 func _on_coolant_hole_area_entered(area):
@@ -385,12 +402,17 @@ func spawnGremlin() -> void:
 	if !continueGremlin:
 		return
 	freezers[chosenCooler].open()
-	await get_tree().create_timer(2).timeout
+	await get_tree().create_timer(3).timeout
 	if !continueGremlin:
 		return
 	if hasIceCream:
 		freezers[chosenCooler].removeRandomIceCream()
-	await get_tree().create_timer(2).timeout
+		canRecoverPopsicle = true
+	await get_tree().create_timer(0.9).timeout
+	if !continueGremlin:
+		return
+	canRecoverPopsicle = false
+	await get_tree().create_timer(1.1).timeout
 	if !continueGremlin:
 		return
 	freezers[chosenCooler].canClose = true
@@ -413,3 +435,23 @@ func endGremlin() -> void:
 	freezers[chosenCooler].canClose = true
 	gremlinAnim.play("run")
 	freezers[chosenCooler].startIceCreamPickup()
+	if canRecoverPopsicle:
+		freezers[chosenCooler].addRandomIceCream()
+
+func spawnFog() -> void:
+	if !fanEnabled:
+		if !spawnedFog:
+			fogAnim.play("appear")
+			spawnedFog = true
+		else:
+			fogAnim.play("reappear")
+			spawnedFog = true
+			await get_tree().create_timer(0.5).timeout
+		fog.spawnFog()
+
+
+func _on_fan_input_event(viewport, event, shape_idx):
+	if event.is_action_pressed("click"):
+		fanEnabled = !fanEnabled
+		if fanEnabled and spawnedFog:
+			fogAnim.play("dissipate")
