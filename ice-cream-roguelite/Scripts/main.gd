@@ -56,7 +56,7 @@ var moneyScene = preload("res://Scenes/money.tscn")
 
 @export var testingMode: bool = false
 
-var inventory = [100,100,100]
+var inventory = [1,1,1]
 
 var grabbingItem = false
 
@@ -81,6 +81,16 @@ var coolantActive = false
 var freezers = []
 @onready var coolantNode = $Items/Coolant
 
+@onready var tentacleSpray = $Items/TentacleSpray
+
+@export var gremlinSpawns: Array
+@onready var gremlin = $Gremlin
+@onready var gremlinIceCream = $"Gremlin/GremlinArea/Ice Cream"
+@onready var gremlinAnim = $Gremlin/AnimationPlayer
+var continueGremlin = false
+var chosenCooler
+var gremlinHealth = 5
+
 func _ready():
 	newCustomer()
 	registerCoinCounter.text = ("%03d" % soulCoins)
@@ -95,6 +105,8 @@ func _ready():
 			coolantNode.type = 1
 		false:
 			coolantNode.type = 0
+	if !Singleton.equipment.tentaclespray[0]:
+		tentacleSpray.free()
 	$"TESTING BUTTONS".visible = testingMode
 	loadEquipment()
 
@@ -338,13 +350,53 @@ func loadEquipment() -> void:
 
 func _on_coolant_hole_area_entered(area):
 	if area.is_in_group("coolant"):
-		await get_tree().create_timer(0.7).timeout
+		await get_tree().create_timer(1.3).timeout
 		coolantActive = true
 		for i in freezers:
 			i.coolantStart()
 func _on_coolant_hole_area_exited(area):
 	if area.is_in_group("coolant"):
-		await get_tree().create_timer(0.7).timeout
+		await get_tree().create_timer(1.3).timeout
 		coolantActive = false
 		for i in freezers:
 			i.coolantEnd()
+
+
+func spawnGremlin() -> void:
+	chosenCooler = randi_range(0,2)
+	freezers[chosenCooler].canClose = false
+	gremlin.global_position = get_node(gremlinSpawns[chosenCooler]).global_position
+	gremlinIceCream.frame = chosenCooler
+	var hasIceCream
+	if inventory[chosenCooler] == 0:
+		hasIceCream = false
+		gremlinAnim.play("rummage")
+	else:
+		gremlinAnim.play("steal")
+		hasIceCream = true
+	continueGremlin = true
+	freezers[chosenCooler].stopIceCreamPickup()
+	await get_tree().create_timer(0.7).timeout
+	if !continueGremlin:
+		return
+	freezers[chosenCooler].open()
+	await get_tree().create_timer(2).timeout
+	if !continueGremlin:
+		return
+	if hasIceCream:
+		freezers[chosenCooler].removeRandomIceCream()
+	await get_tree().create_timer(2).timeout
+	if !continueGremlin:
+		return
+	freezers[chosenCooler].canClose = true
+	freezers[chosenCooler].startIceCreamPickup()
+
+
+func _on_gremlin_area_input_event(viewport, event, shape_idx):
+	if event.is_action_pressed("click"):
+		gremlinHealth -= 1
+		if gremlinHealth == 0:
+			continueGremlin = false
+			freezers[chosenCooler].canClose = true
+			gremlinAnim.play("run")
+			freezers[chosenCooler].startIceCreamPickup()

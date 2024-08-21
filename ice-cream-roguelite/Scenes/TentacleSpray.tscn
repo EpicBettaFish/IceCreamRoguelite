@@ -1,0 +1,32 @@
+[gd_scene load_steps=5 format=3 uid="uid://2cq3xcy71nfx"]
+
+[ext_resource type="Texture2D" uid="uid://dpb57uruxna5d" path="res://Programmer Art/tentaclespray.png" id="1_jqssv"]
+[ext_resource type="Script" path="res://Scripts/tentacle_spray.gd" id="1_vm070"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_an6y7"]
+size = Vector2(16, 32)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_0q5rq"]
+radius = 15.0333
+
+[node name="TentacleSpray" type="Area2D"]
+z_index = 2
+script = ExtResource("1_vm070")
+
+[node name="Particles" type="Node2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = ExtResource("1_jqssv")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_an6y7")
+
+[node name="TentacleBeGone" type="Area2D" parent="." groups=["tentaclebegone"]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TentacleBeGone"]
+position = Vector2(22, -9)
+shape = SubResource("CircleShape2D_0q5rq")
+disabled = true
+
+[connection signal="input_event" from="." to="." method="_on_input_event"]

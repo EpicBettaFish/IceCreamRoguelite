@@ -14,6 +14,8 @@ var freezer = null
 
 var main
 
+var canGrab = true
+
 @onready var sprite = $Sprite2D
 @onready var button = $Button
 
@@ -45,7 +47,7 @@ func _on_area_exited(area):
 
 
 func _on_input_event(viewport, event, shape_idx):
-	if event.is_action_pressed("click"):
+	if event.is_action_pressed("click") and canGrab:
 		startPickup()
 	if event.is_action_released("click") and pickup:
 		main.grabbingItem = false

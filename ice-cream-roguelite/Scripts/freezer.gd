@@ -29,8 +29,17 @@ var coolantSpeed = 1
 var tentacleHits
 
 var activeSlots = [false,false,false,false,false]
+var iceCreams = [null,null,null,null,null]
 
 var iceCreamScene = preload("res://Scenes/iceCream.tscn")
+
+var canClose = true
+
+var openSound = preload("res://sounds/freezer_open.mp3")
+var closeSound = preload("res://sounds/freezer_closed.mp3")
+@onready var audio = $AudioStreamPlayer
+
+var canGrab = true
 
 func _ready():
 	tentacleHits = main.tentacleHits
@@ -38,6 +47,8 @@ func _ready():
 	tentacleSprite.visible = false
 	tentacleArea.disabled = true
 	spawnIceCreams()
+	
+	spawnTentacle()
 	
 	main.freezers.append(self)
 	
@@ -88,21 +99,29 @@ func spawnNewIceCream(index) -> void:
 	newIceCream.freezer = self
 	newIceCream.iceCreamType = iceCreamID
 	newIceCream.main = main
+	newIceCream.canGrab = canGrab
 	activeSlots[index] = true
 	add_child(newIceCream)
+	iceCreams[index] = newIceCream
 
 #OPEN FREEZER
 func _on_open_input_event(viewport, event, shape_idx):
 	if event.is_action_pressed("click"):
 		openLid.visible = true
 		freezerAreaCollider.disabled = false
-		freezerOpen = true
+		if !freezerOpen:
+			audio.stream = openSound
+			audio.play()
 
+		freezerOpen = true
 #CLOSE FREEZER
 func _on_close_input_event(viewport, event, shape_idx):
-	if event.is_action_pressed("click"):
+	if event.is_action_pressed("click") and canClose:
 		openLid.visible = false
 		freezerAreaCollider.disabled = true
+		if freezerOpen:
+			audio.stream = closeSound
+			audio.play()
 		freezerOpen = false
 
 func removeIceCream(index) -> void:
@@ -119,6 +138,9 @@ func addIceCream(index) -> void:
 
 #Tentacle
 func spawnTentacle() -> void:
+	if openLid.visible:
+		audio.stream = closeSound
+		audio.play()
 	openLid.visible = false
 	freezerAreaCollider.disabled = true
 	tentacleHits = main.tentacleHits
@@ -166,3 +188,43 @@ func coolantEnd() -> void:
 	else:
 		temperatureReadout.modulate = "ffcd00"
 		temperatureCelsius.modulate = "ffcd00"
+
+func open() -> void:
+	openLid.visible = true
+	freezerAreaCollider.disabled = false
+	if !freezerOpen:
+		audio.stream = openSound
+		audio.play()
+	freezerOpen = true
+
+func removeRandomIceCream() -> void:
+	var cont = false
+	var rand
+	while !cont:
+		rand = randi_range(0,4)
+		if activeSlots[rand]:
+			cont = true
+	iceCreams[rand].queue_free()
+	removeIceCream(rand)
+
+func stopIceCreamPickup() -> void:
+	for i in iceCreams:
+		if i != null:
+			i.canGrab = false
+	canGrab = false
+
+func startIceCreamPickup() -> void:
+	for i in iceCreams:
+		if i != null:
+			i.canGrab = true
+	canGrab = true
+
+
+func _on_tentacle_area_area_entered(area):
+	if area.is_in_group("tentaclebegone"):
+		print(area)
+		tentacleHits -= 5
+		if tentacleHits <= 0:
+			openAreaCollider.disabled = false
+			tentacleArea.disabled = true
+			tentacleSprite.visible = false

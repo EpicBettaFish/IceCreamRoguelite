@@ -1,4 +1,4 @@
-[gd_scene load_steps=53 format=3 uid="uid://brx8cesxl8wrj"]
+[gd_scene load_steps=61 format=3 uid="uid://brx8cesxl8wrj"]
 
 [ext_resource type="Texture2D" uid="uid://dgccxaaxedvst" path="res://assets/truck/truck_interiror.png" id="1_m7kw3"]
 [ext_resource type="Script" path="res://Scripts/main.gd" id="1_yedyt"]
@@ -20,6 +20,7 @@
 [ext_resource type="Texture2D" uid="uid://ddu7knqjnoxvk" path="res://Programmer Art/openRegister.png" id="13_xd1og"]
 [ext_resource type="Texture2D" uid="uid://b4sbio1mhwatf" path="res://Programmer Art/tentacle1.png" id="15_f5ces"]
 [ext_resource type="FontFile" uid="uid://dh3r0t715nyei" path="res://fonts/m5x7.ttf" id="15_juj3m"]
+[ext_resource type="PackedScene" uid="uid://2cq3xcy71nfx" path="res://Scenes/TentacleSpray.tscn" id="16_gfrr5"]
 [ext_resource type="Texture2D" uid="uid://cq82gfd3k00gs" path="res://Programmer Art/insertCoin.png" id="16_vb8qn"]
 [ext_resource type="Texture2D" uid="uid://cc14wet4hb7bd" path="res://assets/truck/thermometer_over.png" id="17_42ca5"]
 [ext_resource type="Texture2D" uid="uid://cv7st7h6ffec7" path="res://assets/truck/thermometer_fill.png" id="18_i0feb"]
@@ -30,10 +31,12 @@
 [ext_resource type="Texture2D" uid="uid://cg3lmwdh0wr0f" path="res://Programmer Art/cross.png" id="20_wlhqs"]
 [ext_resource type="Texture2D" uid="uid://bbock4iidfttx" path="res://Programmer Art/tentacle3.png" id="20_yqlge"]
 [ext_resource type="Texture2D" uid="uid://ddtj83dmfu4eh" path="res://Programmer Art/sticky3.png" id="21_2klvf"]
+[ext_resource type="AudioStream" uid="uid://btvicn5kivs54" path="res://sounds/freezer_open.mp3" id="22_dn3xj"]
 [ext_resource type="PackedScene" uid="uid://djfle7c6dg8y4" path="res://Scenes/coolant.tscn" id="30_snwc3"]
 [ext_resource type="Texture2D" uid="uid://61ujmnj5364o" path="res://Programmer Art/coolantHoleBack.png" id="31_ux50n"]
 [ext_resource type="Texture2D" uid="uid://glkc3a07yirp" path="res://Programmer Art/coolantHoleFront.png" id="32_v3ok1"]
 [ext_resource type="Texture2D" uid="uid://i8vshlxm66y" path="res://assets/truck/freezer_gremlin.png" id="34_koy7s"]
+[ext_resource type="Texture2D" uid="uid://i8kj1trsbq5t" path="res://assets/truck/icecreamsheet1.png" id="34_ocs7p"]
 
 [sub_resource type="Animation" id="Animation_hyao0"]
 resource_name = "CustomerEnter"
@@ -242,6 +245,176 @@ polygon = PackedVector2Array(290, 243, 317, 243, 317, 270, 290, 270)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tvxot"]
 size = Vector2(56, 49)
 
+[sub_resource type="Animation" id="Animation_8gfio"]
+resource_name = "steal"
+length = 5.0
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("GremlinArea:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 4.4, 5),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, -49), Vector2(0, -49), Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("GremlinArea/Sprite2D:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5, 0.7, 0.9, 1.1, 1.3, 1.5, 1.7, 1.9, 2.1, 2.3, 2.5, 2.7, 3.7, 4.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 0, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 3, 4, 0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("GremlinArea/Ice Cream:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 2.4, 2.7, 3.6, 3.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [false, false, true, true, false]
+}
+
+[sub_resource type="Animation" id="Animation_4pxtc"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("GremlinArea:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("GremlinArea/Sprite2D:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("GremlinArea/Ice Cream:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_6w2aj"]
+resource_name = "run"
+length = 0.6
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("GremlinArea:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.599999),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, -49), Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("GremlinArea/Sprite2D:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("GremlinArea/Ice Cream:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(),
+"transitions": PackedFloat32Array(),
+"update": 1,
+"values": []
+}
+
+[sub_resource type="Animation" id="Animation_nmdsw"]
+resource_name = "rummage"
+length = 5.0
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("GremlinArea:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 4.4, 5),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, -49), Vector2(0, -49), Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("GremlinArea/Sprite2D:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5, 0.7, 0.9, 1.1, 1.3, 1.5, 1.7, 1.9, 2.1, 2.3, 2.5, 2.7, 2.9, 3.1, 3.3, 3.5, 3.7, 3.9, 4.1, 4.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 0, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("GremlinArea/Ice Cream:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 2.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_d41nc"]
+_data = {
+"RESET": SubResource("Animation_4pxtc"),
+"rummage": SubResource("Animation_nmdsw"),
+"run": SubResource("Animation_6w2aj"),
+"steal": SubResource("Animation_8gfio")
+}
+
 [node name="Main" type="Node2D"]
 y_sort_enabled = true
 script = ExtResource("1_yedyt")
@@ -254,6 +427,7 @@ timerMaxTime = 10.0
 customerSprites = [ExtResource("2_2k4am"), ExtResource("6_s60f8"), ExtResource("7_suegs")]
 testingMode = true
 dialogueOptions = ["[wave]test| dialogue| is| very| cool.|||[/wave] its true!", "wow, isn't test dialogue just great!?", "hmm i sure do love me some test dialogue. yes, that i do.", "[rainbow]your mother[/rainbow]"]
+gremlinSpawns = [NodePath("GremlinSpawns/Spawn1"), NodePath("GremlinSpawns/Spawn2"), NodePath("GremlinSpawns/Spawn3")]
 
 [node name="BG" type="TextureRect" parent="."]
 z_index = -100
@@ -263,6 +437,7 @@ offset_top = 53.0
 offset_right = 272.0
 offset_bottom = 192.0
 texture = ExtResource("8_c8vei")
+metadata/_edit_use_anchors_ = true
 
 [node name="SubViewport" type="SubViewport" parent="."]
 transparent_bg = true
@@ -441,6 +616,9 @@ offset = Vector2(240, 135)
 [node name="Coolant" parent="Items" instance=ExtResource("30_snwc3")]
 position = Vector2(305, 190)
 
+[node name="TentacleSpray" parent="Items" instance=ExtResource("16_gfrr5")]
+position = Vector2(31, 229)
+
 [node name="Interactable" type="Node2D" parent="."]
 y_sort_enabled = true
 
@@ -530,6 +708,7 @@ offset_top = 18.0
 offset_right = 15.0
 offset_bottom = 27.0
 color = Color(0, 0, 0, 1)
+metadata/_edit_use_anchors_ = true
 
 [node name="Readout" type="Label" parent="Interactable/Freezer/Skew"]
 modulate = Color(1, 0.803922, 0, 1)
@@ -545,6 +724,7 @@ theme_override_fonts/font = ExtResource("15_juj3m")
 theme_override_font_sizes/font_size = 16
 text = "-17"
 horizontal_alignment = 2
+metadata/_edit_use_anchors_ = true
 
 [node name="Degrees" type="Label" parent="Interactable/Freezer/Skew"]
 modulate = Color(1, 0.803922, 0, 1)
@@ -558,6 +738,10 @@ theme_override_constants/outline_size = 1
 theme_override_fonts/font = ExtResource("15_juj3m")
 theme_override_font_sizes/font_size = 16
 text = "°c"
+metadata/_edit_use_anchors_ = true
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Interactable/Freezer"]
+stream = ExtResource("22_dn3xj")
 
 [node name="Freezer2" type="Node2D" parent="Interactable"]
 y_sort_enabled = true
@@ -646,6 +830,7 @@ offset_top = 18.0
 offset_right = 15.0
 offset_bottom = 27.0
 color = Color(0, 0, 0, 1)
+metadata/_edit_use_anchors_ = true
 
 [node name="Readout" type="Label" parent="Interactable/Freezer2/Skew"]
 modulate = Color(1, 0.803922, 0, 1)
@@ -661,6 +846,7 @@ theme_override_fonts/font = ExtResource("15_juj3m")
 theme_override_font_sizes/font_size = 16
 text = "-17"
 horizontal_alignment = 2
+metadata/_edit_use_anchors_ = true
 
 [node name="Degrees" type="Label" parent="Interactable/Freezer2/Skew"]
 modulate = Color(1, 0.803922, 0, 1)
@@ -675,6 +861,10 @@ theme_override_constants/outline_size = 1
 theme_override_fonts/font = ExtResource("15_juj3m")
 theme_override_font_sizes/font_size = 16
 text = "°c"
+metadata/_edit_use_anchors_ = true
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Interactable/Freezer2"]
+stream = ExtResource("22_dn3xj")
 
 [node name="Freezer3" type="Node2D" parent="Interactable"]
 y_sort_enabled = true
@@ -763,6 +953,7 @@ offset_top = 18.0
 offset_right = 15.0
 offset_bottom = 27.0
 color = Color(0, 0, 0, 1)
+metadata/_edit_use_anchors_ = true
 
 [node name="Readout" type="Label" parent="Interactable/Freezer3/Skew"]
 modulate = Color(1, 0.803922, 0, 1)
@@ -778,6 +969,7 @@ theme_override_fonts/font = ExtResource("15_juj3m")
 theme_override_font_sizes/font_size = 16
 text = "-17"
 horizontal_alignment = 2
+metadata/_edit_use_anchors_ = true
 
 [node name="Degrees" type="Label" parent="Interactable/Freezer3/Skew"]
 modulate = Color(1, 0.803922, 0, 1)
@@ -792,6 +984,10 @@ theme_override_constants/outline_size = 1
 theme_override_fonts/font = ExtResource("15_juj3m")
 theme_override_font_sizes/font_size = 16
 text = "°c"
+metadata/_edit_use_anchors_ = true
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Interactable/Freezer3"]
+stream = ExtResource("22_dn3xj")
 
 [node name="Register" type="Area2D" parent="Interactable"]
 
@@ -828,6 +1024,7 @@ theme_override_constants/outline_size = 1
 theme_override_fonts/font = ExtResource("15_juj3m")
 theme_override_font_sizes/font_size = 16
 text = "$"
+metadata/_edit_use_anchors_ = true
 
 [node name="Dollar Counter" type="Label" parent="Interactable/Register/Skew"]
 texture_filter = 1
@@ -842,6 +1039,7 @@ theme_override_fonts/font = ExtResource("15_juj3m")
 theme_override_font_sizes/font_size = 16
 text = "100.00"
 horizontal_alignment = 2
+metadata/_edit_use_anchors_ = true
 
 [node name="InsertCoin" type="Area2D" parent="Interactable" groups=["InsertCoin"]]
 z_index = -1
@@ -861,6 +1059,7 @@ offset_top = 166.0
 offset_right = 404.0
 offset_bottom = 177.0
 color = Color(0, 0, 0, 1)
+metadata/_edit_use_anchors_ = true
 
 [node name="Coin Counter" type="Label" parent="Interactable/InsertCoin"]
 texture_filter = 1
@@ -875,6 +1074,7 @@ theme_override_fonts/font = ExtResource("15_juj3m")
 theme_override_font_sizes/font_size = 16
 text = "000"
 horizontal_alignment = 1
+metadata/_edit_use_anchors_ = true
 
 [node name="CustomerPocket" type="Area2D" parent="." groups=["customer"]]
 
@@ -941,30 +1141,61 @@ shape = SubResource("RectangleShape2D_qyivp")
 occluder = SubResource("OccluderPolygon2D_6bn6g")
 occluder_light_mask = 0
 
-[node name="Gremlin" type="Area2D" parent="."]
-position = Vector2(90, 278)
+[node name="Gremlin" type="Node2D" parent="."]
+position = Vector2(260, 295)
 
-[node name="Sprite2D" type="Sprite2D" parent="Gremlin"]
+[node name="GremlinArea" type="Area2D" parent="Gremlin"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Gremlin/GremlinArea"]
+position = Vector2(0, 0.5)
+shape = SubResource("RectangleShape2D_tvxot")
+
+[node name="Ice Cream" type="Sprite2D" parent="Gremlin/GremlinArea"]
+visible = false
 texture_filter = 1
+position = Vector2(-27, -35)
+texture = ExtResource("34_ocs7p")
+hframes = 3
+
+[node name="Sprite2D" type="Sprite2D" parent="Gremlin/GremlinArea"]
+texture_filter = 1
+position = Vector2(-9, -16)
 texture = ExtResource("34_koy7s")
 hframes = 5
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Gremlin"]
-position = Vector2(9, 16.5)
-shape = SubResource("RectangleShape2D_tvxot")
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Gremlin"]
+libraries = {
+"": SubResource("AnimationLibrary_d41nc")
+}
+
+[node name="GremlinSpawns" type="Node2D" parent="."]
+z_index = 2
+
+[node name="Spawn1" type="Marker2D" parent="GremlinSpawns"]
+position = Vector2(99, 295)
+
+[node name="Spawn2" type="Marker2D" parent="GremlinSpawns"]
+position = Vector2(177, 295)
+
+[node name="Spawn3" type="Marker2D" parent="GremlinSpawns"]
+position = Vector2(260, 295)
 
 [connection signal="input_event" from="ContinueDialogue" to="." method="_on_continue_dialogue_input_event"]
 [connection signal="input_event" from="Interactable/Freezer/Open" to="Interactable/Freezer" method="_on_open_input_event"]
+[connection signal="area_entered" from="Interactable/Freezer/TentacleArea" to="Interactable/Freezer" method="_on_tentacle_area_area_entered"]
 [connection signal="input_event" from="Interactable/Freezer/TentacleArea" to="Interactable/Freezer" method="_on_tentacle_area_input_event"]
 [connection signal="input_event" from="Interactable/Freezer/FreezerOpen/Close" to="Interactable/Freezer" method="_on_close_input_event"]
 [connection signal="input_event" from="Interactable/Freezer2/Open" to="Interactable/Freezer2" method="_on_open_input_event"]
 [connection signal="input_event" from="Interactable/Freezer2/FreezerOpen/Close" to="Interactable/Freezer2" method="_on_close_input_event"]
+[connection signal="area_entered" from="Interactable/Freezer2/TentacleArea" to="Interactable/Freezer2" method="_on_tentacle_area_area_entered"]
 [connection signal="input_event" from="Interactable/Freezer2/TentacleArea" to="Interactable/Freezer2" method="_on_tentacle_area_input_event"]
 [connection signal="input_event" from="Interactable/Freezer3/Open" to="Interactable/Freezer3" method="_on_open_input_event"]
 [connection signal="input_event" from="Interactable/Freezer3/FreezerOpen/Close" to="Interactable/Freezer3" method="_on_close_input_event"]
+[connection signal="area_entered" from="Interactable/Freezer3/TentacleArea" to="Interactable/Freezer3" method="_on_tentacle_area_area_entered"]
 [connection signal="input_event" from="Interactable/Freezer3/TentacleArea" to="Interactable/Freezer3" method="_on_tentacle_area_input_event"]
 [connection signal="input_event" from="Interactable/Register" to="." method="_on_register_input_event"]
 [connection signal="pressed" from="TESTING BUTTONS/TestingPass" to="." method="_on_testing_pass_pressed"]
 [connection signal="pressed" from="TESTING BUTTONS/TestingFail" to="." method="_on_testing_fail_pressed"]
 [connection signal="area_entered" from="CoolantHole" to="." method="_on_coolant_hole_area_entered"]
 [connection signal="area_exited" from="CoolantHole" to="." method="_on_coolant_hole_area_exited"]
+[connection signal="input_event" from="Gremlin/GremlinArea" to="." method="_on_gremlin_area_input_event"]

@@ -2,5 +2,6 @@ extends Node
 
 
 var equipment = {
-	'coolant' : [true, 2, 30]
+	'coolant' : [false, 2, 30],
+	'tentaclespray' : [true]
 }

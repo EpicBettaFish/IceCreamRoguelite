@@ -1,0 +1,45 @@
+[gd_scene load_steps=8 format=3 uid="uid://lbtttmc3v8er"]
+
+[ext_resource type="Texture2D" uid="uid://c3xryoyhcdrhi" path="res://Programmer Art/coolantParticle.png" id="1_h12fd"]
+[ext_resource type="Script" path="res://Scripts/spray_particles.gd" id="2_3e0os"]
+
+[sub_resource type="Gradient" id="Gradient_hjwft"]
+offsets = PackedFloat32Array(0, 0.6, 1)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0.722973, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_a5wcn"]
+gradient = SubResource("Gradient_hjwft")
+
+[sub_resource type="Curve" id="Curve_a4feq"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.206731, 1), 0.0, 0.0, 0, 0, Vector2(0.25, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.230769), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="CurveTexture" id="CurveTexture_va1l0"]
+curve = SubResource("Curve_a4feq")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_8q2y7"]
+particle_flag_disable_z = true
+spread = 50.0
+initial_velocity_min = 4.0
+initial_velocity_max = 30.0
+gravity = Vector3(0, 0, 0)
+linear_accel_min = -2.23517e-06
+linear_accel_max = 40.0
+scale_min = 0.04
+scale_max = 0.06
+scale_curve = SubResource("CurveTexture_va1l0")
+scale_over_velocity_min = 1000.0
+scale_over_velocity_max = 1000.0
+color = Color(0.600656, 0.827, 0.583243, 1)
+color_ramp = SubResource("GradientTexture1D_a5wcn")
+
+[node name="SprayParticles" type="GPUParticles2D"]
+position = Vector2(6, -9)
+emitting = false
+amount = 100
+process_material = SubResource("ParticleProcessMaterial_8q2y7")
+texture = ExtResource("1_h12fd")
+lifetime = 1.5
+one_shot = true
+explosiveness = 0.9
+script = ExtResource("2_3e0os")

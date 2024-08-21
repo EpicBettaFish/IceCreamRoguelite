@@ -12,6 +12,9 @@ var remainingCoolant = 30
 
 var spawnPos = Vector2(0,0)
 
+var pickupSound = preload("res://sounds/coolant_pickup.mp3")
+@onready var audio = $AudioStreamPlayer
+
 func _ready():
 	await get_tree().create_timer(0.001).timeout
 	coolantArea.disabled = true
@@ -19,7 +22,6 @@ func _ready():
 	$Sprite2D.texture = spriteSheets[type]
 
 func _process(delta):
-	print(remainingCoolant)
 	if pickup:
 		global_position = get_global_mouse_position().snapped(Vector2(1,1))
 	if active:
@@ -39,9 +41,11 @@ func _process(delta):
 			coolantArea.disabled = true
 
 func _on_input_event(viewport, event, shape_idx):
-	if event.is_action_pressed('click'):
+	if event.is_action_pressed('click') and !pickup:
 		pickup = true
-	if event.is_action_released('click'):
+		audio.stream = pickupSound
+		audio.play()
+	if event.is_action_released('click') and pickup:
 		pickup = false
 		active = false
 		rotation_degrees = 0
