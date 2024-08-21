@@ -24,7 +24,7 @@
 [ext_resource type="Texture2D" uid="uid://cq82gfd3k00gs" path="res://Programmer Art/insertCoin.png" id="16_vb8qn"]
 [ext_resource type="Texture2D" uid="uid://cc14wet4hb7bd" path="res://assets/truck/thermometer_over.png" id="17_42ca5"]
 [ext_resource type="PackedScene" uid="uid://jdik5qb7tkai" path="res://Scenes/flyswatter.tscn" id="17_h745e"]
-[ext_resource type="PackedScene" uid="uid://dy31jlffsx7ql" path="res://Scenes/fan.tscn" id="18_50wkj"]
+[ext_resource type="PackedScene" path="res://Scenes/fan.tscn" id="18_50wkj"]
 [ext_resource type="Texture2D" uid="uid://cv7st7h6ffec7" path="res://assets/truck/thermometer_fill.png" id="18_i0feb"]
 [ext_resource type="Texture2D" uid="uid://dqjleds416fj" path="res://Programmer Art/tentacle2.png" id="18_y1hmc"]
 [ext_resource type="Texture2D" uid="uid://b8ag54iqmdfnv" path="res://Programmer Art/sticky1.png" id="19_nfawq"]
@@ -39,7 +39,7 @@
 [ext_resource type="Texture2D" uid="uid://glkc3a07yirp" path="res://Programmer Art/coolantHoleFront.png" id="32_v3ok1"]
 [ext_resource type="Texture2D" uid="uid://i8vshlxm66y" path="res://assets/truck/freezer_gremlin.png" id="34_koy7s"]
 [ext_resource type="Texture2D" uid="uid://i8kj1trsbq5t" path="res://assets/truck/icecreamsheet1.png" id="34_ocs7p"]
-[ext_resource type="PackedScene" uid="uid://kpk2fud4apos" path="res://Scenes/fog.tscn" id="39_gchwy"]
+[ext_resource type="PackedScene" path="res://Scenes/fog.tscn" id="39_gchwy"]
 
 [sub_resource type="Animation" id="Animation_hyao0"]
 resource_name = "CustomerEnter"

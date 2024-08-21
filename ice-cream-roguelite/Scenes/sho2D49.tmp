@@ -1,0 +1,41 @@
+[gd_scene load_steps=6 format=3 uid="uid://bobf81d5tgrhx"]
+
+[ext_resource type="Script" path="res://Scripts/shop.gd" id="1_pe0dp"]
+[ext_resource type="Texture2D" uid="uid://bgd4uofsyupva" path="res://assets/truck/merchant.png" id="2_kdxhb"]
+[ext_resource type="PackedScene" uid="uid://7iqdvqy4jv1c" path="res://Scenes/purchaseable.tscn" id="3_weg4s"]
+[ext_resource type="Texture2D" uid="uid://cn1l5j68tulj" path="res://assets/truck/flyswatter.png" id="4_ie10e"]
+[ext_resource type="Texture2D" uid="uid://4vcevbouxy1o" path="res://assets/truck/coolant_bottle.png" id="5_ple14"]
+
+[node name="shop" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_pe0dp")
+
+[node name="Merchant" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(240, 135)
+texture = ExtResource("2_kdxhb")
+hframes = 2
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(240, 135)
+zoom = Vector2(4, 4)
+
+[node name="items" type="Control" parent="."]
+anchors_preset = 0
+
+[node name="purchaseable" parent="items" instance=ExtResource("3_weg4s")]
+offset_left = 134.0
+offset_top = 71.0
+offset_right = 174.0
+offset_bottom = 140.0
+texture = ExtResource("4_ie10e")
+item = 1
+
+[node name="purchaseable2" parent="items" instance=ExtResource("3_weg4s")]
+offset_left = 206.0
+offset_top = 70.0
+offset_right = 246.0
+offset_bottom = 139.0
+texture = ExtResource("5_ple14")
+item = 2

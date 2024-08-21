@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://7iqdvqy4jv1c"]
+
+[ext_resource type="Script" path="res://Scripts/purchaseable.gd" id="1_uwtrm"]
+
+[node name="purchaseable" type="TextureRect"]
+texture_filter = 1
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_uwtrm")
