@@ -42,6 +42,7 @@ var closeSound = preload("res://sounds/freezer_closed.mp3")
 var canGrab = true
 
 func _ready():
+	await get_tree().create_timer(0.01).timeout
 	tentacleHits = main.tentacleHits
 	openLid.visible = false
 	tentacleSprite.visible = false

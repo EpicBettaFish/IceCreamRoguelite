@@ -101,6 +101,7 @@ var spawnedFog = false
 var fanEnabled = false
 
 func _ready():
+	inventory = Singleton.inventory
 	newCustomer()
 	registerCoinCounter.text = ("%03d" % soulCoins)
 	registerMoneyCounter.text = ("%0.2f" % currentMoney)
@@ -109,9 +110,7 @@ func _ready():
 	secondaryTimer.value = 0
 	continueDialogue.disabled = true
 	$"TESTING BUTTONS".visible = testingMode
-	spawnGremlin()
 	loadEquipment()
-	spawnFog()
 
 func _process(delta):
 	if timerActive:

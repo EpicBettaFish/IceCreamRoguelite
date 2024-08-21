@@ -1,8 +1,8 @@
-[gd_scene load_steps=19 format=3 uid="uid://bobf81d5tgrhx"]
+[gd_scene load_steps=19 format=3 uid="uid://2qnpaovbbksi"]
 
 [ext_resource type="Script" path="res://Scripts/shop.gd" id="1_pe0dp"]
 [ext_resource type="Texture2D" uid="uid://bgd4uofsyupva" path="res://assets/truck/merchant.png" id="2_kdxhb"]
-[ext_resource type="PackedScene" uid="uid://7iqdvqy4jv1c" path="res://Scenes/purchaseable.tscn" id="3_weg4s"]
+[ext_resource type="PackedScene" path="res://Scenes/purchaseable.tscn" id="3_weg4s"]
 [ext_resource type="Texture2D" uid="uid://c5b732vou3h3a" path="res://assets/truck/flyswatterpouchl.png" id="4_xrhkv"]
 [ext_resource type="Texture2D" uid="uid://cnm8mqjvaqw37" path="res://assets/truck/fanpouchfull.png" id="5_pxid6"]
 [ext_resource type="AudioStream" uid="uid://b83iwxwu5vjxx" path="res://sounds/Button_hover.mp3" id="6_2swfc"]
