@@ -18,10 +18,10 @@ func item_click(event, item):
 		press_sound.play()
 
 func add_cones(button):
-	match button:
-		0:
-			pass
-		1:
-			pass
-		2:
-			pass
+	Singleton.money -= 1
+	Singleton.inventory[button] += 1
+	$Computer.get_child(button).text = str(Singleton.inventory[button])
+	if Singleton.money < 1:
+		$Computer/ConeButton.disabled = true
+		$Computer/CheesemanButton.disabled = true
+		$Computer/RocketButton.disabled = true

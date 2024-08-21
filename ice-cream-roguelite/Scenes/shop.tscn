@@ -1,15 +1,20 @@
-[gd_scene load_steps=14 format=3 uid="uid://bobf81d5tgrhx"]
+[gd_scene load_steps=19 format=3 uid="uid://bobf81d5tgrhx"]
 
 [ext_resource type="Script" path="res://Scripts/shop.gd" id="1_pe0dp"]
 [ext_resource type="Texture2D" uid="uid://bgd4uofsyupva" path="res://assets/truck/merchant.png" id="2_kdxhb"]
 [ext_resource type="PackedScene" uid="uid://7iqdvqy4jv1c" path="res://Scenes/purchaseable.tscn" id="3_weg4s"]
 [ext_resource type="Texture2D" uid="uid://c5b732vou3h3a" path="res://assets/truck/flyswatterpouchl.png" id="4_xrhkv"]
-[ext_resource type="Texture2D" uid="uid://4vcevbouxy1o" path="res://assets/truck/coolant_bottle.png" id="5_ple14"]
+[ext_resource type="Texture2D" uid="uid://cnm8mqjvaqw37" path="res://assets/truck/fanpouchfull.png" id="5_pxid6"]
 [ext_resource type="AudioStream" uid="uid://b83iwxwu5vjxx" path="res://sounds/Button_hover.mp3" id="6_2swfc"]
+[ext_resource type="Texture2D" uid="uid://dnf1dhf3xdyis" path="res://assets/truck/fanpouch.png" id="6_5jpk2"]
 [ext_resource type="AudioStream" uid="uid://dvh0iyup867x1" path="res://sounds/button_press.mp3" id="7_7l5gw"]
+[ext_resource type="Texture2D" uid="uid://d3g25husvfate" path="res://assets/truck/canpouchfull.png" id="7_7wgq1"]
 [ext_resource type="Texture2D" uid="uid://cnochd6yu2367" path="res://assets/truck/computer.png" id="8_2udkk"]
+[ext_resource type="Texture2D" uid="uid://dbwjb75q4b3fd" path="res://assets/truck/canpouch.png" id="8_pqpmc"]
 [ext_resource type="Texture2D" uid="uid://c8t1x3t7qy06v" path="res://assets/truck/add_button.png" id="9_gxnc0"]
 [ext_resource type="FontFile" uid="uid://dh3r0t715nyei" path="res://fonts/m5x7.ttf" id="9_hxd4q"]
+[ext_resource type="Texture2D" uid="uid://d2jd441t2bojd" path="res://assets/truck/canteenpouchfull.png" id="9_wrfl1"]
+[ext_resource type="Texture2D" uid="uid://creux1i7kqlnl" path="res://assets/truck/canteenpouch.png" id="10_2vuck"]
 [ext_resource type="Texture2D" uid="uid://l06oio844scw" path="res://assets/truck/add_button_pressed.png" id="10_wsqxb"]
 [ext_resource type="Texture2D" uid="uid://dk6118gnwaxqu" path="res://assets/truck/add_button_hover.png" id="11_t3pii"]
 [ext_resource type="Texture2D" uid="uid://l6xo36ob1kur" path="res://assets/truck/add_button_disabled.png" id="12_as8lt"]
@@ -33,21 +38,42 @@ anchors_preset = 0
 
 [node name="purchaseable" parent="items" instance=ExtResource("3_weg4s")]
 layout_mode = 0
-offset_left = 216.0
-offset_top = 60.0
-offset_right = 275.0
-offset_bottom = 162.0
+offset_left = 208.0
+offset_top = 51.0
+offset_right = 267.0
+offset_bottom = 153.0
 item = 1
 empty_sprite = ExtResource("4_xrhkv")
 
 [node name="purchaseable2" parent="items" instance=ExtResource("3_weg4s")]
 layout_mode = 0
-offset_left = 102.0
-offset_top = 90.0
-offset_right = 222.0
-offset_bottom = 166.0
-texture = ExtResource("5_ple14")
+offset_left = 107.0
+offset_top = 86.0
+offset_right = 197.0
+offset_bottom = 163.0
+texture = ExtResource("5_pxid6")
 item = 2
+empty_sprite = ExtResource("6_5jpk2")
+
+[node name="purchaseable3" parent="items" instance=ExtResource("3_weg4s")]
+layout_mode = 0
+offset_left = 132.0
+offset_top = 161.0
+offset_right = 186.0
+offset_bottom = 235.0
+texture = ExtResource("7_7wgq1")
+item = 2
+empty_sprite = ExtResource("8_pqpmc")
+
+[node name="purchaseable4" parent="items" instance=ExtResource("3_weg4s")]
+layout_mode = 0
+offset_left = 226.0
+offset_top = 159.0
+offset_right = 288.0
+offset_bottom = 251.0
+texture = ExtResource("9_wrfl1")
+item = 2
+empty_sprite = ExtResource("10_2vuck")
 
 [node name="TextureRect" type="TextureRect" parent="."]
 layout_mode = 0

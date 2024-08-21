@@ -1,6 +1,6 @@
 extends Node
 
-var money: int
+var money: float
 
 var soul_coins: int
 
