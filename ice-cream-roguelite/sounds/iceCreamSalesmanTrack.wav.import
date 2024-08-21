@@ -2,7 +2,7 @@
 
 importer="wav"
 type="AudioStreamWAV"
-uid="uid://dku60wtas5jjq"
+uid="uid://ba0wv5t4s3oop"
 path="res://.godot/imported/iceCreamSalesmanTrack.wav-891053981a87e5e09864d37d4eda7d57.sample"
 
 [deps]
@@ -18,7 +18,7 @@ force/max_rate=false
 force/max_rate_hz=44100
 edit/trim=false
 edit/normalize=false
-edit/loop_mode=2
+edit/loop_mode=0
 edit/loop_begin=0
 edit/loop_end=-1
 compress/mode=0
