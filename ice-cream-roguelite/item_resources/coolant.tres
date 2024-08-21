@@ -1,0 +1,13 @@
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://d21u1mlh47qr6"]
+
+[sub_resource type="GDScript" id="GDScript_0s7wo"]
+script/source = "@export var title: String
+@export var description: String
+@export var price: int
+"
+
+[resource]
+script = SubResource("GDScript_0s7wo")
+title = "Coolant"
+description = "Cools down your freezers much faster, and more efficiently. Contact poison control if you ingest more than a pea size drop."
+price = 12

@@ -1,0 +1,13 @@
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://rc2vqjgr2vng"]
+
+[sub_resource type="GDScript" id="GDScript_0s7wo"]
+script/source = "@export var title: String
+@export var description: String
+@export var price: int
+"
+
+[resource]
+script = SubResource("GDScript_0s7wo")
+title = "Fan"
+description = "Helps blow fog out of your face, and also pretty good at chopping things!"
+price = 20

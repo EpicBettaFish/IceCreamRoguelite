@@ -1,0 +1,13 @@
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://b7amxirxjoasp"]
+
+[sub_resource type="GDScript" id="GDScript_0s7wo"]
+script/source = "@export var title: String
+@export var description: String
+@export var price: int
+"
+
+[resource]
+script = SubResource("GDScript_0s7wo")
+title = "SPRAY CAN"
+description = "Keeps away those pesky tentacles much better than your fist, Just try not to breathe in the fumes."
+price = 7
