@@ -1,10 +1,18 @@
-[gd_scene load_steps=6 format=3 uid="uid://bobf81d5tgrhx"]
+[gd_scene load_steps=14 format=3 uid="uid://bobf81d5tgrhx"]
 
 [ext_resource type="Script" path="res://Scripts/shop.gd" id="1_pe0dp"]
 [ext_resource type="Texture2D" uid="uid://bgd4uofsyupva" path="res://assets/truck/merchant.png" id="2_kdxhb"]
 [ext_resource type="PackedScene" uid="uid://7iqdvqy4jv1c" path="res://Scenes/purchaseable.tscn" id="3_weg4s"]
-[ext_resource type="Texture2D" uid="uid://cn1l5j68tulj" path="res://assets/truck/flyswatter.png" id="4_ie10e"]
+[ext_resource type="Texture2D" uid="uid://c5b732vou3h3a" path="res://assets/truck/flyswatterpouchl.png" id="4_xrhkv"]
 [ext_resource type="Texture2D" uid="uid://4vcevbouxy1o" path="res://assets/truck/coolant_bottle.png" id="5_ple14"]
+[ext_resource type="AudioStream" uid="uid://b83iwxwu5vjxx" path="res://sounds/Button_hover.mp3" id="6_2swfc"]
+[ext_resource type="AudioStream" uid="uid://dvh0iyup867x1" path="res://sounds/button_press.mp3" id="7_7l5gw"]
+[ext_resource type="Texture2D" uid="uid://cnochd6yu2367" path="res://assets/truck/computer.png" id="8_2udkk"]
+[ext_resource type="Texture2D" uid="uid://c8t1x3t7qy06v" path="res://assets/truck/add_button.png" id="9_gxnc0"]
+[ext_resource type="FontFile" uid="uid://dh3r0t715nyei" path="res://fonts/m5x7.ttf" id="9_hxd4q"]
+[ext_resource type="Texture2D" uid="uid://l06oio844scw" path="res://assets/truck/add_button_pressed.png" id="10_wsqxb"]
+[ext_resource type="Texture2D" uid="uid://dk6118gnwaxqu" path="res://assets/truck/add_button_hover.png" id="11_t3pii"]
+[ext_resource type="Texture2D" uid="uid://l6xo36ob1kur" path="res://assets/truck/add_button_disabled.png" id="12_as8lt"]
 
 [node name="shop" type="Control"]
 layout_mode = 3
@@ -15,7 +23,6 @@ script = ExtResource("1_pe0dp")
 texture_filter = 1
 position = Vector2(240, 135)
 texture = ExtResource("2_kdxhb")
-hframes = 2
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(240, 135)
@@ -26,18 +33,102 @@ anchors_preset = 0
 
 [node name="purchaseable" parent="items" instance=ExtResource("3_weg4s")]
 layout_mode = 0
-offset_left = 134.0
-offset_top = 71.0
-offset_right = 174.0
-offset_bottom = 140.0
-texture = ExtResource("4_ie10e")
+offset_left = 216.0
+offset_top = 60.0
+offset_right = 275.0
+offset_bottom = 162.0
 item = 1
+empty_sprite = ExtResource("4_xrhkv")
 
 [node name="purchaseable2" parent="items" instance=ExtResource("3_weg4s")]
 layout_mode = 0
-offset_left = 206.0
-offset_top = 70.0
-offset_right = 246.0
-offset_bottom = 139.0
+offset_left = 102.0
+offset_top = 90.0
+offset_right = 222.0
+offset_bottom = 166.0
 texture = ExtResource("5_ple14")
 item = 2
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="hover" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_2swfc")
+volume_db = -7.496
+
+[node name="press" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_7l5gw")
+
+[node name="Computer" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(49, 225)
+texture = ExtResource("8_2udkk")
+
+[node name="cones" type="Label" parent="Computer"]
+texture_filter = 1
+offset_left = -36.0
+offset_top = 4.0
+offset_right = 4.0
+offset_bottom = 27.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("9_hxd4q")
+text = "10
+"
+horizontal_alignment = 1
+
+[node name="cheeseman" type="Label" parent="Computer"]
+texture_filter = 1
+offset_left = -15.0
+offset_right = 25.0
+offset_bottom = 23.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("9_hxd4q")
+text = "10"
+horizontal_alignment = 1
+
+[node name="rocket" type="Label" parent="Computer"]
+texture_filter = 1
+offset_left = 7.0
+offset_top = -3.0
+offset_right = 47.0
+offset_bottom = 20.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("9_hxd4q")
+text = "10"
+horizontal_alignment = 1
+
+[node name="ConeButton" type="TextureButton" parent="Computer"]
+offset_left = -21.0
+offset_top = 19.0
+offset_right = -12.0
+offset_bottom = 26.0
+texture_normal = ExtResource("9_gxnc0")
+texture_pressed = ExtResource("10_wsqxb")
+texture_hover = ExtResource("11_t3pii")
+texture_disabled = ExtResource("12_as8lt")
+
+[node name="CheesemanButton" type="TextureButton" parent="Computer"]
+offset_left = 1.0
+offset_top = 17.0
+offset_right = 10.0
+offset_bottom = 24.0
+texture_normal = ExtResource("9_gxnc0")
+texture_pressed = ExtResource("10_wsqxb")
+texture_hover = ExtResource("11_t3pii")
+texture_disabled = ExtResource("12_as8lt")
+
+[node name="RocketButton" type="TextureButton" parent="Computer"]
+offset_left = 22.0
+offset_top = 15.0
+offset_right = 31.0
+offset_bottom = 22.0
+texture_normal = ExtResource("9_gxnc0")
+texture_pressed = ExtResource("10_wsqxb")
+texture_hover = ExtResource("11_t3pii")
+texture_disabled = ExtResource("12_as8lt")
+
+[connection signal="pressed" from="Computer/ConeButton" to="." method="add_cones" binds= [0]]
+[connection signal="pressed" from="Computer/CheesemanButton" to="." method="add_cones" binds= [1]]
+[connection signal="pressed" from="Computer/RocketButton" to="." method="add_cones" binds= [2]]
