@@ -11,12 +11,12 @@ var fulfilled = 0
 func _ready():
 	check.visible = false
 	numberDisplay.text = "x" + str(num)
-	image.texture = sprite
+	image.frame = sprite
 
 func updateValue(value):
 	fulfilled += 1
 	check.visible = false
 	numberDisplay.text = "x" + str(num) + "(" + str(fulfilled) + ")"
-	image.texture = sprite
+	image.frame = sprite
 	if value == 0:
 		check.visible = true

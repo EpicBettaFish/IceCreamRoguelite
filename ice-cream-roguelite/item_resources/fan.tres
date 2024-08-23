@@ -10,4 +10,4 @@ script/source = "@export var title: String
 script = SubResource("GDScript_0s7wo")
 title = "Fan"
 description = "Helps blow fog out of your face, and also pretty good at chopping things!"
-price = 20
+price = 8

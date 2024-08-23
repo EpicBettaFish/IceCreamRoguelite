@@ -13,6 +13,9 @@ extends Node2D
 @onready var openAreaCollider = $Open/CollisionPolygon2D
 @onready var tentacleSprite = $Tentacle
 @onready var tentacleArea = $TentacleArea/CollisionPolygon2D
+@onready var tentacleAnim = $AnimationPlayer
+
+var tentaclesActive = false
 
 var temperature = -16
 @onready var temperatureGauge = $Skew/Temperature
@@ -41,51 +44,55 @@ var closeSound = preload("res://sounds/freezer_closed.mp3")
 
 var canGrab = true
 
+@export var heat = true
+
 func _ready():
 	await get_tree().create_timer(0.01).timeout
-	tentacleHits = main.tentacleHits
+	if heat:
+		tentacleHits = main.tentacleHits
+		
+		
+		main.freezers.append(self)
+		
+		var tempRand = randi_range(-2,2)
+		temperature += tempRand
+		targetTemp = temperature
+		temperatureGauge.value = temperature
+		var prefix = ""
+		if int(temperature) < 0:
+			prefix = "-"
+		temperatureReadout.text = prefix + ("%02d" % abs(temperature))
 	openLid.visible = false
 	tentacleSprite.visible = false
 	tentacleArea.disabled = true
 	spawnIceCreams()
-	
-	
-	main.freezers.append(self)
-	
-	var tempRand = randi_range(-2,2)
-	temperature += tempRand
-	targetTemp = temperature
-	temperatureGauge.value = temperature
-	var prefix = ""
-	if int(temperature) < 0:
-		prefix = "-"
-	temperatureReadout.text = prefix + ("%02d" % abs(temperature))
 
 func _process(delta):
-	if freezerOpen and !overheating:
-		if !coolant:
-			temperature += delta * 2
-		temperatureGauge.value = temperature
-		var prefix = ""
-		if int(temperature) < 0:
-			prefix = "-"
-		temperatureReadout.text = prefix + ("%02d" % abs(temperature))
-		if int(temperature) >= 29:
-			overheat()
-	elif temperature > targetTemp and !freezerOpen:
-		var temperatureModifier = delta * 2
-		if overheating:
-			temperatureModifier = delta
-			if temperature <= targetTemp + 4:
-				stopOverheat()
-		if coolant:
-			temperatureModifier *= coolantSpeed
-			temperature -= temperatureModifier
-		temperatureGauge.value = temperature
-		var prefix = ""
-		if int(temperature) < 0:
-			prefix = "-"
-		temperatureReadout.text = prefix + ("%02d" % abs(temperature))
+	if heat:
+		if freezerOpen and !overheating:
+			if !coolant:
+				temperature += delta * 5
+			temperatureGauge.value = temperature
+			var prefix = ""
+			if int(temperature) < 0:
+				prefix = "-"
+			temperatureReadout.text = prefix + ("%02d" % abs(temperature))
+			if int(temperature) >= 29:
+				overheat()
+		elif temperature > targetTemp and !freezerOpen:
+			var temperatureModifier = delta * 2
+			if overheating:
+				temperatureModifier = delta
+				if temperature <= 28:
+					stopOverheat()
+			if coolant:
+				temperatureModifier *= coolantSpeed
+				temperature -= temperatureModifier
+			temperatureGauge.value = temperature
+			var prefix = ""
+			if int(temperature) < 0:
+				prefix = "-"
+			temperatureReadout.text = prefix + ("%02d" % abs(temperature))
 
 func spawnIceCreams() -> void:
 	for i in main.inventory[iceCreamID]:
@@ -144,17 +151,28 @@ func spawnTentacle() -> void:
 	openLid.visible = false
 	freezerAreaCollider.disabled = true
 	tentacleHits = main.tentacleHits
+	freezerOpen = false
 	openAreaCollider.disabled = true
-	tentacleArea.disabled = false
 	tentacleSprite.visible = true
+	tentacleAnim.play("TentacleSpawn")
+	await get_tree().create_timer(0.5).timeout
+	tentacleArea.disabled = false
+	tentaclesActive = true
+
+func killTentacle() -> void:
+	tentacleArea.disabled = true
+	tentaclesActive = false
+	tentacleAnim.play("TentacleDie")
+	await get_tree().create_timer(0.6).timeout
+	tentacleSprite.visible = false
+	openAreaCollider.disabled = false
 
 func _on_tentacle_area_input_event(viewport, event, shape_idx):
-	if event.is_action_pressed("click"):
+	if event.is_action_pressed("click") and tentaclesActive:
 		tentacleHits -= 1
+		tentacleAnim.play("TentacleHit")
 		if tentacleHits == 0:
-			openAreaCollider.disabled = false
-			tentacleArea.disabled = true
-			tentacleSprite.visible = false
+			killTentacle()
 
 #Temperature
 func overheat() -> void:
@@ -163,6 +181,7 @@ func overheat() -> void:
 			if !i.pickup:
 				i.queue_free()
 	overheating = true
+	$alert.play()
 	if !coolant:
 		temperatureReadout.modulate = "ff0000"
 		temperatureCelsius.modulate = "ff0000"
@@ -204,7 +223,8 @@ func removeRandomIceCream() -> void:
 		rand = randi_range(0,4)
 		if activeSlots[rand]:
 			cont = true
-	iceCreams[rand].queue_free()
+	if iceCreams[rand] != null:
+		iceCreams[rand].queue_free()
 	removeIceCream(rand)
 
 func addRandomIceCream() -> void:
@@ -229,9 +249,8 @@ func startIceCreamPickup() -> void:
 
 
 func _on_tentacle_area_area_entered(area):
-	if area.is_in_group("tentaclebegone"):
+	if area.is_in_group("tentaclebegone") and tentaclesActive:
 		tentacleHits -= 5
+		tentacleAnim.play("TentacleHit")
 		if tentacleHits <= 0:
-			openAreaCollider.disabled = false
-			tentacleArea.disabled = true
-			tentacleSprite.visible = false
+			killTentacle()

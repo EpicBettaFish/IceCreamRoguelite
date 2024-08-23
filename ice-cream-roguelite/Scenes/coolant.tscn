@@ -1,13 +1,15 @@
-[gd_scene load_steps=13 format=3 uid="uid://djfle7c6dg8y4"]
+[gd_scene load_steps=14 format=3 uid="uid://djfle7c6dg8y4"]
 
 [ext_resource type="Texture2D" uid="uid://c3xryoyhcdrhi" path="res://Programmer Art/coolantParticle.png" id="1_5iagu"]
 [ext_resource type="Script" path="res://Scripts/coolant.gd" id="1_64250"]
 [ext_resource type="Texture2D" uid="uid://4vcevbouxy1o" path="res://assets/truck/coolant_bottle.png" id="1_q63a4"]
 [ext_resource type="Texture2D" uid="uid://c14aemcocc4tm" path="res://assets/truck/water_bottle.png" id="2_8bx45"]
 [ext_resource type="AudioStream" uid="uid://bkr1j3dbqsqa8" path="res://sounds/coolant_pickup.mp3" id="5_rwgs4"]
+[ext_resource type="AudioStream" uid="uid://clx84xcx3xlqs" path="res://sounds/coolant_pour.mp3" id="6_4ext3"]
 
 [sub_resource type="Gradient" id="Gradient_a6v3v"]
-colors = PackedColorArray(0, 1, 1, 1, 0, 0.494118, 1, 1)
+offsets = PackedFloat32Array(0, 0.527859, 0.994135)
+colors = PackedColorArray(0, 1, 1, 1, 0, 0.732965, 1, 1, 0, 0.494118, 1, 1)
 
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_0w2ad"]
 gradient = SubResource("Gradient_a6v3v")
@@ -74,5 +76,8 @@ shape = SubResource("RectangleShape2D_tak6e")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("5_rwgs4")
+
+[node name="Pour" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_4ext3")
 
 [connection signal="input_event" from="." to="." method="_on_input_event"]

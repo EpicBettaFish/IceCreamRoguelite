@@ -1,7 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://lbtttmc3v8er"]
+[gd_scene load_steps=9 format=3 uid="uid://lbtttmc3v8er"]
 
 [ext_resource type="Texture2D" uid="uid://c3xryoyhcdrhi" path="res://Programmer Art/coolantParticle.png" id="1_h12fd"]
 [ext_resource type="Script" path="res://Scripts/spray_particles.gd" id="2_3e0os"]
+[ext_resource type="AudioStream" uid="uid://b8ojimxvqb2pa" path="res://sounds/spray_use.mp3" id="3_olm28"]
 
 [sub_resource type="Gradient" id="Gradient_hjwft"]
 offsets = PackedFloat32Array(0, 0.6, 1)
@@ -43,3 +44,8 @@ lifetime = 1.5
 one_shot = true
 explosiveness = 0.9
 script = ExtResource("2_3e0os")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_olm28")
+volume_db = -10.0
+autoplay = true

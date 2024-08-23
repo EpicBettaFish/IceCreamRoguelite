@@ -1,23 +1,296 @@
-[gd_scene load_steps=19 format=3 uid="uid://2qnpaovbbksi"]
+[gd_scene load_steps=45 format=3 uid="uid://2qnpaovbbksi"]
 
 [ext_resource type="Script" path="res://Scripts/shop.gd" id="1_pe0dp"]
 [ext_resource type="Texture2D" uid="uid://bgd4uofsyupva" path="res://assets/truck/merchant.png" id="2_kdxhb"]
 [ext_resource type="PackedScene" path="res://Scenes/purchaseable.tscn" id="3_weg4s"]
 [ext_resource type="Texture2D" uid="uid://c5b732vou3h3a" path="res://assets/truck/flyswatterpouchl.png" id="4_xrhkv"]
+[ext_resource type="Resource" uid="uid://bo3hqygmwrg60" path="res://item_resources/swatter.tres" id="5_0pmo7"]
 [ext_resource type="Texture2D" uid="uid://cnm8mqjvaqw37" path="res://assets/truck/fanpouchfull.png" id="5_pxid6"]
 [ext_resource type="AudioStream" uid="uid://b83iwxwu5vjxx" path="res://sounds/Button_hover.mp3" id="6_2swfc"]
 [ext_resource type="Texture2D" uid="uid://dnf1dhf3xdyis" path="res://assets/truck/fanpouch.png" id="6_5jpk2"]
 [ext_resource type="AudioStream" uid="uid://dvh0iyup867x1" path="res://sounds/button_press.mp3" id="7_7l5gw"]
 [ext_resource type="Texture2D" uid="uid://d3g25husvfate" path="res://assets/truck/canpouchfull.png" id="7_7wgq1"]
-[ext_resource type="Texture2D" uid="uid://cnochd6yu2367" path="res://assets/truck/computer.png" id="8_2udkk"]
+[ext_resource type="Resource" uid="uid://rc2vqjgr2vng" path="res://item_resources/fan.tres" id="8_kc8cj"]
 [ext_resource type="Texture2D" uid="uid://dbwjb75q4b3fd" path="res://assets/truck/canpouch.png" id="8_pqpmc"]
 [ext_resource type="Texture2D" uid="uid://c8t1x3t7qy06v" path="res://assets/truck/add_button.png" id="9_gxnc0"]
 [ext_resource type="FontFile" uid="uid://dh3r0t715nyei" path="res://fonts/m5x7.ttf" id="9_hxd4q"]
 [ext_resource type="Texture2D" uid="uid://d2jd441t2bojd" path="res://assets/truck/canteenpouchfull.png" id="9_wrfl1"]
 [ext_resource type="Texture2D" uid="uid://creux1i7kqlnl" path="res://assets/truck/canteenpouch.png" id="10_2vuck"]
 [ext_resource type="Texture2D" uid="uid://l06oio844scw" path="res://assets/truck/add_button_pressed.png" id="10_wsqxb"]
+[ext_resource type="Resource" uid="uid://b7amxirxjoasp" path="res://item_resources/spray.tres" id="11_rbydw"]
 [ext_resource type="Texture2D" uid="uid://dk6118gnwaxqu" path="res://assets/truck/add_button_hover.png" id="11_t3pii"]
 [ext_resource type="Texture2D" uid="uid://l6xo36ob1kur" path="res://assets/truck/add_button_disabled.png" id="12_as8lt"]
+[ext_resource type="Resource" uid="uid://d21u1mlh47qr6" path="res://item_resources/coolant.tres" id="14_duuw7"]
+[ext_resource type="Texture2D" uid="uid://424wlkoq4l8g" path="res://assets/truck/icecreamhud.png" id="18_3ml0a"]
+[ext_resource type="AudioStream" uid="uid://ba0wv5t4s3oop" path="res://sounds/iceCreamSalesmanTrack.wav" id="19_grbou"]
+[ext_resource type="Texture2D" uid="uid://0h7fp3pxa4ny" path="res://assets/truck/coin.png" id="20_r82x4"]
+[ext_resource type="Texture2D" uid="uid://dblwbo1j67c37" path="res://assets/truck/purchase_button_disabled.png" id="21_yewno"]
+[ext_resource type="Texture2D" uid="uid://bveg87gewqnnk" path="res://assets/truck/purchase_button_pressed.png" id="22_5y7bi"]
+[ext_resource type="Texture2D" uid="uid://tgx36lho7yis" path="res://assets/truck/over_button.png" id="22_ojjtw"]
+[ext_resource type="Texture2D" uid="uid://d3vrw0wd2v4k1" path="res://assets/truck/purchase_button_hover.png" id="23_twepl"]
+[ext_resource type="Texture2D" uid="uid://ut7y58qrpqev" path="res://assets/truck/purchase_button.png" id="24_oms2o"]
+[ext_resource type="Texture2D" uid="uid://b2c7j5tn4tb5c" path="res://assets/truck/back_button.png" id="25_tk0a5"]
+[ext_resource type="AudioStream" uid="uid://b1rljnchf6ceu" path="res://sounds/typewriter noise.mp3" id="29_0xbab"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cewik"]
+bg_color = Color(0.739281, 0.781933, 0.819845, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+corner_detail = 1
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_q4fae"]
+bg_color = Color(0.739281, 0.781933, 0.819845, 1)
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+corner_detail = 1
+anti_aliasing = false
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_n1dmg"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_upnan"]
+texture = ExtResource("21_yewno")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_vughq"]
+texture = ExtResource("22_5y7bi")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ck8ll"]
+texture = ExtResource("23_twepl")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_d4xg8"]
+texture = ExtResource("24_oms2o")
+
+[sub_resource type="Animation" id="Animation_bc7e1"]
+resource_name = "open"
+length = 2.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect/Label:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4, 2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ColorRect:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 2, 2.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("ColorRect:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 2.4, 2.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [true, true, false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("music:volume_db")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 1.9, 2, 2.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [-80.0, -80.0, -30.0, -5.0]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("music:playing")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 1.9, 2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [false, false, true]
+}
+
+[sub_resource type="Animation" id="Animation_bkt2g"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect/Label:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ColorRect:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("ColorRect:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("music:volume_db")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [-80.0]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("music:playing")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_28goh"]
+_data = {
+"RESET": SubResource("Animation_bkt2g"),
+"open": SubResource("Animation_bc7e1")
+}
+
+[sub_resource type="Animation" id="Animation_n7j8t"]
+resource_name = "changeScene"
+length = 1.8
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Camera2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.166667, 0.3, 1, 1.06667),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(240, 135), Vector2(240, 135), Vector2(240, 131), Vector2(240, 131), Vector2(240, 453.56)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Camera2D:zoom")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.366667, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(4, 4), Vector2(4, 4), Vector2(3.73, 3.73)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("AudioStreamPlayer:playing")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("music:volume_db")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [-5.0, -80.0]
+}
+
+[sub_resource type="Animation" id="Animation_0vcn6"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("music:volume_db")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Camera2D:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(240, 135)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Camera2D:zoom")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(4, 4)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_2hc4d"]
+_data = {
+"RESET": SubResource("Animation_0vcn6"),
+"changeScene": SubResource("Animation_n7j8t")
+}
 
 [node name="shop" type="Control"]
 layout_mode = 3
@@ -44,6 +317,8 @@ offset_right = 267.0
 offset_bottom = 153.0
 item = 1
 empty_sprite = ExtResource("4_xrhkv")
+info_resource = ExtResource("5_0pmo7")
+singletonName = "flyswatter"
 
 [node name="purchaseable2" parent="items" instance=ExtResource("3_weg4s")]
 layout_mode = 0
@@ -52,8 +327,10 @@ offset_top = 86.0
 offset_right = 197.0
 offset_bottom = 163.0
 texture = ExtResource("5_pxid6")
-item = 2
+item = 3
 empty_sprite = ExtResource("6_5jpk2")
+info_resource = ExtResource("8_kc8cj")
+singletonName = "fan"
 
 [node name="purchaseable3" parent="items" instance=ExtResource("3_weg4s")]
 layout_mode = 0
@@ -62,8 +339,9 @@ offset_top = 161.0
 offset_right = 186.0
 offset_bottom = 235.0
 texture = ExtResource("7_7wgq1")
-item = 2
 empty_sprite = ExtResource("8_pqpmc")
+info_resource = ExtResource("11_rbydw")
+singletonName = "tentaclespray"
 
 [node name="purchaseable4" parent="items" instance=ExtResource("3_weg4s")]
 layout_mode = 0
@@ -74,6 +352,8 @@ offset_bottom = 251.0
 texture = ExtResource("9_wrfl1")
 item = 2
 empty_sprite = ExtResource("10_2vuck")
+info_resource = ExtResource("14_duuw7")
+singletonName = "coolant"
 
 [node name="TextureRect" type="TextureRect" parent="."]
 layout_mode = 0
@@ -87,17 +367,24 @@ volume_db = -7.496
 [node name="press" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("7_7l5gw")
 
-[node name="Computer" type="Sprite2D" parent="."]
+[node name="Money" type="Label" parent="."]
 texture_filter = 1
-position = Vector2(49, 225)
-texture = ExtResource("8_2udkk")
+offset_left = 8.0
+offset_top = 180.0
+offset_right = 68.0
+offset_bottom = 203.0
+theme_override_colors/font_color = Color(0.0208197, 0.471193, 0, 1)
+theme_override_fonts/font = ExtResource("9_hxd4q")
+text = "$999.99"
+
+[node name="Computer" type="Node2D" parent="."]
 
 [node name="cones" type="Label" parent="Computer"]
 texture_filter = 1
-offset_left = -36.0
-offset_top = 4.0
-offset_right = 4.0
-offset_bottom = 27.0
+offset_left = -2.0
+offset_top = 209.0
+offset_right = 38.0
+offset_bottom = 232.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("9_hxd4q")
 text = "10
@@ -106,9 +393,10 @@ horizontal_alignment = 1
 
 [node name="cheeseman" type="Label" parent="Computer"]
 texture_filter = 1
-offset_left = -15.0
-offset_right = 25.0
-offset_bottom = 23.0
+offset_left = 20.0
+offset_top = 209.0
+offset_right = 60.0
+offset_bottom = 232.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("9_hxd4q")
 text = "10"
@@ -116,45 +404,300 @@ horizontal_alignment = 1
 
 [node name="rocket" type="Label" parent="Computer"]
 texture_filter = 1
-offset_left = 7.0
-offset_top = -3.0
-offset_right = 47.0
-offset_bottom = 20.0
+offset_left = 43.0
+offset_top = 209.0
+offset_right = 83.0
+offset_bottom = 232.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("9_hxd4q")
 text = "10"
 horizontal_alignment = 1
 
 [node name="ConeButton" type="TextureButton" parent="Computer"]
-offset_left = -21.0
-offset_top = 19.0
-offset_right = -12.0
-offset_bottom = 26.0
+texture_filter = 1
+offset_left = 13.0
+offset_top = 221.0
+offset_right = 22.0
+offset_bottom = 228.0
 texture_normal = ExtResource("9_gxnc0")
 texture_pressed = ExtResource("10_wsqxb")
 texture_hover = ExtResource("11_t3pii")
 texture_disabled = ExtResource("12_as8lt")
 
 [node name="CheesemanButton" type="TextureButton" parent="Computer"]
-offset_left = 1.0
-offset_top = 17.0
-offset_right = 10.0
-offset_bottom = 24.0
+texture_filter = 1
+offset_left = 35.0
+offset_top = 221.0
+offset_right = 44.0
+offset_bottom = 228.0
 texture_normal = ExtResource("9_gxnc0")
 texture_pressed = ExtResource("10_wsqxb")
 texture_hover = ExtResource("11_t3pii")
 texture_disabled = ExtResource("12_as8lt")
 
 [node name="RocketButton" type="TextureButton" parent="Computer"]
-offset_left = 22.0
-offset_top = 15.0
-offset_right = 31.0
-offset_bottom = 22.0
+texture_filter = 1
+offset_left = 58.0
+offset_top = 221.0
+offset_right = 67.0
+offset_bottom = 228.0
 texture_normal = ExtResource("9_gxnc0")
 texture_pressed = ExtResource("10_wsqxb")
 texture_hover = ExtResource("11_t3pii")
 texture_disabled = ExtResource("12_as8lt")
 
+[node name="OverButton" type="TextureButton" parent="Computer"]
+texture_filter = 1
+offset_left = 61.0
+offset_top = 184.0
+offset_right = 70.0
+offset_bottom = 191.0
+mouse_default_cursor_shape = 2
+texture_normal = ExtResource("22_ojjtw")
+texture_pressed = ExtResource("22_ojjtw")
+texture_hover = ExtResource("22_ojjtw")
+texture_disabled = ExtResource("22_ojjtw")
+
+[node name="Sprite2D" type="Sprite2D" parent="Computer"]
+texture_filter = 1
+position = Vector2(18, 203)
+texture = ExtResource("18_3ml0a")
+hframes = 3
+
+[node name="Sprite2D2" type="Sprite2D" parent="Computer"]
+texture_filter = 1
+position = Vector2(40, 203)
+texture = ExtResource("18_3ml0a")
+hframes = 3
+frame = 1
+
+[node name="Sprite2D3" type="Sprite2D" parent="Computer"]
+texture_filter = 1
+position = Vector2(61, 203)
+texture = ExtResource("18_3ml0a")
+hframes = 3
+frame = 2
+
+[node name="Conversion" type="Node2D" parent="."]
+visible = false
+
+[node name="Sprite2D" type="Sprite2D" parent="Conversion"]
+texture_filter = 1
+position = Vector2(21, 203)
+texture = ExtResource("20_r82x4")
+
+[node name="Label" type="Label" parent="Conversion"]
+texture_filter = 1
+offset_left = 50.0
+offset_top = 192.0
+offset_right = 69.0
+offset_bottom = 205.0
+scale = Vector2(2, 2)
+theme_override_colors/font_color = Color(0.0196078, 0.470588, 0, 1)
+theme_override_fonts/font = ExtResource("9_hxd4q")
+text = "$5"
+
+[node name="Label2" type="Label" parent="Conversion"]
+texture_filter = 1
+offset_left = 38.0
+offset_top = 198.0
+offset_right = 57.0
+offset_bottom = 211.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("9_hxd4q")
+text = "->"
+
+[node name="Convert" type="TextureButton" parent="Conversion"]
+texture_filter = 1
+offset_left = 37.0
+offset_top = 218.0
+offset_right = 46.0
+offset_bottom = 225.0
+texture_normal = ExtResource("9_gxnc0")
+texture_pressed = ExtResource("10_wsqxb")
+texture_hover = ExtResource("11_t3pii")
+texture_disabled = ExtResource("12_as8lt")
+
+[node name="BackButton" type="TextureButton" parent="Conversion"]
+texture_filter = 1
+offset_left = 61.0
+offset_top = 184.0
+offset_right = 70.0
+offset_bottom = 191.0
+mouse_default_cursor_shape = 2
+texture_normal = ExtResource("25_tk0a5")
+texture_pressed = ExtResource("25_tk0a5")
+texture_hover = ExtResource("25_tk0a5")
+texture_disabled = ExtResource("25_tk0a5")
+
+[node name="music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("19_grbou")
+
+[node name="InfoPanel" type="Panel" parent="."]
+visible = false
+layout_mode = 0
+offset_left = 1.0
+offset_top = 1.0
+offset_right = 233.0
+offset_bottom = 75.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_cewik")
+
+[node name="Panel" type="Panel" parent="InfoPanel"]
+show_behind_parent = true
+layout_mode = 0
+offset_top = 64.0
+offset_right = 84.0
+offset_bottom = 129.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_q4fae")
+
+[node name="Panel2" type="Panel" parent="InfoPanel"]
+show_behind_parent = true
+layout_mode = 0
+offset_left = 74.0
+offset_top = 74.0
+offset_right = 94.0
+offset_bottom = 84.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_q4fae")
+
+[node name="title" type="Label" parent="InfoPanel"]
+texture_filter = 1
+offset_right = 116.0
+offset_bottom = 13.0
+scale = Vector2(2, 2)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("9_hxd4q")
+text = "Tentacle-B-Gone"
+horizontal_alignment = 1
+autowrap_mode = 1
+
+[node name="description" type="Label" parent="InfoPanel"]
+texture_filter = 1
+offset_left = -1.0
+offset_top = 28.0
+offset_right = 234.0
+offset_bottom = 105.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("9_hxd4q")
+text = "Cools down your freezers much faster, and more efficiently. Contact Poison Control if you ingest more than a pea size drop."
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="price" type="Label" parent="InfoPanel"]
+texture_filter = 1
+offset_left = 1.0
+offset_top = 76.0
+offset_right = 23.0
+offset_bottom = 89.0
+scale = Vector2(2, 2)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("9_hxd4q")
+text = "10"
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="Sprite2D" type="Sprite2D" parent="InfoPanel"]
+texture_filter = 1
+position = Vector2(60, 86)
+texture = ExtResource("20_r82x4")
+
+[node name="Purchase" type="Button" parent="InfoPanel"]
+texture_filter = 1
+layout_mode = 0
+offset_left = 10.0
+offset_top = 103.0
+offset_right = 74.0
+offset_bottom = 124.0
+theme_override_fonts/font = ExtResource("9_hxd4q")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_n1dmg")
+theme_override_styles/disabled = SubResource("StyleBoxTexture_upnan")
+theme_override_styles/hover_pressed = SubResource("StyleBoxTexture_vughq")
+theme_override_styles/hover = SubResource("StyleBoxTexture_ck8ll")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_vughq")
+theme_override_styles/normal = SubResource("StyleBoxTexture_d4xg8")
+text = "PURCHASE"
+
+[node name="Soul Coin Counter" type="Panel" parent="."]
+layout_mode = 0
+offset_left = 234.0
+offset_top = 1.0
+offset_right = 289.0
+offset_bottom = 20.0
+rotation = -6.28318
+theme_override_styles/panel = SubResource("StyleBoxFlat_cewik")
+
+[node name="Sprite2D2" type="Sprite2D" parent="Soul Coin Counter"]
+texture_filter = 1
+position = Vector2(17, 4.99985)
+texture = ExtResource("20_r82x4")
+
+[node name="number" type="Label" parent="Soul Coin Counter"]
+texture_filter = 1
+offset_left = 32.0
+offset_top = 1.99972
+offset_right = 55.0
+offset_bottom = 14.9997
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("9_hxd4q")
+text = "10"
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="Continue" type="Button" parent="."]
+texture_filter = 1
+offset_left = 350.0
+offset_top = 226.0
+offset_right = 414.0
+offset_bottom = 247.0
+scale = Vector2(2, 2)
+theme_override_fonts/font = ExtResource("9_hxd4q")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_n1dmg")
+theme_override_styles/disabled = SubResource("StyleBoxTexture_d4xg8")
+theme_override_styles/hover_pressed = SubResource("StyleBoxTexture_vughq")
+theme_override_styles/hover = SubResource("StyleBoxTexture_ck8ll")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_vughq")
+theme_override_styles/normal = SubResource("StyleBoxTexture_d4xg8")
+text = "CONTINUE"
+
+[node name="ColorRect" type="ColorRect" parent="."]
+visible = false
+layout_mode = 0
+offset_right = 480.0
+offset_bottom = 270.0
+color = Color(0, 0, 0, 1)
+
+[node name="Label" type="Label" parent="ColorRect"]
+texture_filter = 1
+offset_right = 240.0
+offset_bottom = 135.0
+scale = Vector2(2, 2)
+theme_override_fonts/font = ExtResource("9_hxd4q")
+text = "On your way home, 
+you meet a strange salesman..."
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="ColorRect"]
+root_node = NodePath("../..")
+libraries = {
+"": SubResource("AnimationLibrary_28goh")
+}
+autoplay = "open"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_2hc4d")
+}
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("29_0xbab")
+
 [connection signal="pressed" from="Computer/ConeButton" to="." method="add_cones" binds= [0]]
 [connection signal="pressed" from="Computer/CheesemanButton" to="." method="add_cones" binds= [1]]
 [connection signal="pressed" from="Computer/RocketButton" to="." method="add_cones" binds= [2]]
+[connection signal="pressed" from="Computer/OverButton" to="." method="_on_over_button_pressed"]
+[connection signal="pressed" from="Conversion/Convert" to="." method="_on_convert_pressed"]
+[connection signal="pressed" from="Conversion/BackButton" to="." method="_on_back_button_pressed"]
+[connection signal="pressed" from="InfoPanel/Purchase" to="." method="_on_purchase_pressed"]
+[connection signal="pressed" from="Continue" to="." method="_on_continue_pressed"]
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]

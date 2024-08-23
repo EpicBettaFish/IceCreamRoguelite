@@ -18,6 +18,7 @@ var canGrab = true
 
 @onready var sprite = $Sprite2D
 @onready var button = $Button
+@onready var grab = $Grab
 
 func _ready():
 	sprite.texture = freezerTexture
@@ -49,6 +50,7 @@ func _on_area_exited(area):
 func _on_input_event(viewport, event, shape_idx):
 	if event.is_action_pressed("click") and canGrab:
 		startPickup()
+		grab.play()
 	if event.is_action_released("click") and pickup:
 		main.grabbingItem = false
 		if atCustomer and main.activeCustomer:

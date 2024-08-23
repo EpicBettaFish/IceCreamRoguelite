@@ -1,10 +1,10 @@
 [gd_scene load_steps=8 format=3 uid="uid://jdik5qb7tkai"]
 
 [ext_resource type="Script" path="res://Scripts/flyswatter.gd" id="1_k5pv1"]
-[ext_resource type="Texture2D" uid="uid://drwtyfrs46dyb" path="res://Programmer Art/flyswatter.png" id="1_ptyq1"]
+[ext_resource type="Texture2D" uid="uid://cn1l5j68tulj" path="res://assets/truck/flyswatter.png" id="2_hce84"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vmu8a"]
-size = Vector2(20, 46.4865)
+size = Vector2(20, 68.7641)
 
 [sub_resource type="Animation" id="Animation_whkt3"]
 length = 0.001
@@ -92,7 +92,7 @@ _data = {
 }
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ssk1i"]
-size = Vector2(24, 24)
+size = Vector2(24, 37)
 
 [node name="Flyswatter" type="Area2D"]
 z_index = 2
@@ -103,13 +103,12 @@ position = Vector2(0, -1)
 
 [node name="Sprite2D" type="Sprite2D" parent="Alter"]
 texture_filter = 1
-position = Vector2(-3, 14)
-texture = ExtResource("1_ptyq1")
-flip_v = true
+position = Vector2(6, 25)
+texture = ExtResource("2_hce84")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-2, 12)
-rotation = 0.327749
+position = Vector2(3, 23)
+rotation = -0.201349
 shape = SubResource("RectangleShape2D_vmu8a")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
@@ -120,6 +119,7 @@ libraries = {
 [node name="Swat" type="Area2D" parent="." groups=["flyswatter"]]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Swat"]
+position = Vector2(0, -6.5)
 shape = SubResource("RectangleShape2D_ssk1i")
 disabled = true
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=65 format=3 uid="uid://brx8cesxl8wrj"]
+[gd_scene load_steps=96 format=3 uid="uid://brx8cesxl8wrj"]
 
 [ext_resource type="Texture2D" uid="uid://dgccxaaxedvst" path="res://assets/truck/truck_interiror.png" id="1_m7kw3"]
 [ext_resource type="Script" path="res://Scripts/main.gd" id="1_yedyt"]
@@ -18,29 +18,41 @@
 [ext_resource type="Texture2D" uid="uid://b8rc4rtgkjfwe" path="res://Programmer Art/TimerBlue.png" id="11_nc4va"]
 [ext_resource type="Texture2D" uid="uid://qr71e5ik1rkk" path="res://assets/truck/cooler_1_open.png" id="12_b2xxy"]
 [ext_resource type="Texture2D" uid="uid://ddu7knqjnoxvk" path="res://Programmer Art/openRegister.png" id="13_xd1og"]
-[ext_resource type="Texture2D" uid="uid://b4sbio1mhwatf" path="res://Programmer Art/tentacle1.png" id="15_f5ces"]
+[ext_resource type="Texture2D" uid="uid://dbkiswrlx2iw1" path="res://assets/truck/shutter.png" id="15_583pc"]
 [ext_resource type="FontFile" uid="uid://dh3r0t715nyei" path="res://fonts/m5x7.ttf" id="15_juj3m"]
+[ext_resource type="Texture2D" uid="uid://mouf1spivuea" path="res://assets/truck/bills.png" id="16_2kxny"]
 [ext_resource type="PackedScene" uid="uid://2cq3xcy71nfx" path="res://Scenes/TentacleSpray.tscn" id="16_gfrr5"]
-[ext_resource type="Texture2D" uid="uid://cq82gfd3k00gs" path="res://Programmer Art/insertCoin.png" id="16_vb8qn"]
+[ext_resource type="AudioStream" uid="uid://chcv5vix00upl" path="res://sounds/shutterClose.mp3" id="16_xhxmc"]
 [ext_resource type="Texture2D" uid="uid://cc14wet4hb7bd" path="res://assets/truck/thermometer_over.png" id="17_42ca5"]
+[ext_resource type="Texture2D" uid="uid://bkyt72wdlsl7j" path="res://assets/customers/shadydemon.png" id="17_60y2y"]
 [ext_resource type="PackedScene" uid="uid://jdik5qb7tkai" path="res://Scenes/flyswatter.tscn" id="17_h745e"]
 [ext_resource type="PackedScene" uid="uid://dy31jlffsx7ql" path="res://Scenes/fan.tscn" id="18_50wkj"]
 [ext_resource type="Texture2D" uid="uid://cv7st7h6ffec7" path="res://assets/truck/thermometer_fill.png" id="18_i0feb"]
-[ext_resource type="Texture2D" uid="uid://dqjleds416fj" path="res://Programmer Art/tentacle2.png" id="18_y1hmc"]
 [ext_resource type="Texture2D" uid="uid://b8ag54iqmdfnv" path="res://Programmer Art/sticky1.png" id="19_nfawq"]
 [ext_resource type="Texture2D" uid="uid://duq5t6ijrbbia" path="res://Programmer Art/check.png" id="19_vx5k3"]
 [ext_resource type="Texture2D" uid="uid://dcwpdys5u57qe" path="res://Programmer Art/sticky2.png" id="20_psath"]
 [ext_resource type="Texture2D" uid="uid://cg3lmwdh0wr0f" path="res://Programmer Art/cross.png" id="20_wlhqs"]
-[ext_resource type="Texture2D" uid="uid://bbock4iidfttx" path="res://Programmer Art/tentacle3.png" id="20_yqlge"]
 [ext_resource type="Texture2D" uid="uid://ddtj83dmfu4eh" path="res://Programmer Art/sticky3.png" id="21_2klvf"]
 [ext_resource type="AudioStream" uid="uid://btvicn5kivs54" path="res://sounds/freezer_open.mp3" id="22_dn3xj"]
+[ext_resource type="Texture2D" uid="uid://dlth6hubtcawe" path="res://assets/truck/drawertentaclesleft.png" id="22_q7cj0"]
+[ext_resource type="Texture2D" uid="uid://dvfxby7yj3oqv" path="res://assets/truck/drawertentaclesmiddle.png" id="29_1ea6d"]
 [ext_resource type="PackedScene" uid="uid://djfle7c6dg8y4" path="res://Scenes/coolant.tscn" id="30_snwc3"]
+[ext_resource type="AudioStream" uid="uid://cqd2m221iyqbu" path="res://sounds/overheatalert.mp3" id="31_8lcgr"]
 [ext_resource type="Texture2D" uid="uid://61ujmnj5364o" path="res://Programmer Art/coolantHoleBack.png" id="31_ux50n"]
+[ext_resource type="Texture2D" uid="uid://cpklb1nav4c3l" path="res://assets/truck/drawertentaclesright.png" id="32_sj7ji"]
 [ext_resource type="Texture2D" uid="uid://glkc3a07yirp" path="res://Programmer Art/coolantHoleFront.png" id="32_v3ok1"]
+[ext_resource type="AudioStream" uid="uid://ps676axadggq" path="res://sounds/register_open.mp3" id="33_6xe8n"]
+[ext_resource type="AudioStream" uid="uid://46new3o5ecm2" path="res://sounds/register_close.mp3" id="34_e3rgu"]
 [ext_resource type="Texture2D" uid="uid://i8vshlxm66y" path="res://assets/truck/freezer_gremlin.png" id="34_koy7s"]
 [ext_resource type="Texture2D" uid="uid://i8kj1trsbq5t" path="res://assets/truck/icecreamsheet1.png" id="34_ocs7p"]
+[ext_resource type="Texture2D" uid="uid://bt3q6ouw511j0" path="res://assets/truck/coinslot.png" id="37_vbgsc"]
 [ext_resource type="PackedScene" uid="uid://kpk2fud4apos" path="res://Scenes/fog.tscn" id="39_gchwy"]
 [ext_resource type="AudioStream" uid="uid://bo411ci4qyov4" path="res://sounds/iceCreamAmbient.wav" id="41_xskox"]
+[ext_resource type="AudioStream" uid="uid://lfql5lt72x48" path="res://sounds/rummaging.mp3" id="42_hsyw6"]
+[ext_resource type="AudioStream" uid="uid://4kd1y34a780v" path="res://sounds/slap.mp3" id="43_5hwev"]
+[ext_resource type="AudioStream" uid="uid://b1rljnchf6ceu" path="res://sounds/typewriter noise.mp3" id="46_sjtku"]
+[ext_resource type="Animation" uid="uid://i522xfty0pbh" path="res://changeScene.res" id="48_0o814"]
+[ext_resource type="Texture2D" uid="uid://dm22sxr4y001u" path="res://assets/truck/table.png" id="50_srcsg"]
 
 [sub_resource type="Animation" id="Animation_hyao0"]
 resource_name = "CustomerEnter"
@@ -234,17 +246,271 @@ size = Vector2(182, 139)
 [sub_resource type="ViewportTexture" id="ViewportTexture_4w00w"]
 viewport_path = NodePath("SubViewport")
 
+[sub_resource type="Animation" id="Animation_ucaad"]
+resource_name = "steal"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4, 0.6, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(276, 135), Vector2(220, 146), Vector2(220, 146), Vector2(297, 125)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../FakeMoney:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.533333, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [true, true, false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("FakeMoney:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.533333, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [false, false, true]
+}
+
+[sub_resource type="Animation" id="Animation_jb6cw"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(276, 135)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../FakeMoney:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("FakeMoney:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ivgll"]
+_data = {
+"RESET": SubResource("Animation_jb6cw"),
+"steal": SubResource("Animation_ucaad")
+}
+
+[sub_resource type="Animation" id="Animation_50bjb"]
+resource_name = "shutterClose"
+length = 0.9
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(90, -86), Vector2(90, 53)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AudioStreamPlayer:playing")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.2),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../CustomerAndUI:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_8tl23"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(90, -86)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../CustomerAndUI:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_dhbd2"]
+_data = {
+"RESET": SubResource("Animation_8tl23"),
+"shutterClose": SubResource("Animation_50bjb")
+}
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_81bmd"]
+bg_color = Color(0, 0, 0, 1)
+border_color = Color(1, 1, 1, 1)
+
+[sub_resource type="Gradient" id="Gradient_a6v3v"]
+offsets = PackedFloat32Array(0, 0.527859, 0.994135)
+colors = PackedColorArray(0, 1, 1, 1, 0, 0.732965, 1, 1, 0, 0.494118, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_0w2ad"]
+gradient = SubResource("Gradient_a6v3v")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_yvehr"]
+texture = SubResource("GradientTexture1D_0w2ad")
+
+[sub_resource type="Animation" id="Animation_fd6wj"]
+resource_name = "TentacleSpawn"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Tentacle:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [1, 2, 3]
+}
+
+[sub_resource type="Animation" id="Animation_kwmd2"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Tentacle:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Tentacle:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_mpg84"]
+resource_name = "TentacleDie"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Tentacle:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [4, 5, 6]
+}
+
+[sub_resource type="Animation" id="Animation_glnhi"]
+resource_name = "TentacleHit"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Tentacle:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [4, 3]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_50xyh"]
+_data = {
+"RESET": SubResource("Animation_kwmd2"),
+"TentacleDie": SubResource("Animation_mpg84"),
+"TentacleHit": SubResource("Animation_glnhi"),
+"TentacleSpawn": SubResource("Animation_fd6wj")
+}
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_w6o7p"]
 size = Vector2(28, 26)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wf083"]
-size = Vector2(93, 139)
+size = Vector2(183, 139)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qyivp"]
 size = Vector2(16, 16)
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_6bn6g"]
-polygon = PackedVector2Array(290, 243, 317, 243, 317, 270, 290, 270)
+polygon = PackedVector2Array(290, 243, 295, 242, 295, 233, 296, 233, 296, 242, 310, 242, 310, 233, 311, 233, 311, 242, 317, 243, 317, 270, 290, 270)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tvxot"]
 size = Vector2(56, 49)
@@ -299,6 +565,18 @@ tracks/3/keys = {
 "update": 1,
 "values": [true]
 }
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Rummage:playing")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
 
 [sub_resource type="Animation" id="Animation_nmdsw"]
 resource_name = "rummage"
@@ -339,6 +617,18 @@ tracks/2/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [false, true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Rummage:playing")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 5.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
 }
 
 [sub_resource type="Animation" id="Animation_6w2aj"]
@@ -393,6 +683,18 @@ tracks/3/keys = {
 "update": 1,
 "values": [true]
 }
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Rummage:playing")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
 
 [sub_resource type="Animation" id="Animation_8gfio"]
 resource_name = "steal"
@@ -429,7 +731,7 @@ tracks/2/path = NodePath("GremlinArea/Ice Cream:visible")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0, 2.4, 3.7, 4.6, 4.7),
+"times": PackedFloat32Array(0, 3.6, 3.7, 4.6, 4.7),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 1,
 "values": [false, false, true, true, false]
@@ -446,27 +748,166 @@ tracks/3/keys = {
 "update": 1,
 "values": [false, true]
 }
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Rummage:playing")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 3.7),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="Animation" id="Animation_mfeb3"]
+resource_name = "failSteal"
+length = 2.3
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("GremlinArea:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1.7, 2.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, -49), Vector2(0, -49), Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("GremlinArea/Sprite2D:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5, 0.7, 1.5, 1.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 0, 1, 1, 0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("GremlinArea/CollisionShape2D:disabled")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1.6),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_d41nc"]
 _data = {
 "RESET": SubResource("Animation_4pxtc"),
+"failSteal": SubResource("Animation_mfeb3"),
 "rummage": SubResource("Animation_nmdsw"),
 "run": SubResource("Animation_6w2aj"),
 "steal": SubResource("Animation_8gfio")
+}
+
+[sub_resource type="Animation" id="Animation_hkvvh"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Camera2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(240, 135)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Camera2D:zoom")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(4, 4)]
+}
+
+[sub_resource type="Animation" id="Animation_gn4yt"]
+resource_name = "start"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasLayer/ColorRect2:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2, 2.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("shutter:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(2.7, 3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(90, 53), Vector2(90, -86)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("CanvasLayer/ColorRect2/Label:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("CanvasLayer/ColorRect2:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 2.5, 2.53333),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [true, true, false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_f7ltf"]
+_data = {
+"RESET": SubResource("Animation_hkvvh"),
+"changeScene": ExtResource("48_0o814"),
+"start": SubResource("Animation_gn4yt")
 }
 
 [node name="Main" type="Node2D"]
 y_sort_enabled = true
 script = ExtResource("1_yedyt")
 iceCreamData = {
-0: [ExtResource("2_36aa8"), 1.25],
-1: [ExtResource("3_j1pde"), 2.5],
-2: [ExtResource("4_ulnio"), 2.0]
+0: [ExtResource("2_36aa8"), 1.75],
+1: [ExtResource("3_j1pde"), 1.75],
+2: [ExtResource("4_ulnio"), 1.75]
 }
 timerMaxTime = 10.0
 customerSprites = [ExtResource("2_2k4am"), ExtResource("6_s60f8"), ExtResource("7_suegs")]
-testingMode = true
-dialogueOptions = ["[wave]test| dialogue| is| very| cool.|||[/wave] its true!", "wow, isn't test dialogue just great!?", "hmm i sure do love me some test dialogue. yes, that i do.", "[rainbow]your mother[/rainbow]"]
+dialogueOptions = ["These're [color=#7d0200]gluten free[/color], right?", "I hope they're frozen this time.", "Wait, this isn't the bank... [wave]Oh well.[/wave]", "You have ice cream, right?", "I'm hungry. Fix that.", "Just these, please.", "You wouldn't happen to have any more of these, right?", "I called ahead for these, you know.", "I got here as fast as I could!", "Ooo! Gimme that!", "[wave]The other truck down the road is so much lamer...[/wave]", "Do you take [wave][color=#412743]souls?[/color][/wave]", "[wave]That merchant gives me the creeps.[/wave] Not you-| the other guy.", "Hey. Just these, make it snappy.", "Gimme the usual.", "[wave]Hmm... Maybe...?[/wave]", "The governor's trying to make me put my house on the ground. Can you believe that?", "How's the weather in there?", "Can I have a sip of that [color=#007eff]Coolant[/color]?|| No?| How about this?", "Did you see the newest episode of [color=#d4b400]Cheeseman Aristocrat[/color]?| Me neither.", "[shake]I REQUIRE YOUR FINEST PACKAGED CONFECTIONS. POSTHASTE.[/shake]", "I'm bored. Gimme that.", "Hey, I think I accidentally dropped [color=#067d00]$2,000[/color] in your cash register earlier, can I have it back?", "You'd better not scam me.", "You look a little busy there...||| It's ok, I can be patient.||.||.", "Hey, could you give me directions to the airport?|| Sure, I'll buy some ice cream."]
 gremlinSpawns = [NodePath("GremlinSpawns/Spawn1"), NodePath("GremlinSpawns/Spawn2"), NodePath("GremlinSpawns/Spawn3")]
 
 [node name="BG" type="TextureRect" parent="."]
@@ -640,7 +1081,7 @@ position = Vector2(181, 122.5)
 shape = SubResource("RectangleShape2D_byait")
 
 [node name="CustomerAndUI" type="Sprite2D" parent="."]
-z_index = -2
+z_index = -5
 texture_filter = 1
 position = Vector2(240, 135)
 texture = SubResource("ViewportTexture_4w00w")
@@ -651,19 +1092,82 @@ texture_filter = 1
 texture = ExtResource("1_m7kw3")
 offset = Vector2(240, 135)
 
+[node name="Table" type="Sprite2D" parent="."]
+z_index = -4
+texture_filter = 1
+position = Vector2(180, 204)
+texture = ExtResource("50_srcsg")
+offset = Vector2(0.5, 0)
+
+[node name="StealMoneyAnim" type="AnimationPlayer" parent="."]
+root_node = NodePath("../StealMoneyCustomer")
+libraries = {
+"": SubResource("AnimationLibrary_ivgll")
+}
+
+[node name="FakeMoney" type="Sprite2D" parent="."]
+visible = false
+z_index = -3
+texture_filter = 1
+position = Vector2(227, 190)
+texture = ExtResource("16_2kxny")
+
+[node name="StealMoneyCustomer" type="Sprite2D" parent="."]
+z_index = -2
+texture_filter = 1
+position = Vector2(276, 135)
+texture = ExtResource("17_60y2y")
+
+[node name="FakeMoney" type="Sprite2D" parent="StealMoneyCustomer"]
+visible = false
+show_behind_parent = true
+texture_filter = 1
+position = Vector2(7, 44)
+texture = ExtResource("16_2kxny")
+
+[node name="shutter" type="Sprite2D" parent="."]
+z_index = -2
+texture_filter = 1
+position = Vector2(90, -86)
+texture = ExtResource("15_583pc")
+centered = false
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="shutter"]
+libraries = {
+"": SubResource("AnimationLibrary_dhbd2")
+}
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="shutter"]
+stream = ExtResource("16_xhxmc")
+
+[node name="coolantGague" type="ProgressBar" parent="."]
+offset_left = 300.0
+offset_top = 162.0
+offset_right = 336.0
+offset_bottom = 175.0
+rotation = 1.57079
+mouse_filter = 1
+theme_override_styles/background = SubResource("StyleBoxFlat_81bmd")
+theme_override_styles/fill = SubResource("StyleBoxTexture_yvehr")
+max_value = 20.0
+step = 1.0
+value = 20.0
+fill_mode = 1
+show_percentage = false
+
 [node name="Items" type="Node2D" parent="."]
 
 [node name="Coolant" parent="Items" instance=ExtResource("30_snwc3")]
-position = Vector2(305, 190)
+position = Vector2(314, 192)
 
 [node name="TentacleSpray" parent="Items" instance=ExtResource("16_gfrr5")]
-position = Vector2(31, 229)
+position = Vector2(35, 211)
 
 [node name="Flyswatter" parent="Items" instance=ExtResource("17_h745e")]
 position = Vector2(233, 53)
 
 [node name="Fan" parent="Items" instance=ExtResource("18_50wkj")]
-position = Vector2(167, 24)
+position = Vector2(167, 21)
 
 [node name="Interactable" type="Node2D" parent="."]
 y_sort_enabled = true
@@ -686,9 +1190,11 @@ polygon = PackedVector2Array(83, 213, 141, 216, 122, 262, 55, 255, 84, 213)
 [node name="Tentacle" type="Sprite2D" parent="Interactable/Freezer"]
 visible = false
 texture_filter = 1
-position = Vector2(98, 237)
-texture = ExtResource("15_f5ces")
-offset = Vector2(0.5, 0.5)
+position = Vector2(87, 232)
+texture = ExtResource("22_q7cj0")
+offset = Vector2(0.5, 0)
+hframes = 7
+frame = 1
 
 [node name="FreezerOpen" type="Sprite2D" parent="Interactable/Freezer"]
 visible = false
@@ -789,6 +1295,14 @@ metadata/_edit_use_anchors_ = true
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Interactable/Freezer"]
 stream = ExtResource("22_dn3xj")
 
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Interactable/Freezer"]
+libraries = {
+"": SubResource("AnimationLibrary_50xyh")
+}
+
+[node name="alert" type="AudioStreamPlayer" parent="Interactable/Freezer"]
+stream = ExtResource("31_8lcgr")
+
 [node name="Freezer2" type="Node2D" parent="Interactable"]
 y_sort_enabled = true
 script = ExtResource("9_yofj3")
@@ -839,9 +1353,10 @@ position = Vector2(185, 249)
 [node name="Tentacle" type="Sprite2D" parent="Interactable/Freezer2"]
 visible = false
 texture_filter = 1
-position = Vector2(168, 238)
-texture = ExtResource("18_y1hmc")
-offset = Vector2(0.5, 0.5)
+position = Vector2(163, 235)
+texture = ExtResource("29_1ea6d")
+hframes = 7
+frame = 1
 
 [node name="TentacleArea" type="Area2D" parent="Interactable/Freezer2"]
 
@@ -912,6 +1427,14 @@ metadata/_edit_use_anchors_ = true
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Interactable/Freezer2"]
 stream = ExtResource("22_dn3xj")
 
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Interactable/Freezer2"]
+libraries = {
+"": SubResource("AnimationLibrary_50xyh")
+}
+
+[node name="alert" type="AudioStreamPlayer" parent="Interactable/Freezer2"]
+stream = ExtResource("31_8lcgr")
+
 [node name="Freezer3" type="Node2D" parent="Interactable"]
 y_sort_enabled = true
 script = ExtResource("9_yofj3")
@@ -962,9 +1485,15 @@ position = Vector2(266, 247)
 [node name="Tentacle" type="Sprite2D" parent="Interactable/Freezer3"]
 visible = false
 texture_filter = 1
-position = Vector2(254, 239)
-texture = ExtResource("20_yqlge")
-offset = Vector2(0.5, 0.5)
+position = Vector2(250, 236)
+texture = ExtResource("32_sj7ji")
+hframes = 7
+frame = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Interactable/Freezer3"]
+libraries = {
+"": SubResource("AnimationLibrary_50xyh")
+}
 
 [node name="TentacleArea" type="Area2D" parent="Interactable/Freezer3"]
 
@@ -1035,6 +1564,9 @@ metadata/_edit_use_anchors_ = true
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Interactable/Freezer3"]
 stream = ExtResource("22_dn3xj")
 
+[node name="alert" type="AudioStreamPlayer" parent="Interactable/Freezer3"]
+stream = ExtResource("31_8lcgr")
+
 [node name="Register" type="Area2D" parent="Interactable"]
 
 [node name="OpenRegister" type="Sprite2D" parent="Interactable/Register"]
@@ -1064,8 +1596,8 @@ offset_left = -18.0
 offset_top = -8.0
 offset_right = -12.0
 offset_bottom = 5.0
-theme_override_colors/font_color = Color(1, 0.803922, 0, 1)
-theme_override_colors/font_outline_color = Color(1, 0.803922, 0, 1)
+theme_override_colors/font_color = Color(0.0606102, 0.772596, 7.70092e-07, 1)
+theme_override_colors/font_outline_color = Color(0.0588235, 0.772549, 0, 1)
 theme_override_constants/outline_size = 1
 theme_override_fonts/font = ExtResource("15_juj3m")
 theme_override_font_sizes/font_size = 16
@@ -1078,8 +1610,8 @@ offset_left = -12.0
 offset_top = -8.0
 offset_right = 20.0
 offset_bottom = 5.0
-theme_override_colors/font_color = Color(1, 0.803922, 0, 1)
-theme_override_colors/font_outline_color = Color(1, 0.803922, 0, 1)
+theme_override_colors/font_color = Color(0.0588235, 0.772549, 0, 1)
+theme_override_colors/font_outline_color = Color(0.0588235, 0.772549, 0, 1)
 theme_override_constants/outline_size = 1
 theme_override_fonts/font = ExtResource("15_juj3m")
 theme_override_font_sizes/font_size = 16
@@ -1087,32 +1619,38 @@ text = "100.00"
 horizontal_alignment = 2
 metadata/_edit_use_anchors_ = true
 
+[node name="Open" type="AudioStreamPlayer" parent="Interactable/Register"]
+stream = ExtResource("33_6xe8n")
+
+[node name="Close" type="AudioStreamPlayer" parent="Interactable/Register"]
+stream = ExtResource("34_e3rgu")
+
 [node name="InsertCoin" type="Area2D" parent="Interactable" groups=["InsertCoin"]]
 z_index = -1
 
 [node name="Sprite2D" type="Sprite2D" parent="Interactable/InsertCoin"]
 texture_filter = 1
 position = Vector2(391, 188)
-texture = ExtResource("16_vb8qn")
+texture = ExtResource("37_vbgsc")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Interactable/InsertCoin"]
 position = Vector2(391, 188)
 shape = SubResource("RectangleShape2D_w6o7p")
 
 [node name="ColorRect" type="ColorRect" parent="Interactable/InsertCoin"]
-offset_left = 383.0
-offset_top = 166.0
-offset_right = 404.0
-offset_bottom = 177.0
+offset_left = 393.0
+offset_top = 152.0
+offset_right = 414.0
+offset_bottom = 163.0
 color = Color(0, 0, 0, 1)
 metadata/_edit_use_anchors_ = true
 
 [node name="Coin Counter" type="Label" parent="Interactable/InsertCoin"]
 texture_filter = 1
-offset_left = 378.0
-offset_top = 164.0
-offset_right = 410.0
-offset_bottom = 177.0
+offset_left = 388.0
+offset_top = 150.0
+offset_right = 420.0
+offset_bottom = 163.0
 theme_override_colors/font_color = Color(0.545098, 0.792157, 0.905882, 1)
 theme_override_colors/font_outline_color = Color(0.545098, 0.792157, 0.905882, 1)
 theme_override_constants/outline_size = 1
@@ -1125,7 +1663,7 @@ metadata/_edit_use_anchors_ = true
 [node name="CustomerPocket" type="Area2D" parent="." groups=["customer"]]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CustomerPocket"]
-position = Vector2(225.5, 122.5)
+position = Vector2(180.5, 122.5)
 shape = SubResource("RectangleShape2D_wf083")
 
 [node name="MoneySpawnPos" type="Node2D" parent="."]
@@ -1161,11 +1699,8 @@ offset_bottom = 109.0
 texture_normal = ExtResource("20_wlhqs")
 stretch_mode = 0
 
-[node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(240, 135)
-zoom = Vector2(4, 4)
-
 [node name="CoolantHole" type="Area2D" parent="."]
+position = Vector2(1, 0)
 
 [node name="Back" type="Sprite2D" parent="CoolantHole"]
 z_index = -1
@@ -1176,8 +1711,9 @@ texture = ExtResource("31_ux50n")
 [node name="Front" type="Sprite2D" parent="CoolantHole"]
 z_index = 1
 texture_filter = 1
-position = Vector2(303, 243)
+position = Vector2(295, 236)
 texture = ExtResource("32_v3ok1")
+centered = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CoolantHole"]
 position = Vector2(303, 243)
@@ -1215,6 +1751,13 @@ libraries = {
 "": SubResource("AnimationLibrary_d41nc")
 }
 
+[node name="Rummage" type="AudioStreamPlayer" parent="Gremlin"]
+stream = ExtResource("42_hsyw6")
+volume_db = -15.0
+
+[node name="slap" type="AudioStreamPlayer" parent="Gremlin"]
+stream = ExtResource("43_5hwev")
+
 [node name="GremlinSpawns" type="Node2D" parent="."]
 z_index = 2
 
@@ -1234,6 +1777,107 @@ z_index = 5
 stream = ExtResource("41_xskox")
 autoplay = true
 
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(240, 135)
+zoom = Vector2(4, 4)
+
+[node name="ChangeScene" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_f7ltf")
+}
+autoplay = "start"
+
+[node name="TransitionSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("46_sjtku")
+
+[node name="CustomerScreen" type="ColorRect" parent="."]
+offset_left = 86.0
+offset_top = 11.0
+offset_right = 129.0
+offset_bottom = 42.0
+color = Color(0, 0, 0, 1)
+
+[node name="CustomerScreenDisplay" type="Label" parent="CustomerScreen"]
+modulate = Color(0.89, 0.23496, 0.0356, 1)
+texture_filter = 1
+layout_mode = 0
+offset_left = -1.0
+offset_top = 9.0
+offset_right = 25.0
+offset_bottom = 22.0
+scale = Vector2(1.75, 1.75)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 1
+theme_override_fonts/font = ExtResource("15_juj3m")
+theme_override_font_sizes/font_size = 16
+text = "10"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Closing Time" type="Label" parent="CustomerScreen"]
+visible = false
+modulate = Color(0.89, 0.23496, 0.0356, 1)
+texture_filter = 1
+layout_mode = 0
+offset_left = 1.0
+offset_top = -2.0
+offset_right = 43.0
+offset_bottom = 11.0
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 1
+theme_override_fonts/font = ExtResource("15_juj3m")
+theme_override_font_sizes/font_size = 16
+text = "CLOSING"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = 2
+follow_viewport_enabled = true
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+offset_left = -21.0
+offset_top = 270.0
+offset_right = 510.0
+offset_bottom = 618.0
+color = Color(0, 0, 0, 1)
+
+[node name="ColorRect2" type="ColorRect" parent="CanvasLayer"]
+visible = false
+modulate = Color(1, 1, 1, 0)
+offset_right = 480.0
+offset_bottom = 271.0
+color = Color(0, 0, 0, 1)
+
+[node name="Label" type="Label" parent="CanvasLayer/ColorRect2"]
+texture_filter = 1
+layout_mode = 0
+offset_right = 160.0
+offset_bottom = 90.0
+scale = Vector2(3, 3)
+theme_override_fonts/font = ExtResource("15_juj3m")
+text = "DAY 1"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Skew" type="Node2D" parent="."]
+position = Vector2(397, 46)
+rotation = 0.0698132
+skew = -0.10472
+
+[node name="Quota" type="Label" parent="Skew"]
+modulate = Color(1, 0, 0.366667, 1)
+texture_filter = 1
+offset_left = -82.0
+offset_top = -7.0
+offset_right = 83.0
+offset_bottom = 6.0
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 1
+theme_override_fonts/font = ExtResource("15_juj3m")
+text = "TODAY'S QUOTA: $100.00"
+horizontal_alignment = 1
+
 [connection signal="input_event" from="ContinueDialogue" to="." method="_on_continue_dialogue_input_event"]
 [connection signal="input_event" from="Items/Fan" to="." method="_on_fan_input_event"]
 [connection signal="input_event" from="Interactable/Freezer/Open" to="Interactable/Freezer" method="_on_open_input_event"]
@@ -1249,9 +1893,11 @@ autoplay = true
 [connection signal="area_entered" from="Interactable/Freezer3/TentacleArea" to="Interactable/Freezer3" method="_on_tentacle_area_area_entered"]
 [connection signal="input_event" from="Interactable/Freezer3/TentacleArea" to="Interactable/Freezer3" method="_on_tentacle_area_input_event"]
 [connection signal="input_event" from="Interactable/Register" to="." method="_on_register_input_event"]
+[connection signal="area_entered" from="CustomerPocket" to="." method="_on_customer_pocket_area_entered"]
 [connection signal="pressed" from="TESTING BUTTONS/TestingPass" to="." method="_on_testing_pass_pressed"]
 [connection signal="pressed" from="TESTING BUTTONS/TestingFail" to="." method="_on_testing_fail_pressed"]
 [connection signal="area_entered" from="CoolantHole" to="." method="_on_coolant_hole_area_entered"]
 [connection signal="area_exited" from="CoolantHole" to="." method="_on_coolant_hole_area_exited"]
 [connection signal="area_entered" from="Gremlin/GremlinArea" to="." method="_on_gremlin_area_area_entered"]
 [connection signal="input_event" from="Gremlin/GremlinArea" to="." method="_on_gremlin_area_input_event"]
+[connection signal="animation_finished" from="ChangeScene" to="." method="_on_change_scene_animation_finished"]

@@ -1,8 +1,8 @@
 [gd_scene load_steps=5 format=3 uid="uid://ddyffjfhbaan0"]
 
-[ext_resource type="Texture2D" uid="uid://0f4q8tklspm3" path="res://Programmer Art/iceCream1.png" id="1_1yqu3"]
 [ext_resource type="Script" path="res://Scripts/customer_ice_cream_display.gd" id="1_n1vtr"]
 [ext_resource type="FontFile" uid="uid://dh3r0t715nyei" path="res://fonts/m5x7.ttf" id="2_rcv1k"]
+[ext_resource type="Texture2D" uid="uid://424wlkoq4l8g" path="res://assets/truck/icecreamhud.png" id="2_vw827"]
 [ext_resource type="Texture2D" uid="uid://duq5t6ijrbbia" path="res://Programmer Art/check.png" id="4_67vuf"]
 
 [node name="CustomerIceCreamDisplay" type="Control"]
@@ -16,7 +16,9 @@ script = ExtResource("1_n1vtr")
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 1
 position = Vector2(12, 12)
-texture = ExtResource("1_1yqu3")
+texture = ExtResource("2_vw827")
+hframes = 3
+frame = 2
 
 [node name="Label" type="Label" parent="."]
 texture_filter = 1

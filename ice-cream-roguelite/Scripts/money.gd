@@ -10,6 +10,7 @@ var inCoinSlot = false
 
 @export var coin = false
 @onready var collider = $CollisionShape2D
+@onready var grab = $grab
 
 var occluded = 0
 
@@ -24,9 +25,11 @@ func _process(_delta):
 
 
 func _on_input_event(viewport, event, shape_idx):
-	if event.is_action_pressed("click"):
+	if event.is_action_pressed("click") and !pickup:
 		startPickup()
-	if event.is_action_released("click"):
+		if !coin:
+			grab.play()
+	if event.is_action_released("click") and pickup:
 		if inRegister and !coin:
 			collectMoney()
 		elif inCoinSlot and coin:

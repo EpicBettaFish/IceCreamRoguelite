@@ -6,6 +6,7 @@ var spawnPos = Vector2(0,0)
 var particles = preload("res://Scenes/spray_particles.tscn")
 @onready var particleParent = $Particles
 @onready var area = $TentacleBeGone/CollisionShape2D
+@onready var pickupSound = $pickup
 
 func _ready():
 	spawnPos = global_position
@@ -18,6 +19,7 @@ func _process(delta):
 func _on_input_event(viewport, event, shape_idx):
 	if event.is_action_pressed('click') and !pickup:
 		pickup = true
+		pickupSound.play()
 	if event.is_action_released('click') and pickup:
 		pickup = false
 		global_position = spawnPos

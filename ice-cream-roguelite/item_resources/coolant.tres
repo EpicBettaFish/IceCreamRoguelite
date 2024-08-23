@@ -10,4 +10,4 @@ script/source = "@export var title: String
 script = SubResource("GDScript_0s7wo")
 title = "Coolant"
 description = "Cools down your freezers much faster, and more efficiently. Contact poison control if you ingest more than a pea size drop."
-price = 12
+price = 10

@@ -8,6 +8,6 @@ script/source = "@export var title: String
 
 [resource]
 script = SubResource("GDScript_0s7wo")
-title = "SPRAY CAN"
+title = "Tentacle-B-Gone"
 description = "Keeps away those pesky tentacles much better than your fist, Just try not to breathe in the fumes."
-price = 7
+price = 6
